@@ -5,7 +5,7 @@
 <div class="display wiki">
 	{include file="bitpackage:wiki/page_header.tpl"}
 	{if $gBitSystem->isPackageActive( 'stickies' )}
-		{include file="bitpackage:stickies/display_tikisticky.tpl"}
+		{include file="bitpackage:stickies/display_bitsticky.tpl"}
 	{/if}
 	{include file="bitpackage:wiki/page_display.tpl"}
 	{if $pages > 1}
