@@ -14,7 +14,7 @@
 
 		<div class="date">
 			{if $blog_categ eq 'y'}
-				{*popup_init src="/themes/overlib.js"*}
+				{*popup_init src="`$gBitLoc.THEMES_PKG_URL`js/overlib.js"*}
 				<div style="float:right;" valign="top">
 					{if $blogPosts[ix].categs}
 						{section name=k loop=$blogPosts[ix].categs}
