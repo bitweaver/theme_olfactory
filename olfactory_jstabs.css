@@ -1,0 +1,31 @@
+/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_jstabs.css,v 1.1 2005/06/19 06:11:03 bitweaver Exp $ */
+/**
+ * @author   xing <xing@synapse.plus.com>
+ * @version  $Revision: 1.1 $
+ * @theme    olfactory
+ * @license  LGPL
+ */
+@media screen,projection,tv {
+/* tabs */
+.tabsystem .tabcontainer				{margin:0; padding:0; border:0; clear:both; z-index:1;}
+.tabsystem .tabcontainer ul,
+.tabsystem .tabcontainer li				{margin:0; padding:0; border:0; list-style-type:none; display:inline; z-index:1;}
+.tabsystem .tabcontainer .tab,
+.tabsystem .tabcontainer .tab-active	{position:relative; display:inline; float:left; z-index:1; white-space:nowrap;}
+.tabsystem .tabpage						{clear:both; z-index:1;}
+h4										{margin:0; padding:0; z-index:1;}
+
+/* tabs design */
+.tabsystem .tabcontainer .tab,
+.tabsystem .tabcontainer.tab-hover,
+.tabsystem .tabcontainer .tab-active	{top:3px; font:10px verdana,arial,sans-serif; margin:0 3px; padding:4px 5px 1px 5px; background:transparent url( images/jstabs/tab_shade.png ) repeat-x; border:1px solid #bbb; border-bottom:0;}
+.tabsystem .tabcontainer .tab-hover		{padding:3px 5px 1px 5px; border-top:2px solid #f60;}
+.tabsystem .tabcontainer .tab-active	{top:1px; margin:0; padding:2px 8px 4px 8px; background:#fff; border-top:2px solid #f60;}
+.tabsystem .tabpage						{border:1px solid #bbb; margin:0; padding:1em;}
+
+/* rounded tab tops - does not work in MSIE - if active, it screws up Konqeror * /
+.tabsystem .tabcontainer .tab:before		{line-height:0.1; font-size:1px; background:transparent url( images/jstabs/tab_tr_n.gif ) no-repeat top right; margin:-5px -6px 0 -6px; height:3px; display:block; border:none; content:url( images/jstabs/tab_tl_n.gif );}
+.tabsystem .tabcontainer .tab-hover:before	{line-height:0.1; font-size:1px; background:transparent url( images/jstabs/tab_tr.gif ) no-repeat top right; margin:-5px -6px 0 -6px; height:3px; display:block; border:none; content:url( images/jstabs/tab_tl.gif );}
+.tabsystem .tabcontainer .tab-active:before	{line-height:0.1; font-size:1px; background:transparent url( images/jstabs/tab_tr.gif ) no-repeat top right; margin:-4px -9px 0 -9px; height:3px; display:block; border:none; content:url( images/jstabs/tab_tl.gif );}
+/**/
+}

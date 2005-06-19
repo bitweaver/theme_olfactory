@@ -1,0 +1,18 @@
+/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/olfactory.css,v 1.1 2005/06/19 06:11:03 bitweaver Exp $ */
+/**
+ * @author   xing <xing@synapse.plus.com>
+ * @version  $Revision: 1.1 $
+ * @theme    olfactory
+ * @license  LGPL
+ */
+
+/* import settings that apply to all media */
+@import url( olfactory_all.css );
+
+/* import screen media */
+@import url( olfactory_screen.css );
+@import url( olfactory_jstabs.css );
+@import url( olfactory_cssmenus.css );
+
+/* apply print display settings */
+@import url( olfactory_print.css );

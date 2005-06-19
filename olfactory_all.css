@@ -1,0 +1,127 @@
+/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_all.css,v 1.1 2005/06/19 06:11:03 bitweaver Exp $ */
+/**
+ * @author   xing <xing@synapse.plus.com>
+ * @version  $Revision: 1.1 $
+ * @theme    olfactory
+ * @license  LGPL
+ */
+@media all {
+*		{font-family:'Bitstream Vera Sans',verdana,helvetica,sans-serif;}
+body	{font-size:11px; color:#000; background:#fff margin:0; padding:0;}
+pre		{font-family:monospace; font-size:12px; overflow:auto; text-align:left; background:#ddd; color:#000;}
+img		{border:0;}
+hr		{border:0; border-top:1px solid #933; padding:0; margin:0.5em 0;}
+
+/* links */
+:link							{text-decoration:none; color:#630;}
+a.create						{color:#009;}
+a.external						{background:transparent url( images/external_link.png ) no-repeat right;  padding-right:16px;}
+:visited						{color:#a60; text-decoration:none;}
+:link:hover,:visited:hover		{text-decoration:none; color:#090;}
+:link:active,:visited:active	{color:#fc0;}
+
+/* titles */
+h1,h2,h3	{font-weight:900; padding:1em 0 0.4em 0; margin:0;}
+h1			{font-size:1.4em;}
+h2			{font-size:1.2em;}
+h3			{font-size:1.0em;}
+
+/* common classes */
+.body				{font-size:1.0em; padding:1.0em;}
+.content			{padding:1em 0;}
+.preview			{border:1px dashed #009;}
+.norecords			{font-weight:bold;}
+.popup				{background:#fff; width:250px; border:1px solid #000;}
+.highlight			{font-weight:bolder; color:#900; background:#eee; border:1px solid #ddd;}
+.selected			{font-weight:bolder}
+.floaticon			{float:right;}
+.storage			{float:right; border:1px solid #ccc;}
+.storage .item		{margin:3px;}
+.comment,.footer	{clear:both;}
+.footer				{}
+.pagination			{text-align:center;}
+.icon				{border:0; vertical-align:middle;}
+.menuicon			{text-align:center;}
+
+/* forms */
+form,input,textarea,select	{margin:0; padding:0;}
+textarea					{width:99%;}
+input,textarea,select		{font-size:inherit;}
+input						{max-width:100%;}
+textarea					{}
+fieldset					{border:0; border-top:3px double #f80; border-bottom:3px double #aaa; padding:1em; margin-bottom:1em;}
+legend						{font-size:1.2em; padding:1em;}
+.row						{clear:both; margin-bottom:2em;}
+.quicktags					{margin:0;}
+.formlabel					{font-weight:bold; width:20%; float:left; text-align:right;}
+.forminput					{margin-left:21%;}
+.formfeedback				{}
+.formhelp					{cursor:help; font-size:0.8em; line-height:normal; color:#67a}
+.closebutton				{position:absolute; top:1px; right:1px;}
+.submit						{text-align:center; padding:1em; margin:1em;}
+.error,.errorpage h3		{color:#f00; font-weight:bold;}
+.warning					{color:#f80;}
+.success					{color:#090;}
+.clear						{clear:both;}
+
+/* parsed elements */
+.tikitable td		{padding:0.5em; border:1px solid #ccc;}
+.tikibox			{color:#900; background:#eee; border:1px solid #bbb; padding:0.5em; margin:0 5em;}
+.tikibar			{border-bottom:1px solid #ddd; border-top:1px solid #ddd;}
+.tikitoc			{float:right; border:1px solid #db8d28; border-top:0; background:#ffe7c7; margin:0 0 1em 1em; width:30%;}
+.tikitoc ul			{margin-left:1.5em; padding:0;}
+.tikitoc ul li		{}
+
+/* tables and lists */
+fieldset table			{margin:0 2%; width:96%;}
+table					{border-collapse:collapse; padding:0; margin:0; width:100%; line-height:normal;}
+th						{font-weight:normal; border-bottom:2px solid #999; background:#fec; text-align:left;}
+td.actionicon			{text-align:right;}
+table.data				{border:1px solid #aaa;}
+.odd td,.even td		{border-bottom:1px solid #999;}
+.odd					{background:#e5e5e5;}
+.even					{}
+ul,ul li				{list-style:circle;}
+dt						{font-weight:bold; font-size:1.0em;}
+.formfeedback ul		{margin:1em 2em 0 2em; padding:2px;}
+li.error,li.success,li.note,li.warning	{list-style:none;}
+li.odd,li.even			{border-top:1px solid #666; padding:1em 0; margin-bottom:-1px;}
+
+/* data lists */
+ul.data,ul.data li.item	{padding:0; margin:0; list-style:none;}
+ul.data li.item			{padding:0.5em; margin:0 0 0 1%;}
+ul.data li.item:hover	{background:#ddd;}
+ul.data .thumb			{float:right; margin-right:1em;}
+ul.toc,ul.toc ul		{margin-left:2em; padding-left:0;}
+
+/* boxes */
+.box				{margin:1em;}
+.box h3,.tikitoc h3	{padding:3px; background:#fb7e01 url( images/htmltabs/tab_bg.png ) top left repeat-x; border-bottom:1px solid #b85d04;}
+#tikimain .menu h3	{background:transparent;}
+
+
+/* package specific settings */
+
+/* fisheye */
+.fisheye ul.data li.item		{border:1px solid #ddd; clear:both; margin:0.5em 0px 0.5em 200px; background:#eee;}
+.fisheye ul.data li.item .thumb	{float:left; margin:-35px 0 0 -200px;}
+.fisheye .body .image			{margin:0 -1em;}
+
+.thumb							{padding:3px; border:1px solid #ccc;}
+.fisheyegallery .thumb			{padding:3px; border:3px double #ccc;}
+.thumb:hover					{border-color:#bbb;}
+.thumbnailblock .box			{padding:5px; text-align:center;}
+.thumbnailblock .box:hover		{color:#333;}
+.image							{text-align:center;}
+
+/* structure navigation */
+.path					{display:block;}
+.navigation span		{display:block; width:49%;}
+.navigation .left		{text-align:right; float:left;}
+.navigation .right		{text-align:left; float:right;}
+
+/* sticky notes */
+.stickies textarea,.stickies input[type='text']		{background:#fe9;}
+.stickynote h3			{border-bottom: 1px solid #dda;}
+.stickynote				{background-color:#fe9; color:#000; width: 300px; padding: 3px;}
+}

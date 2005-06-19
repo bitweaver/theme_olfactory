@@ -1,0 +1,99 @@
+/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_cssmenus.css,v 1.1 2005/06/19 06:11:03 bitweaver Exp $ */
+/**
+ * @author   xing <xing@synapse.plus.com>
+ * @version  $Revision: 1.1 $
+ * @theme    olfactory
+ * @license  LGPL
+ */
+@media screen,projection,tv {
+/* regular menus */
+.menu,.menu ul,.menu li	{list-style:none;}
+#tikibody .menu,
+#tikibody .menu ul,
+#tikibody .menu li		{margin:0.3em; padding:0;}
+.menu .icon				{vertical-align:middle;}
+.menu .head				{display:block;}
+.menu .item				{display:block;}
+
+/* css driven dropdown menus - horizontal */
+
+/* layout first */
+.hor .icon				{position:absolute; left:28px; top:2px; margin-left:-26px;}
+.hor,.hor ul,.hor li	{padding:0; margin:0; list-style:none; z-index:1000000; line-height:normal;}
+.hor a					{white-space:nowrap; line-height:normal;}
+.hor li					{width:auto;}
+.hor li li,.hor li ul	{width:13em; display:block; text-align:left; background:transparent;}
+.hor li					{float:left; position:relative;}
+.hor li li a			{margin:0 0 0 20px;}
+.hor li ul				{position:absolute; left:-999em;}
+.hor li ul ul			{margin:-20px 0 0 13em;}
+
+/* now comes the dropdown style - modify away! */
+#bittopbar				{background:#fb7e01 url( images/htmltabs/tab_bg.png ) top left repeat-x; border-bottom:1px solid #b85d04; float:left; width:100%;}
+.hor a					{background:#fb7e01 url( images/htmltabs/tab_r.png ) top right no-repeat; padding:0.5em 1.0em; margin:0;}
+.hor a:hover			{background:#fb7e01 url( images/htmltabs/tab_cur_r.png ) top right no-repeat; color:#000;}
+.hor a:visited			{color:#000;}
+.hor li li a			{color:#fff;}
+.hor li li a:visited	{color:#fff;}
+.hor li li a:hover		{background:#fb7e01; color:#000;}
+.hor .current a			{background:#fb7e01 url( images/htmltabs/tab_cur_r.png ) top right no-repeat; color:#fc6;}
+.hor .current li a		{background:transparent; color:#000;}
+.hor ul a				{color:#000; padding:0 5px; background:transparent; line-height:20px;}
+.hor li					{background:transparent url( images/htmltabs/tab_l.png ) top left no-repeat; padding-left:1px;}
+.hor li:hover,.hor li.ieHover		{background:transparent;}
+.hor li li:hover,.hor li li.ieHover	{background:#fbae11;}
+.hor ul a.head			{background-image:url( images/arrow.gif ); background-repeat:no-repeat; background-position:right;}
+.hor ul a.head:hover	{background-image:url( images/arrow.gif ); background-repeat:no-repeat; background-position:right;}
+.hor li ul				{background:#3b6292 url( images/menu_ul.gif ) repeat-y 0.3em 0.3em; padding:0.3em; border:1px solid #333;}
+
+/* css driven dropdown menus - vertical */
+.ver .icon							{margin-left:-26px; padding-right:8px; vertical-align:middle;}
+.ver a								{color:#000; padding:0 5px; white-space:nowrap;}
+.ver a.head							{background-image:url( images/arrow.gif ); background-repeat:no-repeat; background-position:right;}
+.ver, .ver ul						{padding:0; margin:0; list-style:none; float:left; width:13em; z-index:1000000;}
+.ver li								{position:relative; width:13em;}
+.ver li:hover,.ver li.ieHover		{background:#bec7d3;}
+.ver li li							{position:relative; float:left; width:13em;}
+.ver li li:hover,.ver li li.ieHover	{border:1px solid #657a96; margin:-1px;}
+.ver li li a						{margin:0 0 0 2em;}
+.ver li ul							{position:absolute; left:-999em; margin-left:13em; margin-top:-2em; padding:0.3em; background:#fff; border:1px solid #999; background:#fff url( images/menu_ul.gif ) repeat-y 0.3em 0.3em;}
+.ver li ul ul						{left:-999em;}
+
+/* vertical menus on the right hand side */
+#bitright .ver, #bitright .ver li, #bitright .ver ul	{width:125px;}
+#bitright .ver li ul									{margin-left:-132px;}
+
+/* z-index */
+.hor,.hor a,.hor li,.hor ul	{z-index:100000;}
+.ver,.ver a,.ver li,.ver ul	{z-index:100000;}
+#nav,#nav a,#nav li,#nav ul	{z-index:10000000;}
+
+/* ieHover used as suckerfish class for MSIE hover support */
+.hor li:hover ul ul, .hor li:hover ul ul ul, .hor li.ieHover ul ul, .hor li.ieHover ul ul ul,
+.ver li:hover ul ul, .ver li:hover ul ul ul, .ver li.ieHover ul ul, .ver li.ieHover ul ul ul	{left:-999em;}
+.hor li:hover ul, .hor li li:hover ul, .hor li li li:hover ul, .hor li.ieHover ul, .hor li li.ieHover ul, .hor li li li.ieHover ul,
+.ver li:hover ul, .ver li li:hover ul, .ver li li li:hover ul, .ver li.ieHover ul, .ver li li.ieHover ul, .ver li li li.ieHover ul	{left:auto;}
+
+/* Support for MSIE select box hiding part of suckerfish - don't touch */
+.hor iframe,.ver iframe	{position:absolute; left:0; top:0; z-index:-1; filter:progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0);}
+
+/* if you want an example of package specific menu styling, uncomment the following */
+/* to work out what does what, try removing e.g. 'm-blogs a' and see what happens */
+/* the '!important' is required to override the existing settings */
+/** /
+.m-home,.m-home ul,.m-home li,.m-home a							{background:#fff !important;}
+.m-admin,.m-admin ul,.m-admin li,.m-admin a						{background:#eee !important;}
+.m-blogs,.m-blogs ul,.m-blogs li,.m-blogs a						{background:#ddd !important;}
+.m-calendar,.m-calendar ul,.m-calendar li,.m-calendar a			{background:#ccc !important;}
+.m-categories,.m-categories ul,.m-categories li,.m-categories a	{background:#aaa !important;}
+.m-contacts,.m-contacts ul,.m-contacts li,.m-contacts a			{background:#999 !important;}
+.m-phpbb,.m-phpbb ul,.m-phpbb li,.m-phpbb a						{background:#fce !important;}
+.m-fisheye,.m-fisheye ul,.m-fisheye li,.m-fisheye a				{background:#fcb !important;}
+.m-users,.m-users ul,.m-users li,.m-users a						{background:#fec !important;}
+.m-nexus,.m-nexus ul,.m-nexus li,.m-nexus a						{background:#fbc !important;}
+.m-sample,.m-sample ul,.m-sample li,.m-sample a					{background:#cef !important;}
+.m-stats,.m-stats ul,.m-stats li,.m-stats a						{background:#cbf !important;}
+.m-stylist,.m-stylist ul,.m-stylist li,.m-stylist a				{background:#cfe !important;}
+.m-wiki,.m-wiki ul,.m-wiki li,.m-wiki a							{background:#cfb !important;}
+/**/
+}
