@@ -1,7 +1,7 @@
-/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_print.css,v 1.1 2005/06/19 06:11:03 bitweaver Exp $ */
+/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_print.css,v 1.1.1.1.2.1 2005/06/21 22:26:32 squareing Exp $ */
 /**
  * @author   xing <xing@synapse.plus.com>
- * @version  $Revision: 1.1 $
+ * @version  $Revision: 1.1.1.1.2.1 $
  * @theme    olfactory
  * @license  LGPL
  */
@@ -18,7 +18,7 @@ body		{background:#fff;}
 /* hide other stuff */
 .pageactions,.navbar	{display:none;}
 .tabcontainer			{display:none;}
-.tikitoc				{display:none;}
+.maketoc				{display:none;}
 .floaticon				{display:none;}
 .minifind				{display:none;}
 }
