@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.1 2005/06/19 06:11:03 bitweaver Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.1.1.1.2.1 2005/06/25 11:11:11 squareing Exp $ *}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
 
 <div class="floaticon">{bithelp}</div>
@@ -286,7 +286,7 @@
 		{/form}
 
 		<br /><br />
-		{include file="bitpackage:liberty/edit_help.tpl"}
+		{include file="bitpackage:liberty/edit_help_inc.tpl"}
 
 	</div><!-- end .body -->
 </div><!-- end .admin -->
