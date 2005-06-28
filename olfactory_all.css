@@ -1,7 +1,7 @@
-/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_all.css,v 1.1 2005/06/19 06:11:03 bitweaver Exp $ */
+/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_all.css,v 1.2 2005/06/28 07:46:05 spiderr Exp $ */
 /**
  * @author   xing <xing@synapse.plus.com>
- * @version  $Revision: 1.1 $
+ * @version  $Revision: 1.2 $
  * @theme    olfactory
  * @license  LGPL
  */
@@ -68,9 +68,9 @@ legend						{font-size:1.2em; padding:1em;}
 .tikitable td		{padding:0.5em; border:1px solid #ccc;}
 .tikibox			{color:#900; background:#eee; border:1px solid #bbb; padding:0.5em; margin:0 5em;}
 .tikibar			{border-bottom:1px solid #ddd; border-top:1px solid #ddd;}
-.tikitoc			{float:right; border:1px solid #db8d28; border-top:0; background:#ffe7c7; margin:0 0 1em 1em; width:30%;}
-.tikitoc ul			{margin-left:1.5em; padding:0;}
-.tikitoc ul li		{}
+.maketoc			{float:right; border:1px solid #db8d28; border-top:0; background:#ffe7c7; margin:0 0 1em 1em; width:30%;}
+.maketoc ul			{margin-left:1.5em; padding:0;}
+.maketoc ul li		{}
 
 /* tables and lists */
 fieldset table			{margin:0 2%; width:96%;}
@@ -96,7 +96,7 @@ ul.toc,ul.toc ul		{margin-left:2em; padding-left:0;}
 
 /* boxes */
 .box				{margin:1em;}
-.box h3,.tikitoc h3	{padding:3px; background:#fb7e01 url( images/htmltabs/tab_bg.png ) top left repeat-x; border-bottom:1px solid #b85d04;}
+.box h3,.maketoc h3	{padding:3px; background:#fb7e01 url( images/htmltabs/tab_bg.png ) top left repeat-x; border-bottom:1px solid #b85d04;}
 #tikimain .menu h3	{background:transparent;}
 
 
