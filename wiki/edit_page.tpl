@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.1.1.1.2.2 2005/07/15 12:01:26 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.1.1.1.2.3 2005/07/15 21:26:23 squareing Exp $ *}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
 
 <div class="floaticon">{bithelp}</div>
@@ -53,7 +53,7 @@
 							{formlabel label="$conDescr Name" for="title"}
 							{forminput}
 								{if $gBitUser->hasPermission( 'bit_p_rename' ) || !$gContent->mInfo.page_id}
-									<input type="text" size="60" maxlength="200" name="title" id="title" value="{$pageInfo.title}" />
+									<input type="text" size="50" maxlength="200" name="title" id="title" value="{$pageInfo.title}" />
 								{else}
 									{$page} {$gContent->mInfo.title}
 								{/if}
@@ -78,7 +78,7 @@
 							<div class="row">
 								{formlabel label="Description" for="description"}
 								{forminput}
-									<input size="60" type="text" name="description" id="description" value="{$pageInfo.description}" />
+									<input size="50" type="text" name="description" id="description" value="{$pageInfo.description}" />
 									{formhelp note="Brief description of the page. This is visible when you hover over a link to this page and just below the title of the wiki page."}
 								{/forminput}
 							</div>
@@ -112,7 +112,7 @@
 							<div class="row">
 								{formlabel label="Comment" for="comment"}
 								{forminput}
-									<input size="60" type="text" name="comment" id="comment" value="{$pageInfo.comment}" />
+									<input size="50" type="text" name="comment" id="comment" value="{$pageInfo.comment}" />
 									{formhelp note="Add a comment to illustrate your most recent changes."}
 								{/forminput}
 							</div>
@@ -253,7 +253,7 @@
 						<div class="row">
 							{formlabel label="Import HTML from URL" for="suck_url"}
 							{forminput}
-								<input type="text" size="60" name="suck_url" id="suck_url" value="{$suck_url|escape}" />
+								<input type="text" size="50" name="suck_url" id="suck_url" value="{$suck_url|escape}" />
 								{formhelp note=""}
 							{/forminput}
 						</div>
