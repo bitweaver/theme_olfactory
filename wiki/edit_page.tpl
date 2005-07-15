@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.1.1.1.2.1 2005/06/25 11:11:11 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.1.1.1.2.2 2005/07/15 12:01:26 squareing Exp $ *}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
 
 <div class="floaticon">{bithelp}</div>
@@ -60,7 +60,7 @@
 							{/forminput}
 						</div>
 
-						{if $gBitSystemPrefs.feature_wiki_templates eq 'y' and $gBitUser->hasPermission( 'bit_p_use_content_templates' )}
+						{if $gBitSystem->isFeatureActive( 'feature_wiki_templates' ) and $gBitUser->hasPermission( 'bit_p_use_content_templates' )}
 							<div class="row">
 								{formlabel label="Apply template" for="template_id"}
 								{forminput}
@@ -74,7 +74,7 @@
 							</div>
 						{/if}
 
-						{if $gBitSystemPrefs.feature_wiki_description eq 'y'}
+						{if $gBitSystem->isFeatureActive( 'feature_wiki_description' )}
 							<div class="row">
 								{formlabel label="Description" for="description"}
 								{forminput}
@@ -141,7 +141,7 @@
 					{/legend}
 				{/jstab}
 
-				{if $gBitSystemPrefs.package_categories eq 'y'}
+				{if $gBitSystem->isPackageActive( 'categories' )}
 					{jstab title="Categorize"}
 						{legend legend="Categorize"}
 							{include file="bitpackage:categories/categorize.tpl"}
@@ -162,7 +162,7 @@
 
 						{include file="bitpackage:liberty/edit_format.tpl"}
 
-						{if $gBitSystemPrefs.wiki_feature_copyrights eq 'y'}
+						{if $gBitSystem->isFeatureActive( 'wiki_feature_copyrights' )}
 							<div class="row">
 								{formlabel label="Copyright" for="copyrightTitle"}
 								{forminput}
@@ -200,7 +200,7 @@
 							</div>
 						{/if}
 
-						{if $gBitSystemPrefs.feature_wiki_icache eq 'y'}
+						{if $gBitSystem->isFeatureActive( 'feature_wiki_icache' )}
 							<div class="row">
 								{formlabel label="Cache" for="wiki_cache"}
 								{forminput}
@@ -240,14 +240,14 @@
 						{/if}
 					{/legend}
 
-					{if $gBitSystemPrefs.package_nexus eq 'y'}
+					{if $gBitSystem->isPackageActive( 'nexus' )}
 						{legend legend="Insert Link in Menu"}
 							{include file="bitpackage:nexus/insert_menu_item_inc.tpl"}
 						{/legend}
 					{/if}
 				{/jstab}
 
-				{if $gBitSystemPrefs.feature_wiki_url_import eq 'y'}
+				{if $gBitSystem->isFeatureActive( 'feature_wiki_url_import' )}
 				{jstab title="Import HMTL"}
 					{legend legend="Import HMTL"}
 						<div class="row">

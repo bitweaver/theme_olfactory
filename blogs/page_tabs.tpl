@@ -9,7 +9,7 @@
 			{/if}
 
 			{* this comment stuff should probably go somewhere else *}
-			{if $blogPosts[ix].allow_comments eq 'y' and $gBitSystemPrefs.feature_blogposts_comments eq 'y'}
+			{if $blogPosts[ix].allow_comments eq 'y' and $gBitSystem->isFeatureActive( 'feature_blogposts_comments' )}
 				<li>{$blogPosts[ix].num_comments} {if $blogPosts[ix].num_comments == 1} {tr}comment{/tr} {else} {tr}comments{/tr}{/if}</li>
 				<li>{smartlink ititle='view / post comments' ifile='view_post.php' find=$find offset=$offset blog_id=`$blogPosts[ix].blog_id` post_id=`$blogPosts[ix].post_id` post_comment_request=1}</li>
 			{/if}

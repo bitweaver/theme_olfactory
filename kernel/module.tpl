@@ -1,9 +1,9 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/kernel/Attic/module.tpl,v 1.1 2005/06/19 06:11:03 bitweaver Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/kernel/Attic/module.tpl,v 1.1.1.1.2.1 2005/07/15 12:01:26 squareing Exp $ *}
 {strip}
 <div class="module box {$module_name|replace:"_":"-"}">
 	{if $module_title}
 		<h3>
-			{if $gBitSystemPrefs.feature_modulecontrols eq 'y'}
+			{if $gBitSystem->isFeatureActive( 'feature_modulecontrols' )}
 				<div class="control">
 					<a title="{tr}Move module up{/tr}" href="{$current_location|escape}{$mpchar}mc_up={$module_name|escape}">
 						{biticon ipackage=liberty iname="move_up" iexplain="up"}</a>

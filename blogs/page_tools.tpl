@@ -2,7 +2,7 @@
 {if $gBitUser->hasPermission( 'bit_p_view_tabs_and_tools' )}
 	<div class="pageactions tools">
 		<ul>
-			{if $gBitSystemPrefs.package_rss eq 'y' && $gBitSystemPrefs.rss_blogs eq 'y'}
+			{if $gBitSystem->isPackageActive( 'rss' ) && $gBitSystem->isFeatureActive( 'rss_blogs' )}
 				<li><a href="{$gBitLoc.BLOGS_PKG_URL}blogs_rss.php?blog_id={$blogPosts[ix].blog_id}">{biticon ipackage=rss iname=rss iexplain="rss feed"}</a></li>
 			{/if}
 
@@ -15,7 +15,7 @@
 			{/if}
 
 			{*====== NOTEPAD PACKAGE CHECK IS BROKEN
-			{if $gBitUser->mUserId and $gBitSystemPrefs.package_notepad eq 'y' and $gBitUser->hasPermission( 'bit_p_notepad' )}
+			{if $gBitUser->mUserId and $gBitSystem->isPackageActive( 'notepad' ) and $gBitUser->hasPermission( 'bit_p_notepad' )}
 				<li><a title="{tr}Save to notepad{/tr}" href="{$gBitLoc.BLOGS_PKG_URL}view.php?blog_id={$blogPosts[ix].blog_id}&amp;savenotepad={$blogPosts[ix].post_id}">{biticon ipackage=liberty iname="save" iexplain="save"}</a></li>
 			{/if} *}
 		</ul>

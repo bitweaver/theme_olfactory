@@ -18,11 +18,11 @@
 				<li>{smartlink ititle='refresh' ifile='export_wiki_pages.php' page_id=`$pageInfo.page_id` ibiticon='liberty/export'}</li>
 			{/if}
 
-			{if $gBitSystemPrefs.feature_wiki_undo eq 'y' and $canundo eq 'y'}
+			{if $gBitSystem->isFeatureActive( 'feature_wiki_undo' ) and $canundo eq 'y'}
 				<li>{smartlink ititle='undo' ifile='index.php' page_id=`$pageInfo.page_id` undo=1 ibiticon='liberty/undo'}</li>
 			{/if}
 
-			{if $gBitUser->hasPermission( 'bit_p_admin_wiki' ) or ($gBitUser->mUserId and ($gBitUser->mUserId eq $pageInfo.modifier_user_id) and ($gBitUser->hasPermission( 'bit_p_lock' )) and ($gBitSystemPrefs.feature_wiki_usrlock eq 'y'))}
+			{if $gBitUser->hasPermission( 'bit_p_admin_wiki' ) or ($gBitUser->mUserId and ($gBitUser->mUserId eq $pageInfo.modifier_user_id) and ($gBitUser->hasPermission( 'bit_p_lock' )) and ($gBitSystem->isFeatureActive( 'feature_wiki_usrlock' )))}
 				{if $lock}
 					<li>{smartlink ititle='unlock this page' ifile='index.php' page_id=`$pageInfo.page_id` action=unlock ibiticon='wiki/locked'}</li>
 				{else}
@@ -40,7 +40,7 @@
 				<li>{smartlink ititle='refresh' ifile='index.php' ibiticon='liberty/refresh' page_id=`$pageInfo.page_id` refresh=1}</li>
 			{/if}
 
-			{if $gBitSystemPrefs.wiki_uses_s5 eq 'y'}
+			{if $gBitSystem->isFeatureActive( 'wiki_uses_s5' )}
 				<li>{smartlink ititle='s5 slideshow' ifile='index.php' ibiticon='wiki/s5' page_id=`$pageInfo.page_id` s5=1 ionclick="return confirm('this works best in gecko based browsers (mozilla, firefox) or opera (press F11)')"}</li>
 			{/if}
 
@@ -67,7 +67,7 @@
 				<li><a title="{tr}Save{/tr}" href="{$gBitLoc.WIKI_PKG_URL}index.php?page_id={$pageInfo.page_id}&amp;savenotepad=1">{biticon ipackage="wiki" iname="save" iexplain="save"}</a></li>
 			{/if}
 
-			{if $gBitUser->mUserId && $gBitSystemPrefs.feature_user_watches eq 'y'}
+			{if $gBitUser->mUserId && $gBitSystem->isFeatureActive( 'feature_user_watches' )}
 				{if $user_watching_page eq 'y'}
 					<li>{smartlink ititle='stop monitoring this page' ifile='index.php' watch_event=wiki_page_changed watch_action=remove page_id=`$pageInfo.page_id` watch_object=`$pageInfo.page_id` ibiticon='users/unwatch'}</li>
 				{else}
@@ -81,7 +81,7 @@
 				{/if}
 			{/if}
 			
-			{if $gBitSystemPrefs.feature_backlinks eq 'y' and $backlinks}
+			{if $gBitSystem->isFeatureActive( 'feature_backlinks' ) and $backlinks}
 				<select name="page" onchange="go(this)">
 					<option value="{$gBitLoc.WIKI_PKG_URL}index.php?page_id={$pageInfo.page_id}">{tr}backlinks{/tr}...</option>
 					{foreach key=contentId item=backPage from=$backlinks}
@@ -90,7 +90,7 @@
 				</select>
 			{/if}
 
-			{if $gBitSystemPrefs.wiki_uses_slides eq 'y'}
+			{if $gBitSystem->isFeatureActive( 'wiki_uses_slides' )}
 				{if $show_slideshow eq 'y'}
 					<li>{smartlink ititle='slideshow' ifile='slideshow.php' page_id=`$pageInfo.page_id` ibiticon='wiki/slides'}</li>
 				{elseif $structureInfo.structure_id}

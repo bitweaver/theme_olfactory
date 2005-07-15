@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/list_pages.tpl,v 1.1 2005/06/19 06:11:03 bitweaver Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/list_pages.tpl,v 1.1.1.1.2.1 2005/07/15 12:01:26 squareing Exp $ *}
 <div class="floaticon">{bithelp}</div>
 
 <div class="admin wiki">
@@ -141,7 +141,7 @@
 							</td>
 						{/if}
 						{if $wiki_list_versions eq 'y'}
-							{if $gBitSystemPrefs.feature_history eq 'y'}
+							{if $gBitSystem->isFeatureActive( 'feature_history' )}
 								<td style="text-align:right;"><a href="{$gBitLoc.WIKI_PKG_URL}page_history.php?page={$listpages[changes].title|escape:"url"}">{$listpages[changes].versions}</a></td>
 							{else}
 								<td style="text-align:right;">{$listpages[changes].versions}</td>
@@ -151,7 +151,7 @@
 							<td style="text-align:center;">{$listpages[changes].links|default:"0"}</td>
 						{/if}
 						{if $wiki_list_backlinks eq 'y'}
-							{if $gBitSystemPrefs.feature_backlinks eq 'y' && $listpages[changes].backlinks > 0}
+							{if $gBitSystem->isFeatureActive( 'feature_backlinks' ) && $listpages[changes].backlinks > 0}
 								<td style="text-align:center;"><a href="{$gBitLoc.WIKI_PKG_URL}backlinks.php?page={$listpages[changes].title|escape:"url"}">{$listpages[changes].backlinks|default:"0"}</a></td>
 							{else}
 								<td style="text-align:center;">{$listpages[changes].backlinks|default:"0"}</td>
