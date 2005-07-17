@@ -15,12 +15,12 @@
 			{/if}
 			
 			{if $page ne 'SandBox'}
-				{if $gBitSystemPrefs.feature_history eq 'y'}
+				{if $gBitSystem->isFeatureActive( 'feature_history' )}
 					<li{if $pagetab eq 'history'} class="current"{/if}>{smartlink ititle='history' ifile='page_history.php' page_id=`$pageInfo.page_id`}</li>
 				{/if}
 			{/if}
 
-			{if $gBitSystemPrefs.feature_likePages eq 'y'}
+			{if $gBitSystem->isFeatureActive( 'feature_likePages' )}
 				<li{if $pagetab eq 'similar'} class="current"{/if}>{smartlink ititle='similar' ifile='like_pages.php' page_id=`$pageInfo.page_id`}</li>
 			{/if}
 

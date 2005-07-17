@@ -1,7 +1,7 @@
-/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_cssmenus.css,v 1.1 2005/06/19 06:11:03 bitweaver Exp $ */
+/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_cssmenus.css,v 1.2 2005/07/17 17:36:40 squareing Exp $ */
 /**
  * @author   xing <xing@synapse.plus.com>
- * @version  $Revision: 1.1 $
+ * @version  $Revision: 1.2 $
  * @theme    olfactory
  * @license  LGPL
  */
@@ -29,14 +29,14 @@
 .hor li ul ul			{margin:-20px 0 0 13em;}
 
 /* now comes the dropdown style - modify away! */
-#bittopbar				{background:#fb7e01 url( images/htmltabs/tab_bg.png ) top left repeat-x; border-bottom:1px solid #b85d04; float:left; width:100%;}
-.hor a					{background:#fb7e01 url( images/htmltabs/tab_r.png ) top right no-repeat; padding:0.5em 1.0em; margin:0;}
-.hor a:hover			{background:#fb7e01 url( images/htmltabs/tab_cur_r.png ) top right no-repeat; color:#000;}
+#bittopbar				{background:#db6f05 url( images/htmltabs/tab_bg.png ) top left repeat-x; border-bottom:1px solid #b85d04; float:left; width:100%;}
+.hor a					{background:#db6f05 url( images/htmltabs/tab_r.png ) top right no-repeat; padding:0.5em 1.0em; margin:0;}
+.hor a:hover			{background:#db6f05 url( images/htmltabs/tab_cur_r.png ) top right no-repeat; color:#000;}
 .hor a:visited			{color:#000;}
 .hor li li a			{color:#fff;}
 .hor li li a:visited	{color:#fff;}
-.hor li li a:hover		{background:#fb7e01; color:#000;}
-.hor .current a			{background:#fb7e01 url( images/htmltabs/tab_cur_r.png ) top right no-repeat; color:#fc6;}
+.hor li li a:hover		{background:#db6f05; color:#000;}
+.hor .current a			{background:#db6f05 url( images/htmltabs/tab_cur_r.png ) top right no-repeat; color:#fc6;}
 .hor .current li a		{background:transparent; color:#000;}
 .hor ul a				{color:#000; padding:0 5px; background:transparent; line-height:20px;}
 .hor li					{background:transparent url( images/htmltabs/tab_l.png ) top left no-repeat; padding-left:1px;}

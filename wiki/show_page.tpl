@@ -22,7 +22,7 @@
 		{$footnote}
 	{/if}
 
-	{if $gBitSystemPrefs.wiki_feature_copyrights eq 'y'}
+	{if $gBitSystem->isFeatureActive( 'wiki_feature_copyrights' )}
 		<p class="copyright">
 			{if $pageCopyrights}
 				{section name=i loop=$pageCopyrights}
@@ -45,7 +45,7 @@
 		{include file="bitpackage:liberty/comments.tpl"}
 	{/if}
 
-	{if $is_categorized eq 'y' and $gBitSystemPrefs.package_categories eq 'y' and $gBitSystemPrefs.feature_categoryobjects eq 'y'}
+	{if $is_categorized eq 'y' and $gBitSystem->isPackageActive( 'categories' ) and $gBitSystem->isFeatureActive( 'feature_categoryobjects' )}
 		<div class="category">{$display_catobjects}</div>
 	{/if}
 </div><!-- end .wiki -->
