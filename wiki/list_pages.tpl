@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/list_pages.tpl,v 1.1.1.1.2.1 2005/07/15 12:01:26 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/list_pages.tpl,v 1.1.1.1.2.2 2005/08/04 08:11:41 squareing Exp $ *}
 <div class="floaticon">{bithelp}</div>
 
 <div class="admin wiki">
@@ -29,12 +29,10 @@
 				</ul>
 			</div>
 
-			<div class="clear"></div>
-
 			<input type="hidden" name="offset" value="{$offset}" />
 			<input type="hidden" name="sort_mode" value="{$sort_mode}" />
 
-			<table class="data">
+			<table class="clear data">
 				<tr>
 					{*  at the moment, the only working option to use the checkboxes for is deleting pages. so for now the checkboxes are visible iff $bit_p_remove is set. Other applications make sense as well (categorize, convert to pdf, etc). Add necessary corresponding permission here: *}
 
@@ -43,26 +41,10 @@
 					{else}
 					  {assign var='checkboxes_on' value='n'}
 					{/if}
-					{*if $wiki_list_name eq 'y'}
-						<th>{smartlink ititle="Page" isort="title" offset=$offset}</th> 
-						{counter name=cols assign=cols print=false}
-					{/if*}
 					{if $wiki_list_hits eq 'y'}
 						<th>{smartlink ititle="Hits" isort="hits" offset=$offset}</th> 
 						{counter name=cols assign=cols print=false}
 					{/if}
-					{*if $wiki_list_lastmodif eq 'y'}
-						<th>{smartlink ititle="Last Modified" isort="last_modified" offset=$offset}</th> 
-						{counter name=cols assign=cols print=false}
-					{/if*}
-					{*if $wiki_list_creator eq 'y'}
-						<th>{smartlink ititle="Author" isort="creator_user" offset=$offset}</th> 
-						{counter name=cols assign=cols print=false}
-					{/if*}
-					{*if $wiki_list_user eq 'y'}
-						<th>{smartlink ititle="Last Editor" isort="modifier_user" offset=$offset}</th> 
-						{counter name=cols assign=cols print=false}
-					{/if*}
 					{if $wiki_list_lastver eq 'y'}
 						<th>{smartlink ititle="Last Version" isort="version" offset=$offset}</th> 
 						{counter name=cols assign=cols print=false}

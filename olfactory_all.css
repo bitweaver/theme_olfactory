@@ -1,7 +1,7 @@
-/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_all.css,v 1.1.1.1.2.1 2005/06/21 22:26:32 squareing Exp $ */
+/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_all.css,v 1.1.1.1.2.2 2005/08/04 08:11:40 squareing Exp $ */
 /**
  * @author   xing <xing@synapse.plus.com>
- * @version  $Revision: 1.1.1.1.2.1 $
+ * @version  $Revision: 1.1.1.1.2.2 $
  * @theme    olfactory
  * @license  LGPL
  */
@@ -42,6 +42,7 @@ h3			{font-size:1.0em;}
 .pagination			{text-align:center;}
 .icon				{border:0; vertical-align:middle;}
 .menuicon			{text-align:center;}
+.clear				{clear:both;}
 
 /* forms */
 form,input,textarea,select	{margin:0; padding:0;}
@@ -62,7 +63,6 @@ legend						{font-size:1.2em; padding:1em;}
 .error,.errorpage h3		{color:#f00; font-weight:bold;}
 .warning					{color:#f80;}
 .success					{color:#090;}
-.clear						{clear:both;}
 
 /* parsed elements */
 .tikitable td		{padding:0.5em; border:1px solid #ccc;}
