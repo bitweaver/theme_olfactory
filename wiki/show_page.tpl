@@ -2,6 +2,15 @@
 	{include file="bitpackage:wiki/page_tabs.tpl" pagetab=view}
 {/if}
 
+{if $comments_at_top_of_page eq 'y' and $print_page ne 'y' and $feature_wiki_comments eq 'y' }
+	{include file="bitpackage:wiki/page_header.tpl"}
+	{include file="bitpackage:liberty/comments.tpl"}
+{/if}
+
+{if $gBitSystem->isPackageActive( 'pigeonholes' )}
+	{include file="bitpackage:pigeonholes/display_paths.tpl"}
+{/if}
+
 <div class="display wiki">
 	{include file="bitpackage:wiki/page_header.tpl"}
 	{if $gBitSystem->isPackageActive( 'stickies' )}
@@ -40,12 +49,16 @@
 	{if $print_page ne 'y'}
 		{include file="bitpackage:wiki/page_tools.tpl"}
 	{/if}
-
-	{if $print_page ne 'y' and $feature_wiki_comments eq 'y' }
-		{include file="bitpackage:liberty/comments.tpl"}
-	{/if}
-
-	{if $is_categorized eq 'y' and $gBitSystem->isPackageActive( 'categories' ) and $gBitSystem->isFeatureActive( 'feature_categoryobjects' )}
-		<div class="category">{$display_catobjects}</div>
-	{/if}
 </div><!-- end .wiki -->
+
+{if $comments_at_top_of_page ne 'y' and $print_page ne 'y' and $feature_wiki_comments eq 'y' }
+	{include file="bitpackage:liberty/comments.tpl"}
+{/if}
+
+{if $gBitSystem->isPackageActive( 'pigeonholes' )}
+	{include file="bitpackage:pigeonholes/display_members.tpl"}
+{/if}
+
+{if $gBitSystem->isPackageActive( 'categories' )}
+	{include file="bitpackage:categories/categories_objects.tpl"}
+{/if}
