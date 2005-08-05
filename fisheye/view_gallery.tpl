@@ -43,7 +43,7 @@
 				{/if}
 
 			{sectionelse}
-				<tr><td>{tr}This gallery is empty{/tr}. <a href="{$gBitLoc.FISHEYE_PKG_URL}upload.php?gallery_id={$gContent->mGalleryId}">Upload pictures!</a></td></tr>
+				<tr><td>{tr}This gallery is empty{/tr}. <a href="{$smarty.const.FISHEYE_PKG_URL}upload.php?gallery_id={$gContent->mGalleryId}">Upload pictures!</a></td></tr>
 			{/section}
 
 			{if $imageCount % $cols_per_page != 0}</tr>{/if}

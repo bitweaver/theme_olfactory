@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/page_history.tpl,v 1.1 2005/06/19 06:11:03 bitweaver Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/page_history.tpl,v 1.1.1.1.2.1 2005/08/05 23:00:38 squareing Exp $ *}
 {strip}
 
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=history}
@@ -79,17 +79,17 @@
 						<td>{$history[hist].ip}</td>
 						<td>{$history[hist].comment}</td>
 						<td class="actionicon">
-							<a title="{tr}view{/tr}" href="{$gBitLoc.WIKI_PKG_URL}page_history.php?page_id={$gContent->mPageId}&amp;preview={$history[hist].version}">{tr}view{/tr}</a>
+							<a title="{tr}view{/tr}" href="{$smarty.const.WIKI_PKG_URL}page_history.php?page_id={$gContent->mPageId}&amp;preview={$history[hist].version}">{tr}view{/tr}</a>
 							&nbsp;&bull;&nbsp;
 							{if $gBitUser->hasPermission( 'bit_p_rollback' )}
-								<a href="{$gBitLoc.WIKI_PKG_URL}rollback.php?page_id={$gContent->mPageId}&amp;version={$history[hist].version}" title="{tr}rollback{/tr}">{tr}rollback{/tr}</a>
+								<a href="{$smarty.const.WIKI_PKG_URL}rollback.php?page_id={$gContent->mPageId}&amp;version={$history[hist].version}" title="{tr}rollback{/tr}">{tr}rollback{/tr}</a>
 								&nbsp;&bull;&nbsp;
 							{/if}
-							<a href="{$gBitLoc.WIKI_PKG_URL}page_history.php?page_id={$gContent->mPageId}&amp;diff={$history[hist].version}" title="{tr}compare{/tr}">{tr}compare{/tr}</a>
+							<a href="{$smarty.const.WIKI_PKG_URL}page_history.php?page_id={$gContent->mPageId}&amp;diff={$history[hist].version}" title="{tr}compare{/tr}">{tr}compare{/tr}</a>
 							&nbsp;&bull;&nbsp;
-							<a href="{$gBitLoc.WIKI_PKG_URL}page_history.php?page_id={$gContent->mPageId}&amp;diff2={$history[hist].version}" title="{tr}diff{/tr}">{tr}difference{/tr}</a>
+							<a href="{$smarty.const.WIKI_PKG_URL}page_history.php?page_id={$gContent->mPageId}&amp;diff2={$history[hist].version}" title="{tr}diff{/tr}">{tr}difference{/tr}</a>
 							&nbsp;&bull;&nbsp;
-							<a href="{$gBitLoc.WIKI_PKG_URL}page_history.php?page_id={$gContent->mPageId}&amp;source={$history[hist].version}" title="{tr}source{/tr}">{tr}source{/tr}</a>
+							<a href="{$smarty.const.WIKI_PKG_URL}page_history.php?page_id={$gContent->mPageId}&amp;source={$history[hist].version}" title="{tr}source{/tr}">{tr}source{/tr}</a>
 						</td>
 					</tr>
 					{sectionelse}

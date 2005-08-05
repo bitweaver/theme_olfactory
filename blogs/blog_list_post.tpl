@@ -2,7 +2,7 @@
 {include file="bitpackage:blogs/page_tabs.tpl"}
 <div class="post"
 	{if $user_dbl eq 'y' and (($blogPosts[ix].ownsblog eq 'y') or ($gBitUser->mUserId and $blogPosts[ix].user_id eq $gBitUser->mUserId) or $gBitUser->hasPermission( 'bit_p_blog_admin' ))}
-		ondblclick="location.href='{$gBitLoc.BLOGS_PKG_URL}post.php?blog_id={$blogPosts[ix].blog_id}{$blog_id}&amp;post_id={$blogPosts[ix].post_id}{$post_id}';"
+		ondblclick="location.href='{$smarty.const.BLOGS_PKG_URL}post.php?blog_id={$blogPosts[ix].blog_id}{$blog_id}&amp;post_id={$blogPosts[ix].post_id}{$post_id}';"
 	{/if}
 >
 	<div class="header">
@@ -14,7 +14,7 @@
 
 		<div class="date">
 			{if $blog_categ eq 'y'}
-				{*popup_init src="`$gBitLoc.THEMES_PKG_URL`js/overlib.js"*}
+				{*popup_init src="`$smarty.const.THEMES_PKG_URL`js/overlib.js"*}
 				<div style="float:right;" valign="top">
 					{if $blogPosts[ix].categs}
 						{section name=k loop=$blogPosts[ix].categs}
@@ -44,7 +44,7 @@
 		</div> <!-- end .content -->
 
 		{if $blogPosts[ix].pages > 1}
-			<a href="{$gBitLoc.BLOGS_PKG_URL}view_post.php?blog_id={$blogPosts[ix].blog_id}&amp;post_id={$blogPosts[ix].post_id}">{tr}read more{/tr} ({$blogPosts[ix].pages} {tr}pages{/tr})</a>
+			<a href="{$smarty.const.BLOGS_PKG_URL}view_post.php?blog_id={$blogPosts[ix].blog_id}&amp;post_id={$blogPosts[ix].post_id}">{tr}read more{/tr} ({$blogPosts[ix].pages} {tr}pages{/tr})</a>
 		{/if}
 
 		<div class="footer">

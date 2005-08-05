@@ -7,7 +7,7 @@
 				<select name="page" onchange="go(this)">
 					<option value="">{tr}Structures{/tr}...</option>
 					{section name=struct loop=$showstructs}
-						<option value="{$gBitLoc.WIKI_PKG_URL}index.php?structure_id={$showstructs[struct].structure_id}">
+						<option value="{$smarty.const.WIKI_PKG_URL}index.php?structure_id={$showstructs[struct].structure_id}">
 							root structure id {$showstructs[struct].root_structure_id}
 						</option>
 					{/section}
@@ -46,7 +46,7 @@
 
 			{* a user needs permission to print??? anyway, using css for this now - xing
 			{if $gBitUser->hasPermission( 'bit_p_print' )}
-				<li><a title="{tr}print{/tr}" href="{$gBitLoc.WIKI_PKG_URL}print.php?{if $structureInfo.root_structure_id}structure_id={$structureInfo.root_structure_id}{else}page_id={$pageInfo.page_id}{/if}">{biticon ipackage=liberty iname="print" iexplain="print"}</a></li>
+				<li><a title="{tr}print{/tr}" href="{$smarty.const.WIKI_PKG_URL}print.php?{if $structureInfo.root_structure_id}structure_id={$structureInfo.root_structure_id}{else}page_id={$pageInfo.page_id}{/if}">{biticon ipackage=liberty iname="print" iexplain="print"}</a></li>
 			{/if*}
 
 			{if $gBitSystem->isPackageActive( 'pdf' ) && $gContent->hasUserPermission( 'bit_p_pdf_generation' )}
@@ -60,11 +60,11 @@
 			{if $gBitSystem->isPackageActive( 'stickies' ) && $gBitUser->hasPermission('bit_p_stickies_edit') }
 				{if ($structureInfo.structure_id)}{assign var='stickyRequest' value="structure_id=`$structureInfo.structure_id`"}
 				{else}{assign var='stickyRequest' value="notated_content_id=`$pageInfo.content_id`"}{/if}
-				<li><a href="{$gBitLoc.STICKIES_PKG_URL}edit.php?{$stickyRequest}">{biticon ipackage=stickies iname="sticky_note" iexplain="add sticky note"}</a></li>
+				<li><a href="{$smarty.const.STICKIES_PKG_URL}edit.php?{$stickyRequest}">{biticon ipackage=stickies iname="sticky_note" iexplain="add sticky note"}</a></li>
 			{/if}
 			
 			{if $user and $gBitSystem->isPackageActive( 'notepad' ) and $gBitUser->hasPermission( 'bit_p_notepad' )}
-				<li><a title="{tr}Save{/tr}" href="{$gBitLoc.WIKI_PKG_URL}index.php?page_id={$pageInfo.page_id}&amp;savenotepad=1">{biticon ipackage="wiki" iname="save" iexplain="save"}</a></li>
+				<li><a title="{tr}Save{/tr}" href="{$smarty.const.WIKI_PKG_URL}index.php?page_id={$pageInfo.page_id}&amp;savenotepad=1">{biticon ipackage="wiki" iname="save" iexplain="save"}</a></li>
 			{/if}
 
 			{if $gBitUser->mUserId && $gBitSystem->isFeatureActive( 'feature_user_watches' )}
@@ -83,9 +83,9 @@
 			
 			{if $gBitSystem->isFeatureActive( 'feature_backlinks' ) and $backlinks}
 				<select name="page" onchange="go(this)">
-					<option value="{$gBitLoc.WIKI_PKG_URL}index.php?page_id={$pageInfo.page_id}">{tr}backlinks{/tr}...</option>
+					<option value="{$smarty.const.WIKI_PKG_URL}index.php?page_id={$pageInfo.page_id}">{tr}backlinks{/tr}...</option>
 					{foreach key=contentId item=backPage from=$backlinks}
-						<option value="{$gBitLoc.BIT_ROOT_URL}index.php?content_id={$contentId}">{$backPage}</option>
+						<option value="{$smarty.const.BIT_ROOT_URL}index.php?content_id={$contentId}">{$backPage}</option>
 					{/foreach}
 				</select>
 			{/if}

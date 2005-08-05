@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/list_pages.tpl,v 1.1.1.1.2.2 2005/08/04 08:11:41 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/list_pages.tpl,v 1.1.1.1.2.3 2005/08/05 23:00:37 squareing Exp $ *}
 <div class="floaticon">{bithelp}</div>
 
 <div class="admin wiki">
@@ -86,7 +86,7 @@
 						{if $wiki_list_name eq 'y'}
 							<a href="{$listpages[changes].wikilink}" title="{$listpages[changes].title}">{$listpages[changes].title}</a>
 						{else}
-							<a href="{$gBitLoc.WIKI_PKG_URL}index.php?page_id={$listpages[changes].page_id}" title="{$listpages[changes].page_id}">Page #{$listpages[changes].page_id}</a>
+							<a href="{$smarty.const.WIKI_PKG_URL}index.php?page_id={$listpages[changes].page_id}" title="{$listpages[changes].page_id}">Page #{$listpages[changes].page_id}</a>
 						{/if}
 						{if $wiki_list_creator eq 'y'}
 							&nbsp;&nbsp;&nbsp;
@@ -124,7 +124,7 @@
 						{/if}
 						{if $wiki_list_versions eq 'y'}
 							{if $gBitSystem->isFeatureActive( 'feature_history' )}
-								<td style="text-align:right;"><a href="{$gBitLoc.WIKI_PKG_URL}page_history.php?page={$listpages[changes].title|escape:"url"}">{$listpages[changes].versions}</a></td>
+								<td style="text-align:right;"><a href="{$smarty.const.WIKI_PKG_URL}page_history.php?page={$listpages[changes].title|escape:"url"}">{$listpages[changes].versions}</a></td>
 							{else}
 								<td style="text-align:right;">{$listpages[changes].versions}</td>
 							{/if}
@@ -134,7 +134,7 @@
 						{/if}
 						{if $wiki_list_backlinks eq 'y'}
 							{if $gBitSystem->isFeatureActive( 'feature_backlinks' ) && $listpages[changes].backlinks > 0}
-								<td style="text-align:center;"><a href="{$gBitLoc.WIKI_PKG_URL}backlinks.php?page={$listpages[changes].title|escape:"url"}">{$listpages[changes].backlinks|default:"0"}</a></td>
+								<td style="text-align:center;"><a href="{$smarty.const.WIKI_PKG_URL}backlinks.php?page={$listpages[changes].title|escape:"url"}">{$listpages[changes].backlinks|default:"0"}</a></td>
 							{else}
 								<td style="text-align:center;">{$listpages[changes].backlinks|default:"0"}</td>
 							{/if}
@@ -144,7 +144,7 @@
 						{/if}
 						{if $gBitUser->hasPermission( 'bit_p_edit' )}
 							<td class="actionicon">
-								<a href="{$gBitLoc.WIKI_PKG_URL}edit.php?page_id={$listpages[changes].page_id}">{biticon ipackage="liberty" iname="edit" iexplain="edit"}</a>
+								<a href="{$smarty.const.WIKI_PKG_URL}edit.php?page_id={$listpages[changes].page_id}">{biticon ipackage="liberty" iname="edit" iexplain="edit"}</a>
 								{if $checkboxes_on eq 'y'}
 									<input type="checkbox" name="checked[]" value="{$listpages[changes].page_id}" />
 								{/if}

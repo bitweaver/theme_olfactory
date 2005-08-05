@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/page_permissions.tpl,v 1.1 2005/06/19 06:11:03 bitweaver Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/page_permissions.tpl,v 1.1.1.1.2.1 2005/08/05 23:00:38 squareing Exp $ *}
 {strip}
 
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=permissions}
@@ -56,7 +56,7 @@
 						<tr class="{cycle values="even,odd"}">
 							<td>{$page_perms[pg].group_name}</td>
 							<td>{$page_perms[pg].perm_name}</td>
-							<td class="actionicon"><a href="{$gBitLoc.WIKI_PKG_URL}page_permissions.php?action=remove&amp;content_id={$gContent->mContentId}&amp;object_type={$gContent->mInfo.content_type_guid}&amp;perm={$page_perms[pg].perm_name}&amp;group_id={$page_perms[pg].group_id}">{biticon ipackage=liberty iname="delete" iexplain="remove from this page"}</a></td>
+							<td class="actionicon"><a href="{$smarty.const.WIKI_PKG_URL}page_permissions.php?action=remove&amp;content_id={$gContent->mContentId}&amp;object_type={$gContent->mInfo.content_type_guid}&amp;perm={$page_perms[pg].perm_name}&amp;group_id={$page_perms[pg].group_id}">{biticon ipackage=liberty iname="delete" iexplain="remove from this page"}</a></td>
 						</tr>
 					{sectionelse}
 						<tr class="norecords">
@@ -91,7 +91,7 @@
 					<h2>{tr}Existing requests for email notification{/tr}</h2>
 					<ul>
 						{section name=ix loop=$emails}
-							<li>{$emails[ix]} <a href="{$gBitLoc.WIKI_PKG_URL}page_permissions.php?page_id={$pageInfo.page_id}&amp;removeemail={$emails[ix]}&amp;tab=email">{biticon ipackage=liberty iname="delete_small" iexplain="delete"}</a></li>
+							<li>{$emails[ix]} <a href="{$smarty.const.WIKI_PKG_URL}page_permissions.php?page_id={$pageInfo.page_id}&amp;removeemail={$emails[ix]}&amp;tab=email">{biticon ipackage=liberty iname="delete_small" iexplain="delete"}</a></li>
 						{/section}
 					</ul>
 				{/if}

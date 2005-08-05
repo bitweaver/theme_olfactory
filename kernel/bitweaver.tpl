@@ -5,15 +5,15 @@
 		<div dir="rtl">
 	{/if}
 
-	<div id="wrap1" class="pkg-{$gBitLoc.ACTIVE_PACKAGE|lower}">
+	<div id="wrap1" class="pkg-{$smarty.const.ACTIVE_PACKAGE|lower}">
 		<div id="bittop">
 			<div id="toplogin">
 				{if $gBitUser->isRegistered()}
-					{displayname} <a href="{$gBitLoc.USERS_PKG_URL}logout.php">{tr}logout{/tr}</a>
+					{displayname} <a href="{$smarty.const.USERS_PKG_URL}logout.php">{tr}logout{/tr}</a>
 				{else}
-					<a href="{$gBitLoc.USERS_PKG_URL}login.php">{tr}login{/tr}</a>
+					<a href="{$smarty.const.USERS_PKG_URL}login.php">{tr}login{/tr}</a>
 					{if $gBitSystem->isFeatureActive( 'allowRegister' )}
-						&nbsp;<a href="{$gBitLoc.USERS_PKG_URL}register.php">{tr}register{/tr}</a>
+						&nbsp;<a href="{$smarty.const.USERS_PKG_URL}register.php">{tr}register{/tr}</a>
 					{/if}
 				{/if}
 			</div>
