@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/list_pages.tpl,v 1.2 2005/07/17 17:36:42 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/list_pages.tpl,v 1.3 2005/08/07 17:45:10 squareing Exp $ *}
 <div class="floaticon">{bithelp}</div>
 
 <div class="admin wiki">
@@ -29,12 +29,10 @@
 				</ul>
 			</div>
 
-			<div class="clear"></div>
-
 			<input type="hidden" name="offset" value="{$offset}" />
 			<input type="hidden" name="sort_mode" value="{$sort_mode}" />
 
-			<table class="data">
+			<table class="clear data">
 				<tr>
 					{*  at the moment, the only working option to use the checkboxes for is deleting pages. so for now the checkboxes are visible iff $bit_p_remove is set. Other applications make sense as well (categorize, convert to pdf, etc). Add necessary corresponding permission here: *}
 
@@ -43,26 +41,10 @@
 					{else}
 					  {assign var='checkboxes_on' value='n'}
 					{/if}
-					{*if $wiki_list_name eq 'y'}
-						<th>{smartlink ititle="Page" isort="title" offset=$offset}</th> 
-						{counter name=cols assign=cols print=false}
-					{/if*}
 					{if $wiki_list_hits eq 'y'}
 						<th>{smartlink ititle="Hits" isort="hits" offset=$offset}</th> 
 						{counter name=cols assign=cols print=false}
 					{/if}
-					{*if $wiki_list_lastmodif eq 'y'}
-						<th>{smartlink ititle="Last Modified" isort="last_modified" offset=$offset}</th> 
-						{counter name=cols assign=cols print=false}
-					{/if*}
-					{*if $wiki_list_creator eq 'y'}
-						<th>{smartlink ititle="Author" isort="creator_user" offset=$offset}</th> 
-						{counter name=cols assign=cols print=false}
-					{/if*}
-					{*if $wiki_list_user eq 'y'}
-						<th>{smartlink ititle="Last Editor" isort="modifier_user" offset=$offset}</th> 
-						{counter name=cols assign=cols print=false}
-					{/if*}
 					{if $wiki_list_lastver eq 'y'}
 						<th>{smartlink ititle="Last Version" isort="version" offset=$offset}</th> 
 						{counter name=cols assign=cols print=false}
@@ -104,7 +86,7 @@
 						{if $wiki_list_name eq 'y'}
 							<a href="{$listpages[changes].wikilink}" title="{$listpages[changes].title}">{$listpages[changes].title}</a>
 						{else}
-							<a href="{$gBitLoc.WIKI_PKG_URL}index.php?page_id={$listpages[changes].page_id}" title="{$listpages[changes].page_id}">Page #{$listpages[changes].page_id}</a>
+							<a href="{$smarty.const.WIKI_PKG_URL}index.php?page_id={$listpages[changes].page_id}" title="{$listpages[changes].page_id}">Page #{$listpages[changes].page_id}</a>
 						{/if}
 						{if $wiki_list_creator eq 'y'}
 							&nbsp;&nbsp;&nbsp;
@@ -142,7 +124,7 @@
 						{/if}
 						{if $wiki_list_versions eq 'y'}
 							{if $gBitSystem->isFeatureActive( 'feature_history' )}
-								<td style="text-align:right;"><a href="{$gBitLoc.WIKI_PKG_URL}page_history.php?page={$listpages[changes].title|escape:"url"}">{$listpages[changes].versions}</a></td>
+								<td style="text-align:right;"><a href="{$smarty.const.WIKI_PKG_URL}page_history.php?page={$listpages[changes].title|escape:"url"}">{$listpages[changes].versions}</a></td>
 							{else}
 								<td style="text-align:right;">{$listpages[changes].versions}</td>
 							{/if}
@@ -152,7 +134,7 @@
 						{/if}
 						{if $wiki_list_backlinks eq 'y'}
 							{if $gBitSystem->isFeatureActive( 'feature_backlinks' ) && $listpages[changes].backlinks > 0}
-								<td style="text-align:center;"><a href="{$gBitLoc.WIKI_PKG_URL}backlinks.php?page={$listpages[changes].title|escape:"url"}">{$listpages[changes].backlinks|default:"0"}</a></td>
+								<td style="text-align:center;"><a href="{$smarty.const.WIKI_PKG_URL}backlinks.php?page={$listpages[changes].title|escape:"url"}">{$listpages[changes].backlinks|default:"0"}</a></td>
 							{else}
 								<td style="text-align:center;">{$listpages[changes].backlinks|default:"0"}</td>
 							{/if}
@@ -162,7 +144,7 @@
 						{/if}
 						{if $gBitUser->hasPermission( 'bit_p_edit' )}
 							<td class="actionicon">
-								<a href="{$gBitLoc.WIKI_PKG_URL}edit.php?page_id={$listpages[changes].page_id}">{biticon ipackage="liberty" iname="edit" iexplain="edit"}</a>
+								<a href="{$smarty.const.WIKI_PKG_URL}edit.php?page_id={$listpages[changes].page_id}">{biticon ipackage="liberty" iname="edit" iexplain="edit"}</a>
 								{if $checkboxes_on eq 'y'}
 									<input type="checkbox" name="checked[]" value="{$listpages[changes].page_id}" />
 								{/if}

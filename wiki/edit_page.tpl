@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.3 2005/07/17 17:36:42 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.4 2005/08/07 17:45:10 squareing Exp $ *}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
 
 <div class="floaticon">{bithelp}</div>
@@ -223,7 +223,7 @@
 							<div class="row">
 								{formlabel label="License"}
 								{forminput}
-									<a href="{$gBitLoc.WIKI_PKG_URL}index.php?page={$wikiLicensePage}">{tr}{$wikiLicensePage}{/tr}</a>
+									<a href="{$smarty.const.WIKI_PKG_URL}index.php?page={$wikiLicensePage}">{tr}{$wikiLicensePage}{/tr}</a>
 									{formhelp note=""}
 								{/forminput}
 							</div>
@@ -271,7 +271,7 @@
 							<tr><td>
 								{tr}Import file{/tr}:</td><td>
 								<input name="userfile1" type="file" />
-								{ * <a href="{$gBitLoc.WIKI_PKG_URL}export_wiki_pages.php?page_id={$gContent->mInfo.page_id}&amp;all=1">{tr}export all versions{/tr}</a> * }
+								{ * <a href="{$smarty.const.WIKI_PKG_URL}export_wiki_pages.php?page_id={$gContent->mInfo.page_id}&amp;all=1">{tr}export all versions{/tr}</a> * }
 							</td></tr>
 						{/if} { * end upload file row * }
 					*}
