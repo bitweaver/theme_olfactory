@@ -1,4 +1,6 @@
 {strip}
+{minifind}
+
 <div class="pageactions sort">
 	<ul>
 		<li>{biticon ipackage=liberty iname=sort iexplain="sort by"}</li>
@@ -42,7 +44,5 @@
 <div class="clear"></div>
 
 {pagination_c numrows=$numrows}
-
-{minifind}
 
 {/strip}
