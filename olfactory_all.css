@@ -1,7 +1,7 @@
-/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_all.css,v 1.3 2005/08/07 17:45:08 squareing Exp $ */
+/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_all.css,v 1.4 2005/08/24 20:58:44 squareing Exp $ */
 /**
  * @author   xing <xing@synapse.plus.com>
- * @version  $Revision: 1.3 $
+ * @version  $Revision: 1.4 $
  * @theme    olfactory
  * @license  LGPL
  */
@@ -48,7 +48,7 @@ h3			{font-size:1.0em;}
 form,input,textarea,select	{margin:0; padding:0;}
 textarea					{width:99%;}
 input,textarea,select		{font-size:inherit;}
-input						{max-width:100%;}
+input[type="text"]			{max-width:100%;}
 textarea					{}
 fieldset					{border:0; border-top:3px double #f80; border-bottom:3px double #aaa; padding:1em; margin-bottom:1em;}
 legend						{font-size:1.2em; padding:1em;}
