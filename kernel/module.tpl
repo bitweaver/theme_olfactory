@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/kernel/Attic/module.tpl,v 1.1.1.1.2.1 2005/07/15 12:01:26 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/kernel/Attic/module.tpl,v 1.1.1.1.2.2 2005/09/10 08:39:19 squareing Exp $ *}
 {strip}
 <div class="module box {$module_name|replace:"_":"-"}">
 	{if $module_title}
@@ -16,11 +16,11 @@
 				</div>
 			{/if}
 			{if $feature_collapsible_modules eq 'y'}<a href="javascript:toggle('{$module_name}');">{/if}
-			{tr}{$module_title}{/tr}
+				{$module_title}
 			{if $feature_collapsible_modules eq 'y'}</a>{/if}
 		</h3>
 	{/if}
-	<div class="boxcontent" id="{$module_name}"{if $feature_collapsible_modules eq 'y'} style="display:{$toggle_state};"{/if}>
+	<div class="boxcontent" id="{$module_name}"{if $gBitSystem->isFeatureActive( 'feature_collapsible_modules' )} style="display:{$toggle_state};"{/if}>
 	    {$module_content}
 	</div>
 </div>

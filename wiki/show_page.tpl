@@ -7,11 +7,15 @@
 	{include file="bitpackage:liberty/comments.tpl"}
 {/if}
 
-{if $gBitSystem->isPackageActive( 'pigeonholes' )}
-	{include file="bitpackage:pigeonholes/display_paths.tpl"}
+{assign var=serviceNavTpls value=$gLibertySystem->getServiceValues('content_nav_tpl')}
+{assign var=serviceViewTpls value=$gLibertySystem->getServiceValues('content_view_tpl')}
+
+{if $serviceNavTpls.categorization}
+	{include file=$serviceNavTpls.categorization"}
 {/if}
 
-<div class="display wiki">
+<div class="display wiki {$pageInfo.title|lower|regex_replace:"[\s|_]":""}">
+	{include file="bitpackage:wiki/page_icons.tpl"}
 	{include file="bitpackage:wiki/page_header.tpl"}
 	{if $gBitSystem->isPackageActive( 'stickies' )}
 		{include file="bitpackage:stickies/display_bitsticky.tpl"}
@@ -19,11 +23,11 @@
 	{include file="bitpackage:wiki/page_display.tpl"}
 	{if $pages > 1}
 		<div class="pagination">
-			<a title="{tr}First page{/tr}" href="index.php?page_id={$pageInfo.page_id}&amp;pagenum={$first_page}">{biticon ipackage=liberty iname="nav_first" iexplain="first page"}</a>
-			<a title="{tr}Previous page{/tr}" href="index.php?page_id={$pageInfo.page_id}&amp;pagenum={$prev_page}">{biticon ipackage=liberty iname="nav_prev" iexplain="previous page"}</a>
-			{tr}page{/tr}:{$pagenum}/{$pages}
-			<a title="{tr}Next page{/tr}" href="index.php?page_id={$pageInfo.page_id}&amp;pagenum={$next_page}">{biticon ipackage=liberty iname="nav_next" iexplain="next page"}</a>
-			<a title="{tr}Last page{/tr}" href="index.php?page_id={$pageInfo.page_id}&amp;pagenum={$last_page}">{biticon ipackage=liberty iname="nav_last" iexplain="last page"}</a>
+			{*<a title="{tr}First page{/tr}" href="index.php?page_id={$pageInfo.page_id}&amp;pagenum={$first_page}">&laquo; &laquo;</a>*}
+			<a title="{tr}Previous page{/tr}" href="index.php?page_id={$pageInfo.page_id}&amp;pagenum={$prev_page}">&laquo;</a>
+			{tr}Page {$pagenum} of {$pages}{/tr}
+			<a title="{tr}Next page{/tr}" href="index.php?page_id={$pageInfo.page_id}&amp;pagenum={$next_page}">&raquo;</a>
+			{*<a title="{tr}Last page{/tr}" href="index.php?page_id={$pageInfo.page_id}&amp;pagenum={$last_page}">&raquo; &raquo;</a>*}
 		</div>
 	{/if} {* end .pagination *}
 
@@ -55,10 +59,6 @@
 	{include file="bitpackage:liberty/comments.tpl"}
 {/if}
 
-{if $gBitSystem->isPackageActive( 'pigeonholes' )}
-	{include file="bitpackage:pigeonholes/display_members.tpl"}
-{/if}
-
-{if $gBitSystem->isPackageActive( 'categories' )}
-	{include file="bitpackage:categories/categories_objects.tpl"}
+{if $serviceViewTpls.categorization}
+	{include file=$serviceViewTpls.categorization"}
 {/if}

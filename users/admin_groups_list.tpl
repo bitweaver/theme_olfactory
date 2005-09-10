@@ -13,6 +13,8 @@
 	</div>
 
 	<div class="body">
+		{smartlink ititle="Add a new group" ipackage=users ifile="admin/edit_group.php" action=create}
+
 		<div class="pageactions sort">
 			<ul>
 				<li>{biticon ipackage=liberty iname=sort iexplain="sort by"}</li>
@@ -22,37 +24,34 @@
 			</ul>
 		</div><!-- end .pageactions -->
 
-		<div class="clear"></div>
-
 		{formfeedback success=$successMsg error=$errorMsg}
 
-		<ul class="data">
+		<ul class="clear data">
 			{foreach from=$groups key=groupId item=group}
 				<li class="item {cycle values='odd,even'}">
-					<div class="pageactions tabs">
-						<ul>
-							<li>{smartlink ititle='edit group' ifile='admin/edit_group.php' group_id=$groupId}</li>
-							{if $groupId ne -1}{* sorry for hardcoding, really need php define ANONYMOUS_GROUP_ID - spiderr - we should add admins to groups that can't be deleted - xing*}
-								<li>{smartlink ititle='remove group' ifile='admin/edit_group.php' group_id=$groupId action='delete'}</li>
-							{/if}
-						</ul>
-					</div> <!-- end .tabs -->
-					<div class="clear"></div>
+					<div class="floaticon">
+						{smartlink ititle="Edit" ipackage="users" ifile="admin/edit_group.php" ibiticon="liberty/edit" group_id=$groupId}
+						{smartlink ititle="Group Members" ipackage="users" ifile="admin/edit_group.php" ibiticon="users/users" members=$groupId}
+						{if $groupId ne -1}{* sorry for hardcoding, really need php define ANONYMOUS_GROUP_ID - spiderr *}
+							{smartlink ititle="Batch assign" ipackage="users" ifile="admin/edit_group.php" ibiticon="users/batch_assign" batch_assign=$groupId}
+							{smartlink ititle="Remove" ipackage="users" ifile="admin/edit_group.php" ibiticon="liberty/delete" action=delete group_id=$groupId ionclick="return confirm( '{tr}Are you sure you want to remove this group?{/tr}' )"}
+						{/if}
+					</div>
 
-					<h2>{$group.group_name}{if $group.is_default eq 'y'}<small class="warning"> *{tr}Default group{/tr}*</small>{/if}</h2>
+					<h2>{$group.group_name}</h2>
 					<div style="float:left;width:30%;">
 						{$group.group_desc}<br />
+						{if $group.is_default eq 'y'}<small class="warning"> *{tr}Default group{/tr}*</small><br/>{/if}
 						{if $group.group_home}{tr}Home Page{/tr}:<strong> {$group.group_home}</strong><br />{/if}
 						{if $group.included}
 							<br />{tr}Included Groups{/tr}
-							<ul class="small">
+							<ul class="data small">
 								{foreach from=$group.included key=incGroupId item=incGroupName}
-									<li>{$incGroupName}</li>
+									<li class="{cycle values="odd,even"} item">{$incGroupName}</li>
 								{/foreach}
 							</ul>
 						{/if}
 					</div>
-	
 					<div style="float:right;width:70%;">
 						{tr}Permissions{/tr}
 						<ul class="small">

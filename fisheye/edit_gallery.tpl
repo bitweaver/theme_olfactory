@@ -1,9 +1,18 @@
+{strip}
 {include file="bitpackage:fisheye/gallery_tabs.tpl" pagetab=edit}
 
 <div class="edit fisheye">
 	<div class="header">
-		<h1>{$tabTitle}</h1>
+		<h1>
+			{if $gContent->mInfo.title}
+				{tr}Edit Gallery {$gContent->mInfo.title}{/tr}
+			{else}
+				{tr}Create Image Gallery{/tr}
+			{/if}
+		</h1>
 	</div>
+
+	{assign var=serviceEditTpls value=$gLibertySystem->getServiceValues('content_edit_tpl')}
 
 	<div class="body">
 		{form id="editGalleryForm" ipackage="fisheye" ifile="edit.php"}
@@ -57,10 +66,28 @@
 								{/forminput}
 							</div>
 						{/if}
+						{if $serviceEditTpls.access_control }
+							{include file=$serviceEditTpls.access_control"}
+						{/if}
 					{/legend}
 				{/jstab}
 
+				{if $serviceEditTpls.categorization }
+					{jstab title="Categorize"}
+						{legend legend="Categorize"}
+							{include file=$serviceEditTpls.categorization"}
+						{/legend}
+					{/jstab}
+				{/if}
+
+
 				{jstab title="Advanced Options"}
+					{if $serviceEditTpls.menu }
+						{legend legend="Insert Link in Menu"}
+							{include file=$serviceEditTpls.menu"}
+						{/legend}
+					{/if}
+
 					{if $galleryList}
 						{legend legend="Advanced Options"}
 							<div class="row">
@@ -83,26 +110,17 @@
 							</div>
 						{/legend}
 					{/if}
-					
-					{if $gBitSystem->isPackageActive( 'gatekeeper' ) }
-						{legend legend="Security Settings"}
-							{include file="bitpackage:gatekeeper/choose_security.tpl"}
-						{/legend}
-					{/if}
-
-					{if $gBitSystem->isPackageActive( 'nexus' )}
-						{legend legend="Insert Link in Menu"}
-							{include file="bitpackage:nexus/insert_menu_item_inc.tpl"}
-						{/legend}
-					{/if}
 				{/jstab}
 			{/jstabs}
 
 			<div class="row submit">
-				<input type="submit" name="cancelgallery" value="Cancel"/>
+				{if $gContent->isValid()}
+					<input type="submit" name="cancelgallery" value="Cancel"/>
+				{/if}
 				<input type="submit" name="savegallery" value="Save Gallery"/>
 			</div>
 		{/form}
 
 	</div>	<!-- end .body -->
 </div>	<!-- end .fisheye -->
+{/strip}

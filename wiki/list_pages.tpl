@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/list_pages.tpl,v 1.1.1.1.2.4 2005/08/24 07:02:23 southpawz Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/list_pages.tpl,v 1.1.1.1.2.5 2005/09/10 08:39:19 squareing Exp $ *}
 <div class="floaticon">{bithelp}</div>
 
 <div class="admin wiki">
@@ -13,7 +13,7 @@
 
 		{form id="checkform"}
 		{strip}
-			<div class="navbar">
+			<div class="pageactions sort">
 				<ul>
 					<li>{biticon ipackage=liberty iname=sort iexplain="sort by"}</li>
 					{if $gBitSystem->isFeatureActive( 'wiki_list_name' )}

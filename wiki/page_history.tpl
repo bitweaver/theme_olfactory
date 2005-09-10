@@ -1,9 +1,9 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/page_history.tpl,v 1.1.1.1.2.1 2005/08/05 23:00:38 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/page_history.tpl,v 1.1.1.1.2.2 2005/09/10 08:39:19 squareing Exp $ *}
 {strip}
 
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=history}
 
-<div class="listing wiki">
+<div class="admin wiki">
 	<div class="header">
 		<h1>{tr}History{/tr} {tr}of{/tr} <a href="{$pageInfo.display_url}">{$pageInfo.title}</a></h1>
 	</div>
@@ -21,90 +21,92 @@
 			<div class="content">{$sourcev}</div>
 		{/if}
 
-		{if $diff}
-			<h2>{tr}Comparing versions{/tr}</h2>
+		{if $compare eq 'y'}
 			<table class="data">
+				<caption>{tr}Comparing versions{/tr}</caption>
 				<tr>
+					<th width="50%">{tr}Version {$version_from}{/tr}</td>
+					<th></th>
 					<th width="50%">{tr}Current version{/tr}</td>
-					<th width="50%">{tr}Version{/tr} {$version}</td>
 				</tr>
-				<tr>
-					<td valign="top"><div class="content">{$parsed}</div></td>
-					<td valign="top"><div class="content">{$diff}</div></td>
+				<tr valign="top">
+					<td><div class="content">{$diff_from}</div></td>
+					<td>&nbsp;</td>
+					<td><div class="content">{$diff_to}</div></td>
 				</tr>
 			</table>
 		{/if}
-		
 		{if $diff2 eq 'y'}
-			<h2>{tr}Differences from version {$version}{/tr}</h2>
-			<div class="content">{$diffdata}</div>
+			<h2>{tr}Differences from version{/tr} {$version_from} to {$version_to}</h2>
+			{$diffdata}
 		{/if}
 
 		{form}
 			<input type="hidden" name="page_id" value="{$pageInfo.page_id}" />
+			<input type="hidden" name="page" value="{$page}" />
+
 			<table class="data">
-				<caption>{tr}View and compare previous versions of {$pageInfo.title}{/tr}</caption>
+				<caption>{tr}Page History{/tr}</caption>
 				<tr>
-					{if $gBitUser->hasPermission( 'bit_p_remove' )}
-						<th>&nbsp;</th>
-					{/if}
-					<th>{tr}Date{/tr}</th>
-					<th>{tr}Ver{/tr}</th>
-					<th>{tr}User{/tr}</th>
-					<th>{tr}IP{/tr}</th>
-					<th>{tr}Comment{/tr}</th>
-					<th>{tr}Action{/tr}</th>
+					<th style="width:70%;">{tr}Date / Comment{/tr}</th>
+					<th style="width:10%;">{tr}User{/tr}</th>
+					<th style="width:10%;">{tr}IP{/tr}</th>
+					<th style="width:10%;">{tr}Version{/tr}</th>
 				</tr>
 
 				<tr class="odd">
-					{if $gBitUser->hasPermission( 'bit_p_remove' )}
-						<td>&nbsp;</td>
-					{/if}
-					<td>{$pageInfo.last_modified|bit_short_datetime}</td>
-					<td>{$pageInfo.version}</td>
-					<td>{displayname hash=$pageInfo}</td>
-					<td>{$pageInfo.ip}</td>
-					<td>{$pageInfo.comment}</td>
-					<td class="actionicon"><a href="{$pageInfo.display_url}">{tr}current{/tr}</a></td>
+					<td>{$pageInfo.last_modified|bit_short_datetime}<br />{$pageInfo.comment}</td>
+
+					<td>{displayname user=$pageInfo.modifier_user user_id=$pageInfo.modifier_user_id real_name=$pageInfo.modifier_real_name} </td>
+					<td style="text-align:right;">{$pageInfo.ip}</td>
+					<td style="text-align:right;">{$pageInfo.version}</td>
 				</tr>
 
-				{section name=hist loop=$history}
-					<tr class="{cycle values="even,odd"}">
-						{if $gBitUser->hasPermission( 'bit_p_remove' )}
-							<td align="center"><input type="checkbox" name="hist[{$history[hist].version}]" /></td>
-						{/if}
-						<td>{$history[hist].last_modified|bit_short_datetime}</td>
-						<td>{$history[hist].version}</td>
-						<td>{displayname hash=$history[hist]}</td>
-						<td>{$history[hist].ip}</td>
-						<td>{$history[hist].comment}</td>
-						<td class="actionicon">
-							<a title="{tr}view{/tr}" href="{$smarty.const.WIKI_PKG_URL}page_history.php?page_id={$gContent->mPageId}&amp;preview={$history[hist].version}">{tr}view{/tr}</a>
-							&nbsp;&bull;&nbsp;
+				<tr class="odd">
+					<td colspan="4">
+						<a href="{$pageInfo.display_url}">{tr}Current{/tr}</a>
+						&nbsp;&bull;&nbsp;{smartlink ititle="Source" page_id=`$gContent->mPageId` source="current"}
+					</td>
+				</tr>
+
+				{foreach from=$history item=item}
+					<tr class="{cycle values='even,odd' advance=false}">
+						<td><label for="hist_{$item.version}">{$item.last_modified|bit_short_datetime}<br />{$item.comment}</label></td>
+						<td>{displayname hash=$item}</td>
+						<td style="text-align:right;">{$item.ip}</td>
+						<td style="text-align:right;">{$item.version}</td>
+					</tr>
+					<tr class="{cycle values='even,odd'}">
+						<td colspan="3">
+							{smartlink ititle="View" page_id=`$gContent->mPageId` preview=`$item.version`}
+							&nbsp;&bull;&nbsp;{smartlink ititle="Compare" page_id=`$gContent->mPageId` compare=`$item.version`}
+							&nbsp;&bull;&nbsp;{smartlink ititle="Difference" page_id=`$gContent->mPageId` diff2=`$item.version`}
+							&nbsp;&bull;&nbsp;{smartlink ititle="Source" page_id=`$gContent->mPageId` source=`$item.version`}
 							{if $gBitUser->hasPermission( 'bit_p_rollback' )}
-								<a href="{$smarty.const.WIKI_PKG_URL}rollback.php?page_id={$gContent->mPageId}&amp;version={$history[hist].version}" title="{tr}rollback{/tr}">{tr}rollback{/tr}</a>
-								&nbsp;&bull;&nbsp;
+								&nbsp;&bull;&nbsp;{smartlink iurl="rollback.php" ititle="Rollback" page_id=`$gContent->mPageId` version=`$item.version`}
 							{/if}
-							<a href="{$smarty.const.WIKI_PKG_URL}page_history.php?page_id={$gContent->mPageId}&amp;diff={$history[hist].version}" title="{tr}compare{/tr}">{tr}compare{/tr}</a>
-							&nbsp;&bull;&nbsp;
-							<a href="{$smarty.const.WIKI_PKG_URL}page_history.php?page_id={$gContent->mPageId}&amp;diff2={$history[hist].version}" title="{tr}diff{/tr}">{tr}difference{/tr}</a>
-							&nbsp;&bull;&nbsp;
-							<a href="{$smarty.const.WIKI_PKG_URL}page_history.php?page_id={$gContent->mPageId}&amp;source={$history[hist].version}" title="{tr}source{/tr}">{tr}source{/tr}</a>
+						</td>
+						<td style="text-align:right;">
+							{if $gBitUser->hasPermission( 'bit_p_remove' )}
+								<input type="checkbox" name="hist[{$item.version}]" id="hist_{$item.version}" />
+							{/if}
 						</td>
 					</tr>
-					{sectionelse}
+				{foreachelse}
 					<tr class="norecords">
-						<td colspan="8">
+						<td colspan="4">
 							{tr}No records found{/tr}
 						</td>
 					</tr>
-				{/section}
-				{if $gBitUser->hasPermission( 'bit_p_remove' )}
-				<tr><td colspan="8">
-					<input type="submit" name="delete" value="{tr}delete{/tr}" /></td></tr>
-				{/if}
+				{/foreach}
 			</table>
+			{if $gBitUser->hasPermission( 'bit_p_remove' )}
+				<div style="text-align:right;">
+					<input type="submit" name="delete" value="{tr}Delete selected versions{/tr}" />
+				</div>
+			{/if}
 		{/form}
+		{libertypagination numPages=$numPages page=$page page_id=$pageInfo.page_id}
 	</div>
 </div> <!-- end .wiki -->
 {/strip}

@@ -1,7 +1,7 @@
-/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_all.css,v 1.1.1.1.2.3 2005/08/19 07:39:31 squareing Exp $ */
+/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_all.css,v 1.1.1.1.2.4 2005/09/10 08:39:18 squareing Exp $ */
 /**
  * @author   xing <xing@synapse.plus.com>
- * @version  $Revision: 1.1.1.1.2.3 $
+ * @version  $Revision: 1.1.1.1.2.4 $
  * @theme    olfactory
  * @license  LGPL
  */
@@ -75,6 +75,7 @@ legend						{font-size:1.2em; padding:1em;}
 /* tables and lists */
 fieldset table			{margin:0 2%; width:96%;}
 table					{border-collapse:collapse; padding:0; margin:0; width:100%; line-height:normal;}
+caption					{font-weight:bold; font-size:1.1em; padding:1em 0 0.3em 0;}
 th						{font-weight:normal; border-bottom:2px solid #999; background:#fec; text-align:left;}
 td.actionicon			{text-align:right;}
 table.data				{border:1px solid #aaa;}

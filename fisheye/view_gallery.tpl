@@ -4,10 +4,25 @@
 
 <div class="listing fisheye">
 	<div class="header">
+		<div class="floaticon">
+			{include file="bitpackage:liberty/services_inc.tpl" serviceLocation='icon'}
+			{if $gContent->hasUserPermission( 'bit_p_edit_fisheye' )}
+				<a title="{tr}Edit{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit.php?gallery_id={$gContent->mGalleryId}">{biticon ipackage=liberty iname="config" iexplain="Edit"}</a>
+				<a title="{tr}Image Order{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}image_order.php?gallery_id={$gContent->mGalleryId}">{biticon ipackage=fisheye iname="order" iexplain="Image Order"}</a>
+			{/if}
+			{if $gContent->hasUserPermission( 'bit_p_upload_fisheye' )}
+				<a title="{tr}Add Image{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}upload.php?gallery_id={$gContent->mGalleryId}">{biticon ipackage=liberty iname="upload" iexplain="Add Image"}</a>
+			{/if}
+			{if $gContent->hasUserPermission( 'bit_p_admin_fisheye' )}
+				<a title="{tr}User Permissions{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit.php?gallery_id={$gContent->mGalleryId}&amp;delete=1">{biticon ipackage=liberty iname="delete" iexplain="Delete Gallery"}</a>
+			{* appears broken at the moment	<a title="{tr}User Permissions{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit_gallery_perms.php?gallery_id={$gContent->mGalleryId}">{biticon ipackage=liberty iname="permissions" iexplain="User Permissions"}</a> *}
+			{/if}
+		</div>
+
 		<h1>{$gContent->mInfo.title}</h1>
 
 		{if $gContent->mInfo.data}
-			<h2>{$gContent->mInfo.data}</h2>
+			<p>{$gContent->mInfo.data}</p>
 		{/if}
 	</div>
 
@@ -25,7 +40,7 @@
 
 				<td style="width:{$tdWidth}%; vertical-align:top;"> <!-- Begin Image Cell -->
 					{box class="box `$gContent->mItems[ix]->mInfo.content_type_guid`"}
-						<a href="{$gContent->mItems[ix]->getDisplayUrl()|replace:"&":"&amp;"}">
+						<a href="{$gContent->mItems[ix]->getDisplayUrl()|escape}">
 							<img class="thumb" src="{$gContent->mItems[ix]->getThumbnailUrl()}" alt="{$gContent->mItems[ix]->mInfo.title|default:'image'}" />
 						</a>
 						{if $gBitSystem->isFeatureActive( 'fisheye_gallery_list_image_titles' )}
@@ -43,18 +58,16 @@
 				{/if}
 
 			{sectionelse}
-				<tr><td>{tr}This gallery is empty{/tr}. <a href="{$smarty.const.FISHEYE_PKG_URL}upload.php?gallery_id={$gContent->mGalleryId}">Upload pictures!</a></td></tr>
+				<tr><td class="norecords">{tr}This gallery is empty{/tr}. <a href="{$smarty.const.FISHEYE_PKG_URL}upload.php?gallery_id={$gContent->mGalleryId}">Upload pictures!</a></td></tr>
 			{/section}
 
 			{if $imageCount % $cols_per_page != 0}</tr>{/if}
 		</table>
 	</div>	<!-- end .body -->
 
-	{libertypagination numPages=$gContent->mInfo.num_pages 
-		gallery_id=$gContent->mGalleryId
-		page=$page}
+	{libertypagination numPages=$gContent->mInfo.num_pages gallery_id=$gContent->mGalleryId gallery_path=$gContent->mGalleryPath page=$pageCount}
 
-	{include file="bitpackage:fisheye/gallery_tools.tpl"}
+	{include file="bitpackage:liberty/services_inc.tpl" serviceLocation='view'}
 
 </div>	<!-- end .fisheye -->
 

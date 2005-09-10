@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.1.1.1.2.5 2005/08/19 07:52:57 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.1.1.1.2.6 2005/09/10 08:39:19 squareing Exp $ *}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
 
 <div class="floaticon">{bithelp}</div>
@@ -22,11 +22,9 @@
 
 	{* Check to see if there is an editing conflict *}
 	{if $errors.edit_conflict}
-		<script type="text/javascript">
-			//<![CDATA[
-				alert( "{$errors.edit_conflict|strip_tags}" );
-			//]]>
-		</script>
+		<script type="text/javascript">//<![CDATA[
+			alert( "{$errors.edit_conflict|strip_tags}" );
+		//]]></script>
 		{formfeedback warning=`$errors.edit_conflict`}
 	{/if}
 
