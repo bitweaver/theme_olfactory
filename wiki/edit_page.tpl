@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.1.1.1.2.7 2005/09/21 21:45:06 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.1.1.1.2.8 2005/09/21 22:51:11 squareing Exp $ *}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
 
 <div class="floaticon">{bithelp}</div>
@@ -118,7 +118,7 @@
 							</div>
 						{/if}
 
-						{include file="bitpackage:liberty/edit_service_minis_inc.tpl}
+						{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_edit_mini_tpl}
 
 						{if $gBitUser->hasPermission( 'bit_p_minor' )}
 							<div class="row">
@@ -143,7 +143,7 @@
 					{/legend}
 				{/jstab}
 
-				{include file="bitpackage:liberty/edit_service_tabs_inc.tpl}
+				{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_edit_tab_tpl}
 
 				{if $gBitSystem->isFeatureActive( 'feature_wiki_attachments' ) && $show_attachments eq 'y' && $gBitUser->hasPermission('bit_p_content_attachments')}
 					{jstab title="Attachments"}
