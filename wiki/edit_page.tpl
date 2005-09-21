@@ -1,9 +1,7 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.1.1.1.2.6 2005/09/10 08:39:19 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.1.1.1.2.7 2005/09/21 21:45:06 squareing Exp $ *}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
 
 <div class="floaticon">{bithelp}</div>
-
-{assign var=serviceEditTpls value=$gLibertySystem->getServiceValues('content_edit_tpl')}
 
 <div class="edit wiki">
 	<div class="header">
@@ -120,9 +118,7 @@
 							</div>
 						{/if}
 
-						{if $serviceEditTpls.access_control }
-							{include file=$serviceEditTpls.access_control"}
-						{/if}
+						{include file="bitpackage:liberty/edit_service_minis_inc.tpl}
 
 						{if $gBitUser->hasPermission( 'bit_p_minor' )}
 							<div class="row">
@@ -147,13 +143,7 @@
 					{/legend}
 				{/jstab}
 
-				{if $serviceEditTpls.categorization }
-					{jstab title="Categorize"}
-						{legend legend="Categorize"}
-							{include file=$serviceEditTpls.categorization"}
-						{/legend}
-					{/jstab}
-				{/if}
+				{include file="bitpackage:liberty/edit_service_tabs_inc.tpl}
 
 				{if $gBitSystem->isFeatureActive( 'feature_wiki_attachments' ) && $show_attachments eq 'y' && $gBitUser->hasPermission('bit_p_content_attachments')}
 					{jstab title="Attachments"}
@@ -163,7 +153,7 @@
 					{/jstab}
 				{/if}
 
-				{if $gBitSystem->isFeatureActive( 'feature_wiki_icache' ) or $serviceEditTpls.menu or $wiki_spellcheck eq 'y'}
+				{if $gBitSystem->isFeatureActive( 'feature_wiki_icache' ) or $wiki_spellcheck eq 'y'}
 					{jstab title="Advanced"}
 						{legend legend="Advanced Options"}
 							{if $wiki_spellcheck eq 'y'}
@@ -195,12 +185,6 @@
 								</div>
 							{/if}
 						{/legend}
-
-						{if $serviceEditTpls.menu}
-							{legend legend="Insert Link in Menu"}
-								{include file=$serviceEditTpls.menu"}
-							{/legend}
-						{/if}
 					{/jstab}
 				{/if}
 
