@@ -1,23 +1,12 @@
 {include file="bitpackage:fisheye/gallery_tabs.tpl" pagetab=order}
 
-{literal}
-<script type="text/javascript">
-function MoveUp(imageId) {
-
-}
-
-function MoveDown(imageId) {
-
-}
-</script>
-{/literal}
 <div class="admin fisheye">
 	<div class="header">
-		<h1>{tr}Image Order{/tr}</h1>
+		<h1>{tr}Batch Edit Images{/tr}: <a href="{$smarty.const.FISHEYE_PKG_URL}view.php?gallery_id={$gContent->mGalleryId}">{$gContent->mInfo.title}</a></h1>
 	</div>
 
 	<div class="body">
-		{form id="batch_order" legend="Edit Image Order for <a href=\"`$smarty.const.FISHEYE_PKG_URL`view.php?gallery_id=`$gContent->mGalleryId`\">`$gContent->mInfo.title`</a>"}
+		{form id="batch_order" legend="Batch Edit Images"}
 {strip}
 			<input type="hidden" name="gallery_id" value="{$gContent->mGalleryId}"/>
 
@@ -48,7 +37,7 @@ function MoveDown(imageId) {
 						{/if}
 						{counter print=false}
 						<td class="{$galleryImages[ix]->mType.content_type_guid}">
-							<a href="{$galleryImages[ix]->getDisplayUrl()|replace:"&":"&amp;"}"><img class="thumb" src="{$galleryImages[ix]->getThumbnailUrl()|replace:"&":"&amp;"}" alt="{$galleryImages[ix]->mInfo.title}" /></a>
+							<a href="{$galleryImages[ix]->getDisplayUrl()|escape}"><img class="thumb" src="{$galleryImages[ix]->getThumbnailUrl()|replace:"&":"&amp;"}?{math equation="1 + rand(1,9999)"}" alt="{$galleryImages[ix]->mInfo.title}" /></a>
 						</td>
 						<td>
 							<div class="row">
@@ -65,10 +54,20 @@ function MoveDown(imageId) {
 								{formlabel label="Position" for="imagePosition-`$galleryImages[ix]->mContentId`"}
 								{forminput}
 									<input type="text" size="3" maxlength="3" name="imagePosition[{$galleryImages[ix]->mContentId}]" id="imagePosition-{$galleryImages[ix]->mContentId}" value="{$galleryImages[ix]->mInfo.position}"/>
-								{*
-									&nbsp;<a onclick="MoveUp({$galleryImages[ix]->mContentId})">{biticon ipackage=liberty iname=move_up iexplain="Move Up"}</a>
-									<a onclick="MoveDown({$galleryImages[ix]->mContentId})">{biticon ipackage=liberty iname=move_down iexplain="Move Down"}</a>
-								*}
+								{/forminput}
+							</div>
+
+							<div class="row">
+								{formlabel label="Uploaded" for="imagePosition-`$galleryImages[ix]->mContentId`"}
+								{forminput}
+									{$galleryImages[ix]->mInfo.created|bit_short_datetime}
+								{/forminput}
+							</div>
+
+							<div class="row">
+								{formlabel label="File name" for="imagePosition-`$galleryImages[ix]->mContentId`"}
+								{forminput}
+									{$galleryImages[ix]->mInfo.image_file.filename}
 								{/forminput}
 							</div>
 						</td>
@@ -78,28 +77,33 @@ function MoveDown(imageId) {
 						</td>
 					</tr>
 				{/section}
-				<tr>
-					<td colspan="5" style="text-align:right;">
-						<label>{tr}Use random image{/tr} <input type="radio" name="gallery_preview_content_id" value="" {if $gContent->mInfo.preview_content_id == ""}checked="checked"{/if} /></label>
-					</td>
-				</tr>
+			</table>
 {/strip}
-				<tr>
-					<td colspan="5" style="text-align:right;">
-						<script type="text/javascript"><!--
-							document.write("<label for=\"switcher\">{tr}Select all images{/tr}</label> ");
-							document.write("<input name=\"switcher\" id=\"switcher\" type=\"checkbox\" onclick=\"switchCheckboxes(this.form.id,'batch[]','switcher')\" />");
-						--></script>
-					</td>
-				</tr>
+			<div class="row" style="text-align:right;">
+				<script type="text/javascript">//<![CDATA[
+					document.write("<label for=\"switcher\">{tr}Select all images{/tr}</label> ");
+					document.write("<input name=\"switcher\" id=\"switcher\" type=\"checkbox\" onclick=\"switchCheckboxes(this.form.id,'batch[]','switcher')\" />");
+				//]]></script>
+			</div>
 {strip}
-				<tr>
-					<td colspan="5" style="text-align:right;">
-						{tr}Batch command for checked items{/tr}: &nbsp;
+			{legend legend="With selected images do the following"}
+				<div class="row">
+					{formlabel label="Use Random Gallery Image" for="gallery_preview_content_id"}
+					{forminput}
+						<input type="radio" name="gallery_preview_content_id" id="gallery_preview_content_id" value="" {if $gContent->mInfo.preview_content_id == ""}checked="checked"{/if} />
+						{formhelp note="Using the Gallery Image radio button you can specify what image is used to identify this particular gallery."}
+					{/forminput}
+				</div>
+
+				<div class="row">
+					{formlabel label="Batch commands" for=""}
+					{forminput}
 						<select name="batch_command">
 							<option value=""></option>
 							<option value="delete">{tr}Delete{/tr}</option>
 							<option value="thumbnail">{tr}Regenerate Thumbnails{/tr}</option>
+							<option value="rotate:-90">&lt;&lt; {tr}Rotate Counter Clockwise{/tr}</option>
+							<option value="rotate:90">&gt;&gt; {tr}Rotate Clockwise{/tr}</option>
 							{if $gBitSystem->isPackageActive( 'gatekeeper' ) }
 								<option value="security:">{tr}Set Security to{/tr} ~~ {tr}Publically Visible{/tr} ~~</option>
 								{foreach from=$securities key=secId item=sec}
@@ -117,16 +121,26 @@ function MoveDown(imageId) {
 								{/if}
 							{/foreach}
 						</select>
-					</td>
-				</tr>
-			</table>
+						{formhelp note=""}
+					{/forminput}
+				</div>
+
+				<div class="row">
+					{formlabel label="Re-order Gallery by" for="reorder_gallery"}
+					{forminput}
+						<select name="reorder_gallery" id="reorder_gallery">
+							<option value=""></option>
+							<option value="upload_date">{tr}Date Uploaded{/tr}</option>
+							<option value="caption">{tr}Image Title{/tr}</option>
+							<option value="file_name">{tr}File Name{/tr}</option>
+						</select>
+						{formhelp note=""}
+					{/forminput}
+				</div>
+			{/legend}
 
 			<div class="row submit">
-				<input type="submit" name="updateImageOrder" value="Save Changes"/>
-			</div>
-
-			<div class="row">
-				{formhelp note="Using the Gallery Image radio button you can spcify what image is used to identify this particular gallery."}
+				<input type="submit" name="cancel" value="{tr}Back{/tr}"/> <input type="submit" name="updateImageOrder" value="{tr}Save Changes{/tr}"/>
 			</div>
 {/strip}
 		{/form}

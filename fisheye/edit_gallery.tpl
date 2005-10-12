@@ -1,8 +1,15 @@
+{strip}
 {include file="bitpackage:fisheye/gallery_tabs.tpl" pagetab=edit}
 
 <div class="edit fisheye">
 	<div class="header">
-		<h1>{$tabTitle}</h1>
+		<h1>
+			{if $gContent->mInfo.title}
+				{tr}Edit Gallery {$gContent->mInfo.title}{/tr}
+			{else}
+				{tr}Create Image Gallery{/tr}
+			{/if}
+		</h1>
 	</div>
 
 	<div class="body">
@@ -57,8 +64,12 @@
 								{/forminput}
 							</div>
 						{/if}
+
+						{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_edit_mini_tpl}
 					{/legend}
 				{/jstab}
+
+				{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_edit_tab_tpl}
 
 				{jstab title="Advanced Options"}
 					{if $galleryList}
@@ -83,26 +94,17 @@
 							</div>
 						{/legend}
 					{/if}
-					
-					{if $gBitSystem->isPackageActive( 'gatekeeper' ) }
-						{legend legend="Security Settings"}
-							{include file="bitpackage:gatekeeper/choose_security.tpl"}
-						{/legend}
-					{/if}
-
-					{if $gBitSystem->isPackageActive( 'nexus' )}
-						{legend legend="Insert Link in Menu"}
-							{include file="bitpackage:nexus/insert_menu_item_inc.tpl"}
-						{/legend}
-					{/if}
 				{/jstab}
 			{/jstabs}
 
 			<div class="row submit">
-				<input type="submit" name="cancelgallery" value="Cancel"/>
+				{if $gContent->isValid()}
+					<input type="submit" name="cancelgallery" value="Cancel"/>
+				{/if}
 				<input type="submit" name="savegallery" value="Save Gallery"/>
 			</div>
 		{/form}
 
 	</div>	<!-- end .body -->
 </div>	<!-- end .fisheye -->
+{/strip}

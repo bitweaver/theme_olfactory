@@ -1,18 +1,22 @@
 {strip}
 <div class="{$class|default:"box"}" {$atts}>
+
 	{if $title or ($ipackage and $iname)}
-		{if $ipackage and $iname}
-			{if $idiv}
-				<div class="{$idiv}">
+		<div class="boxtitle">
+			{if $ipackage and $iname}
+				{if $idiv}
+					<div class="{$idiv}">
+				{/if}
+
+				{biticon ipackage=$ipackage iname=$iname iexplain=$iexplain iforce=icon} 
+
+				{if $idiv}
+					</div>
+				{/if}
 			{/if}
 
-			{biticon ipackage=$ipackage iname=$iname iexplain=$iexplain iforce=icon} 
-
-			{if $idiv}
-				</div>
-			{/if}
-		{/if}
 		<h3>{$title}</h3>
+		</div>
 	{/if}
 
 	<div class="boxcontent">

@@ -2,7 +2,7 @@
 
 <div class="floaticon">{bithelp}</div>
 
-<div class="listing blog">
+<div class="listing blogs">
 	<div class="header">
 		<h1>{tr}Blogs{/tr}</h1>
 	</div>
@@ -23,23 +23,21 @@
 					<li>{smartlink ititle="Last Modified" isort="last_modified" iorder=desc idefault=1 offset=$offset}</li>
 				{/if}
 				{if $blog_list_user eq 'y'}
-					<li>{smartlink ititle="User" isort="user" offset=$offset}</li>
+					<li>{smartlink ititle="Creator" isort="user" offset=$offset}</li>
 				{/if}
 				{if $blog_list_posts eq 'y'}
-					<li>{smartlink ititle="Posts" isort="posts" offset=$offset}</li>
+					<li>{smartlink ititle="Posts" isort="posts" iorder=desc offset=$offset}</li>
 				{/if}
 				{if $blog_list_visits eq 'y'}
-					<li>{smartlink ititle="Visits" isort="hits" offset=$offset}</li>
+					<li>{smartlink ititle="Visits" isort="hits" iorder=desc offset=$offset}</li>
 				{/if}
 				{if $blog_list_activity eq 'y'}
-					<li>{smartlink ititle="Activity" isort="activity" offset=$offset}</li>
+					<li>{smartlink ititle="Activity" isort="activity" iorder=desc offset=$offset}</li>
 				{/if}
 			</ul>
 		</div>
 
-		<div class="clear"></div>
-		
-		<ul class="data">
+		<ul class="clear data">
 			{section name=changes loop=$listpages}
 				<li class="item {cycle values='odd,even'}">
 					<div class="floaticon">
@@ -67,7 +65,7 @@
 
 					{if $blog_list_title eq 'y'}
 						<h2>{if ($gBitUser->isAdmin()) or ($listpages[changes].individual eq 'n') or ($listpages[changes].individual_gBitUser->hasPermission( 'bit_p_read_blog' ))}<a title="{$listpages[changes].title}" href="{$listpages[changes].blog_url}">{/if}
-						{$listpages[changes].title|truncate:20:"...":true}{if ($gBitUser->isAdmin()) or ($listpages[changes].individual eq 'n') or ($listpages[changes].individual_gBitUser->hasPermission( 'bit_p_read_blog' ))}</a>{/if}</h2>
+						{$listpages[changes].title}{if ($gBitUser->isAdmin()) or ($listpages[changes].individual eq 'n') or ($listpages[changes].individual_gBitUser->hasPermission( 'bit_p_read_blog' ))}</a>{/if}</h2>
 					{/if}
 
 					{if $blog_list_description eq 'y'}
@@ -86,25 +84,26 @@
 						{/if}
 
 						{if $blog_list_created eq 'y'}
-							<br />{tr}Created on {$listpages[changes].created|bit_short_date}{/tr}
+							{tr}{if $blog_list_user ne 'y'}<br />Created{/if} on {$listpages[changes].created|bit_short_date}{/tr}
+							<br />
 						{/if}
 
 						{if $blog_list_lastmodif eq 'y'}
-							<br />{tr}Last Modified {$listpages[changes].last_modified|bit_short_datetime}{/tr}
+							{tr}Last Modified {$listpages[changes].last_modified|bit_short_datetime}{/tr}
 						{/if}
 					</div>
 
 					<div class="footer">
 						{if $blog_list_posts eq 'y'}
-							{tr}Posts: {$listpages[changes].posts}{/tr}&nbsp;&bull;&nbsp;
+							{tr}Posts{/tr}: {$listpages[changes].posts}&nbsp;&bull;&nbsp;
 						{/if}
 						
 						{if $blog_list_visits eq 'y'}
-							{tr}Visits: {$listpages[changes].hits}{/tr}&nbsp;&bull;&nbsp;
+							{tr}Visits{/tr}: {$listpages[changes].hits}&nbsp;&bull;&nbsp;
 						{/if}
 						
 						{if $blog_list_activity eq 'y'}
-							{tr}Activity: {$listpages[changes].activity|default:0}{/tr}
+							{tr}Activity{/tr}: {$listpages[changes].activity|default:0}
 						{/if}
 					</div>
 
