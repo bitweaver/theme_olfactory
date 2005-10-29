@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.1.1.1.2.8 2005/09/21 22:51:11 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.1.1.1.2.9 2005/10/29 11:46:02 squareing Exp $ *}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
 
 <div class="floaticon">{bithelp}</div>
@@ -102,7 +102,7 @@
 							<div class="row">
 								{formlabel label="Footnotes" for="footnote"}
 								{forminput}
-									<textarea name="footnote" id="footnote" rows="8" cols="80">{$footnote|escape}</textarea>
+									<textarea name="footnote" id="footnote" rows="8" cols="50">{$footnote|escape}</textarea>
 									{formhelp note=""}
 								{/forminput}
 							</div>
