@@ -1,10 +1,3 @@
-/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_screen.css,v 1.1.1.1.2.1 2005/11/24 07:54:55 squareing Exp $ */
-/**
- * @author   xing <xing@synapse.plus.com>
- * @version  $Revision: 1.1.1.1.2.1 $
- * @theme    olfactory
- * @license  LGPL
- */
 @media screen,projection,tv {
 /* html tags */
 body	{line-height:1.6em; background:#111 url( images/bg.png ) repeat;}

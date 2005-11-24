@@ -1,10 +1,3 @@
-/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_all.css,v 1.1.1.1.2.4 2005/09/10 08:39:18 squareing Exp $ */
-/**
- * @author   xing <xing@synapse.plus.com>
- * @version  $Revision: 1.1.1.1.2.4 $
- * @theme    olfactory
- * @license  LGPL
- */
 @media all {
 *		{font-family:'Bitstream Vera Sans',verdana,helvetica,sans-serif;}
 body	{font-size:11px; color:#000; background:#fff margin:0; padding:0;}
