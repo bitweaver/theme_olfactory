@@ -1,7 +1,7 @@
-/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_screen.css,v 1.1 2005/06/19 06:11:03 bitweaver Exp $ */
+/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_screen.css,v 1.1.1.1.2.1 2005/11/24 07:54:55 squareing Exp $ */
 /**
  * @author   xing <xing@synapse.plus.com>
- * @version  $Revision: 1.1 $
+ * @version  $Revision: 1.1.1.1.2.1 $
  * @theme    olfactory
  * @license  LGPL
  */
@@ -38,8 +38,7 @@ body	{line-height:1.6em; background:#111 url( images/bg.png ) repeat;}
 .structurebar a:hover,.gallerybar a:hover	{color:#fc6;}
 
 /* navigation bars */
-/* navbar is deprecated and will be removed from the templates with dillinger release - new class is pageactions */
-.navbar			{padding:1em; background:#fca;}
+.navbar			{padding:1em;}
 .navbar ul		{padding:0; margin:0; list-style:none;}
 .navbar ul li	{float:left; list-style:none;}
 .navbar a		{border:1px solid #bbb; background:#ddd; padding:0 1em; margin:0 0.5em;}
