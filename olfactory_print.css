@@ -1,12 +1,12 @@
 @media print {
 body		{background:#fff;}
 /* hide large layout bits */
-#tikilogo	{display:none;}
+#bitlogo	{display:none;}
 #bittop	{display:none;}
 #bittopbar	{display:none;}
 #toplogin	{display:none;}
-#tikimain	{padding:0 1em;}
-#tikibottom	{clear:both; font-size:0.8em; text-align:center;}
+#bitmain	{padding:0 1em;}
+#bitbottom	{clear:both; font-size:0.8em; text-align:center;}
 
 /* hide other stuff */
 .pageactions,.navbar	{display:none;}

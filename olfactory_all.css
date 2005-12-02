@@ -58,12 +58,12 @@ legend						{font-size:1.2em; padding:1em;}
 .success					{color:#090;}
 
 /* parsed elements */
-.tikitable td		{padding:0.5em; border:1px solid #ccc;}
-.tikibox			{color:#900; background:#eee; border:1px solid #bbb; padding:0.5em; margin:0 5em;}
-.tikibar			{border-bottom:1px solid #ddd; border-top:1px solid #ddd;}
-.maketoc			{float:right; border:1px solid #db8d28; border-top:0; background:#ffe7c7; margin:0 0 1em 1em; width:30%;}
-.maketoc ul			{margin-left:1.5em; padding:0;}
-.maketoc ul li		{}
+.bittable td	{padding:0.5em; border:1px solid #ccc;}
+.bitbox			{color:#900; background:#eee; border:1px solid #bbb; padding:0.5em; margin:0 5em;}
+.bitbar			{border-bottom:1px solid #ddd; border-top:1px solid #ddd;}
+.maketoc		{float:right; border:1px solid #db8d28; border-top:0; background:#ffe7c7; margin:0 0 1em 1em; width:30%;}
+.maketoc ul		{margin-left:1.5em; padding:0;}
+.maketoc ul li	{}
 
 /* tables and lists */
 fieldset table			{margin:0 2%; width:96%;}
@@ -91,7 +91,7 @@ ul.toc,ul.toc ul		{margin-left:2em; padding-left:0;}
 /* boxes */
 .box				{margin:1em;}
 .box h3,.maketoc h3	{padding:3px; background:#fb7e01 url( images/htmltabs/tab_bg.png ) top left repeat-x; border-bottom:1px solid #b85d04;}
-#tikimain .menu h3	{background:transparent;}
+#bitmain .menu h3	{background:transparent;}
 
 
 /* package specific settings */

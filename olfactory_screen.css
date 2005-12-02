@@ -4,19 +4,19 @@ body	{line-height:1.6em; background:#111 url( images/bg.png ) repeat;}
 
 /* layout */
 #wrap1				{background:#fff; width:800px; margin:0px auto 0px auto;}
-#tikilogo			{height:120px; background:transparent url( images/top_logo.png ) top left repeat-x; clear:both;}
+#bitlogo			{height:120px; background:transparent url( images/top_logo.png ) top left repeat-x; clear:both;}
 #bittop			{font-size:8pt; font-family:tahoma,arial,sans-serif;}
 #toplogin			{text-align:right; background:#111;}
 #toplogin a			{color:#999; padding:0 1em;}
 #toplogin a:hover	{color:#fff;}
 #bittopbar			{}
-#tikimain			{}
-#tikibottom			{clear:both; font-size:0.8em; text-align:center;}
+#bitmain			{}
+#bitbottom			{clear:both; font-size:0.8em; text-align:center;}
 
 /* headings */
-#tikilogo h1,#tikilogo h2	{margin:0 0 0 170px;}
-#tikilogo h1				{color:#fff; font-size:2em; line-height:20px; padding:70px 10px 0 10px;}
-#tikilogo h2				{color:#aaa; font-size:1em; line-height:10px; padding:10px 10px 0 10px;}
+#bitlogo h1,#bitlogo h2	{margin:0 0 0 170px;}
+#bitlogo h1				{color:#fff; font-size:2em; line-height:20px; padding:70px 10px 0 10px;}
+#bitlogo h2				{color:#aaa; font-size:1em; line-height:10px; padding:10px 10px 0 10px;}
 .header						{background:green url( images/header_bg_grad.png ) top left repeat-x; color:#fff; border-bottom:1px solid #3b610f; padding:0 1em;}
 .header h1					{padding:2.0em 0 0.2em 0;}
 .header h2					{font-size:1.2em;}

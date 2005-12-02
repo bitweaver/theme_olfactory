@@ -1,9 +1,9 @@
 @media screen,projection,tv {
 /* regular menus */
 .menu,.menu ul,.menu li	{list-style:none;}
-#tikibody .menu,
-#tikibody .menu ul,
-#tikibody .menu li		{margin:0.3em; padding:0;}
+#bitbody .menu,
+#bitbody .menu ul,
+#bitbody .menu li		{margin:0.3em; padding:0;}
 .menu .icon				{vertical-align:middle;}
 .menu .head				{display:block;}
 .menu .item				{display:block;}
