@@ -1,19 +1,12 @@
-/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_print.css,v 1.2 2005/06/28 07:46:21 spiderr Exp $ */
-/**
- * @author   xing <xing@synapse.plus.com>
- * @version  $Revision: 1.2 $
- * @theme    olfactory
- * @license  LGPL
- */
 @media print {
 body		{background:#fff;}
 /* hide large layout bits */
-#tikilogo	{display:none;}
+#bitlogo	{display:none;}
 #bittop	{display:none;}
 #bittopbar	{display:none;}
 #toplogin	{display:none;}
-#tikimain	{padding:0 1em;}
-#tikibottom	{clear:both; font-size:0.8em; text-align:center;}
+#bitmain	{padding:0 1em;}
+#bitbottom	{clear:both; font-size:0.8em; text-align:center;}
 
 /* hide other stuff */
 .pageactions,.navbar	{display:none;}

@@ -1,16 +1,9 @@
-/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/Attic/olfactory_cssmenus.css,v 1.2 2005/07/17 17:36:40 squareing Exp $ */
-/**
- * @author   xing <xing@synapse.plus.com>
- * @version  $Revision: 1.2 $
- * @theme    olfactory
- * @license  LGPL
- */
 @media screen,projection,tv {
 /* regular menus */
 .menu,.menu ul,.menu li	{list-style:none;}
-#tikibody .menu,
-#tikibody .menu ul,
-#tikibody .menu li		{margin:0.3em; padding:0;}
+#bitbody .menu,
+#bitbody .menu ul,
+#bitbody .menu li		{margin:0.3em; padding:0;}
 .menu .icon				{vertical-align:middle;}
 .menu .head				{display:block;}
 .menu .item				{display:block;}

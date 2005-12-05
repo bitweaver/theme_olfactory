@@ -1,19 +1,19 @@
-/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/alternate/print_preview.css,v 1.2 2005/06/28 07:46:21 spiderr Exp $ */
+/* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/alternate/print_preview.css,v 1.3 2005/12/05 23:54:19 squareing Exp $ */
 /**
  * @author   xing <xing@synapse.plus.com>
- * @version  $Revision: 1.2 $
+ * @version  $Revision: 1.3 $
  * @theme    olfactory
  * @license  LGPL
  */
 @import url( ../olfactory_all.css );
 body		{background:#fff;}
 /* hide large layout bits */
-#tikilogo	{display:none;}
-#bittop	{display:none;}
+#bitlogo	{display:none;}
+#bittop		{display:none;}
 #bittopbar	{display:none;}
 #toplogin	{display:none;}
-#tikimain	{padding:0 1em;}
-#tikibottom	{clear:both; font-size:0.8em; text-align:center;}
+#bitmain	{padding:0 1em;}
+#bitbottom	{clear:both; font-size:0.8em; text-align:center;}
 
 /* hide other stuff */
 .pageactions,.navbar	{display:none;}
