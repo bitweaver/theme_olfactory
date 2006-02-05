@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.7 2005/10/29 17:57:03 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.8 2006/02/05 21:31:33 squareing Exp $ *}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
 
 <div class="floaticon">{bithelp}</div>
@@ -216,16 +216,16 @@
 								<div class="row">
 									{formlabel label="License"}
 									{forminput}
-										<a href="{$smarty.const.WIKI_PKG_URL}index.php?page={$wikiLicensePage}">{tr}{$wikiLicensePage}{/tr}</a>
+										<a href="{$smarty.const.WIKI_PKG_URL}index.php?page={$wiki_license_page}">{tr}{$wiki_license_page}{/tr}</a>
 										{formhelp note=""}
 									{/forminput}
 								</div>
 
-								{if $wikiSubmitNotice neq ""}
+								{if $wiki_submit_notice neq ""}
 									<div class="row">
 										{formlabel label="Important"}
 										{forminput}
-											{$wikiSubmitNotice}
+											{$wiki_submit_notice}
 											{formhelp note=""}
 										{/forminput}
 									</div>

@@ -20,7 +20,7 @@
 				{/if}
 			{/if}
 
-			{if $gBitSystem->isFeatureActive( 'feature_likePages' )}
+			{if $gBitSystem->isFeatureActive( 'feature_like_pages' )}
 				<li{if $pagetab eq 'similar'} class="current"{/if}>{smartlink ititle='similar' ifile='like_pages.php' page_id=`$pageInfo.page_id`}</li>
 			{/if}
 

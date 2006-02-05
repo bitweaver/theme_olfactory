@@ -12,7 +12,7 @@
 					{displayname} <a href="{$smarty.const.USERS_PKG_URL}logout.php">{tr}logout{/tr}</a>
 				{else}
 					<a href="{$smarty.const.USERS_PKG_URL}login.php">{tr}login{/tr}</a>
-					{if $gBitSystem->isFeatureActive( 'allowRegister' )}
+					{if $gBitSystem->isFeatureActive( 'allow_register' )}
 						&nbsp;<a href="{$smarty.const.USERS_PKG_URL}register.php">{tr}register{/tr}</a>
 					{/if}
 				{/if}
