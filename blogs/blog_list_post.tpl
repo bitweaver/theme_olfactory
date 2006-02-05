@@ -1,7 +1,7 @@
 {strip}
 {include file="bitpackage:blogs/page_tabs.tpl"}
 <div class="post"
-	{if $user_dbl eq 'y' and (($blogPosts[ix].ownsblog eq 'y') or ($gBitUser->mUserId and $blogPosts[ix].user_id eq $gBitUser->mUserId) or $gBitUser->hasPermission( 'bit_p_blog_admin' ))}
+	{if $gBitUser->getPreference( 'user_dbl' ) eq 'y' and (($blogPosts[ix].ownsblog eq 'y') or ($gBitUser->mUserId and $blogPosts[ix].user_id eq $gBitUser->mUserId) or $gBitUser->hasPermission( 'bit_p_blog_admin' ))}
 		ondblclick="location.href='{$smarty.const.BLOGS_PKG_URL}post.php?blog_id={$blogPosts[ix].blog_id}{$blog_id}&amp;post_id={$blogPosts[ix].post_id}{$post_id}';"
 	{/if}
 >
