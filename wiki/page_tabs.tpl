@@ -15,7 +15,7 @@
 			{/if}
 			
 			{if $page ne 'SandBox'}
-				{if $gBitSystem->isFeatureActive( 'feature_history' )}
+				{if $gBitSystem->isFeatureActive( 'wiki_history' )}
 					<li{if $pagetab eq 'history'} class="current"{/if}>{smartlink ititle='history' ifile='page_history.php' page_id=`$pageInfo.page_id`}</li>
 				{/if}
 			{/if}

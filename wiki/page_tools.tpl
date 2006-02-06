@@ -18,11 +18,11 @@
 				<li>{smartlink ititle='refresh' ifile='export_wiki_pages.php' page_id=`$pageInfo.page_id` ibiticon='liberty/export'}</li>
 			{/if}
 
-			{if $gBitSystem->isFeatureActive( 'feature_wiki_undo' ) and $canundo eq 'y'}
+			{if $gBitSystem->isFeatureActive( 'wiki_undo' ) and $canundo eq 'y'}
 				<li>{smartlink ititle='undo' ifile='index.php' page_id=`$pageInfo.page_id` undo=1 ibiticon='liberty/undo'}</li>
 			{/if}
 
-			{if $gBitUser->hasPermission( 'bit_p_admin_wiki' ) or ($gBitUser->mUserId and ($gBitUser->mUserId eq $pageInfo.modifier_user_id) and ($gBitUser->hasPermission( 'bit_p_lock' )) and ($gBitSystem->isFeatureActive( 'feature_wiki_usrlock' )))}
+			{if $gBitUser->hasPermission( 'bit_p_admin_wiki' ) or ($gBitUser->mUserId and ($gBitUser->mUserId eq $pageInfo.modifier_user_id) and ($gBitUser->hasPermission( 'bit_p_lock' )) and ($gBitSystem->isFeatureActive( 'wiki_usrlock' )))}
 				{if $lock}
 					<li>{smartlink ititle='unlock this page' ifile='index.php' page_id=`$pageInfo.page_id` action=unlock ibiticon='wiki/locked'}</li>
 				{else}
@@ -67,7 +67,7 @@
 				<li><a title="{tr}Save{/tr}" href="{$smarty.const.WIKI_PKG_URL}index.php?page_id={$pageInfo.page_id}&amp;savenotepad=1">{biticon ipackage="wiki" iname="save" iexplain="save"}</a></li>
 			{/if}
 
-			{if $gBitUser->mUserId && $gBitSystem->isFeatureActive( 'feature_user_watches' )}
+			{if $gBitUser->mUserId && $gBitSystem->isFeatureActive( 'user_watches' )}
 				{if $user_watching_page eq 'y'}
 					<li>{smartlink ititle='stop monitoring this page' ifile='index.php' watch_event=wiki_page_changed watch_action=remove page_id=`$pageInfo.page_id` watch_object=`$pageInfo.page_id` ibiticon='users/unwatch'}</li>
 				{else}
@@ -81,7 +81,7 @@
 				{/if}
 			{/if}
 			
-			{if $gBitSystem->isFeatureActive( 'feature_backlinks' ) and $backlinks}
+			{if $gBitSystem->isFeatureActive( 'backlinks' ) and $backlinks}
 				<select name="page" onchange="go(this)">
 					<option value="{$smarty.const.WIKI_PKG_URL}index.php?page_id={$pageInfo.page_id}">{tr}backlinks{/tr}...</option>
 					{foreach key=contentId item=backPage from=$backlinks}

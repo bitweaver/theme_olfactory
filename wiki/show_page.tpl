@@ -2,7 +2,7 @@
 	{include file="bitpackage:wiki/page_tabs.tpl" pagetab=view}
 {/if}
 
-{if $comments_at_top_of_page eq 'y' and $print_page ne 'y' and $feature_wiki_comments eq 'y' }
+{if $comments_at_top_of_page eq 'y' and $print_page ne 'y' and $wiki_comments eq 'y' }
 	{include file="bitpackage:wiki/page_header.tpl"}
 	{include file="bitpackage:liberty/comments.tpl"}
 {/if}
@@ -35,7 +35,7 @@
 		{$footnote}
 	{/if}
 
-	{if $gBitSystem->isFeatureActive( 'wiki_feature_copyrights' )}
+	{if $gBitSystem->isFeatureActive( 'wiki_copyrights' )}
 		<p class="copyright">
 			{if $pageCopyrights}
 				{section name=i loop=$pageCopyrights}
@@ -55,7 +55,7 @@
 	{/if}
 </div><!-- end .wiki -->
 
-{if $comments_at_top_of_page ne 'y' and $print_page ne 'y' and $feature_wiki_comments eq 'y' }
+{if $comments_at_top_of_page ne 'y' and $print_page ne 'y' and $wiki_comments eq 'y' }
 	{include file="bitpackage:liberty/comments.tpl"}
 {/if}
 

@@ -60,7 +60,7 @@
 
 		{if $blogPosts[ix].trackbacks_from_count}({tr}referenced by{/tr}: {$blogPosts[ix].trackbacks_from_count} {tr}posts{/tr} / {tr}references{/tr}: {$blogPosts[ix].trackbacks_to_count} {tr}posts{/tr}){/if}
 
-		{if $blogPosts[ix].allow_comments eq 'y' and $gBitSystem->isFeatureActive( 'feature_blogposts_comments' )}
+		{if $blogPosts[ix].allow_comments eq 'y' and $gBitSystem->isFeatureActive( 'blogposts_comments' )}
 			&nbsp;{$blogPosts[ix].num_comments} {if $blogPosts[ix].num_comments == 1} {tr}comment{/tr} {else} {tr}comments{/tr}{/if} &nbsp;|&nbsp;
 			 <a href="{$smarty.const.BLOGS_PKG_URL}view_post.php?find={$find}&amp;blog_id={$blogPosts[ix].blog_id}&amp;offset={$offset}&amp;sort_mode={$sort_mode}&amp;post_id={$blogPosts[ix].post_id}&post_comment_request=1">{if $blogPosts[ix].num_comments > 0}{tr}view comments{/tr}{else}{tr}add comment{/tr}{/if}</a>
 		{/if}
