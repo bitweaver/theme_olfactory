@@ -61,32 +61,7 @@
 .ver,.ver a,.ver li,.ver ul	{z-index:100000;}
 #nav,#nav a,#nav li,#nav ul	{z-index:10000000;}
 
-/* ieHover used as suckerfish class for MSIE hover support */
-.hor li:hover ul ul, .hor li:hover ul ul ul, .hor li.ieHover ul ul, .hor li.ieHover ul ul ul,
-.ver li:hover ul ul, .ver li:hover ul ul ul, .ver li.ieHover ul ul, .ver li.ieHover ul ul ul	{left:-999em;}
-.hor li:hover ul, .hor li li:hover ul, .hor li li li:hover ul, .hor li.ieHover ul, .hor li li.ieHover ul, .hor li li li.ieHover ul,
-.ver li:hover ul, .ver li li:hover ul, .ver li li li:hover ul, .ver li.ieHover ul, .ver li li.ieHover ul, .ver li li li.ieHover ul	{left:auto;}
+.hor li:hover ul ul,.hor li:hover ul ul ul,.ver li:hover ul ul,.ver li:hover ul ul ul	{left:-999em;}
+.hor li:hover ul,.hor li li:hover ul,.hor li li li:hover ul,.ver li:hover ul,.ver li li:hover ul,.ver li li li:hover ul	{left:auto;}
 
-/* Support for MSIE select box hiding part of suckerfish - don't touch */
-.hor iframe,.ver iframe	{position:absolute; left:0; top:0; z-index:-1; filter:progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0);}
-
-/* if you want an example of package specific menu styling, uncomment the following */
-/* to work out what does what, try removing e.g. 'm-blogs a' and see what happens */
-/* the '!important' is required to override the existing settings */
-/** /
-.m-home,.m-home ul,.m-home li,.m-home a							{background:#fff !important;}
-.m-admin,.m-admin ul,.m-admin li,.m-admin a						{background:#eee !important;}
-.m-blogs,.m-blogs ul,.m-blogs li,.m-blogs a						{background:#ddd !important;}
-.m-calendar,.m-calendar ul,.m-calendar li,.m-calendar a			{background:#ccc !important;}
-.m-categories,.m-categories ul,.m-categories li,.m-categories a	{background:#aaa !important;}
-.m-contacts,.m-contacts ul,.m-contacts li,.m-contacts a			{background:#999 !important;}
-.m-phpbb,.m-phpbb ul,.m-phpbb li,.m-phpbb a						{background:#fce !important;}
-.m-fisheye,.m-fisheye ul,.m-fisheye li,.m-fisheye a				{background:#fcb !important;}
-.m-users,.m-users ul,.m-users li,.m-users a						{background:#fec !important;}
-.m-nexus,.m-nexus ul,.m-nexus li,.m-nexus a						{background:#fbc !important;}
-.m-sample,.m-sample ul,.m-sample li,.m-sample a					{background:#cef !important;}
-.m-stats,.m-stats ul,.m-stats li,.m-stats a						{background:#cbf !important;}
-.m-stylist,.m-stylist ul,.m-stylist li,.m-stylist a				{background:#cfe !important;}
-.m-wiki,.m-wiki ul,.m-wiki li,.m-wiki a							{background:#cfb !important;}
-/**/
 }
