@@ -12,7 +12,7 @@
 					<li>{smartlink ititle="Gallery Name" isort="title" user_id=$gQuerUserId offset=$iMaxRows home=$userInfo.login search=$iSearchString}</li>
 				{/if}
 				{if $fisheye_list_user eq 'y'}
-					<li>{smartlink ititle="Owner" isort=`$gBitSystemPrefs.display_name` user_id=$gQuerUserId offset=$iMaxRows home=$userInfo.login search=$iSearchString}</li>
+					<li>{smartlink ititle="Owner" isort=`$gBitSystem->getConfig('display_name')` user_id=$gQuerUserId offset=$iMaxRows home=$userInfo.login search=$iSearchString}</li>
 				{/if}
 				{if $fisheye_list_created eq 'y'}
 					<li>{smartlink ititle="Created" isort="created" user_id=$gQuerUserId offset=$iMaxRows home=$userInfo.login search=$iSearchString}</li>

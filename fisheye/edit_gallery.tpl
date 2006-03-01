@@ -38,7 +38,7 @@
 						<div class="row">
 							{formlabel label="Rows per page" for="gallery-rows-per-page"}
 							{forminput}
-								<input type="text" id="gallery-rows-per-page" name="rows_per_page" size="2" maxlength="2" value="{$gContent->mInfo.rows_per_page|default:$gBitSystemPrefs.fisheye_gallery_default_rows_per_page}"/>
+								<input type="text" id="gallery-rows-per-page" name="rows_per_page" size="2" maxlength="2" value="{$gContent->mInfo.rows_per_page|default:$gBitSystem->getConfig('fisheye_gallery_default_rows_per_page')}"/>
 								{formhelp note="Number of rows of images per gallery page"}
 							{/forminput}
 						</div>
@@ -46,7 +46,7 @@
 						<div class="row">
 							{formlabel label="Columns per page" for="gallery-cols-per-page"}
 							{forminput}
-								<input type="text" id="gallery-cols-per-page" name="cols_per_page" size="2" maxlength="2" value="{$gContent->mInfo.cols_per_page|default:$gBitSystemPrefs.fisheye_gallery_default_cols_per_page}"/>
+								<input type="text" id="gallery-cols-per-page" name="cols_per_page" size="2" maxlength="2" value="{$gContent->mInfo.cols_per_page|default:$gBitSystem->getConfig('fisheye_gallery_default_cols_per_page')}"/>
 								{formhelp note="Number of columns of images per gallery page"}
 							{/forminput}
 						</div>
@@ -58,7 +58,7 @@
 									{if $gContent->mInfo.thumbnail_size}
 										{assign var=thumb_size value=$gContent->mInfo.thumbnail_size}
 									{else}
-										{assign var=thumb_size value=$gBitSystemPrefs.fisheye_gallery_default_thumbnail_size}
+										{assign var=thumb_size value=$gBitSystem->getConfig('fisheye_gallery_default_thumbnail_size')}
 									{/if}
 									{html_radios options=$thumbnailSizes name="thumbnail_size" checked=$thumb_size separator="<br />"}
 								{/forminput}
