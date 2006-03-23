@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.10 2006/02/13 10:06:22 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.11 2006/03/23 16:40:40 squareing Exp $ *}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
 
 <div class="floaticon">{bithelp}</div>
@@ -57,20 +57,6 @@
 								{/if}
 							{/forminput}
 						</div>
-
-						{if $gBitSystem->isFeatureActive( 'wiki_templates' ) and $gBitUser->hasPermission( 'bit_p_use_content_templates' )}
-							<div class="row">
-								{formlabel label="Apply template" for="template_id"}
-								{forminput}
-									<select name="template_id" id="template_id" onchange="javascript:document.getElementById('editpageform').submit();">
-										<option value="0">{tr}none{/tr}</option>
-										{section name=ix loop=$templates}
-											<option value="{$templates[ix].template_id|escape}">{tr}{$templates[ix].name}{/tr}</option>
-										{/section}
-									</select>
-								{/forminput}
-							</div>
-						{/if}
 
 						{if $gBitSystem->isFeatureActive( 'wiki_description' )}
 							<div class="row">
