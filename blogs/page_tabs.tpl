@@ -1,10 +1,10 @@
 {strip}
-{if $gBitUser->hasPermission( 'bit_p_view_tabs_and_tools' )}
+{if $gBitUser->hasPermission( 'p_users_view_icons_and_tools' )}
 	<div class="pageactions tabs">
 		<ul>
 			<li>{smartlink ititle='permalink' iurl=`$blogPosts[ix].post_url`}</li>
 
-			{if ($blogPosts[ix].ownsblog eq 'y') or ($gBitUser->mUserId and $blogPosts[ix].user_id eq $gBitUser->mUserId) or $gBitUser->hasPermission( 'bit_p_blog_admin' )}
+			{if ($blogPosts[ix].ownsblog eq 'y') or ($gBitUser->mUserId and $blogPosts[ix].user_id eq $gBitUser->mUserId) or $gBitUser->hasPermission( 'p_blogs_admin' )}
 				<li>{smartlink ititle='edit' ifile='post.php' blog_id=`$blogPosts[ix].blog_id` post_id=`$blogPosts[ix].post_id`}</li>
 			{/if}
 

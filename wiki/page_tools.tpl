@@ -1,6 +1,6 @@
 {strip}
 {if $print_page ne 'y'}
-{if $gBitUser->hasPermission( 'bit_p_view_tabs_and_tools' )}
+{if $gBitUser->hasPermission( 'p_users_view_icons_and_tools' )}
 	<div class="pageactions tools">
 		<ul>
 			{if $print_page ne 'y' && count($showstructs) ne 0}
@@ -14,7 +14,7 @@
 				</select>
 			{/if}
 
-			{if $gBitUser->hasPermission( 'bit_p_admin_wiki' )}
+			{if $gBitUser->hasPermission( 'p_wiki_admin' )}
 				<li>{smartlink ititle='refresh' ifile='export_wiki_pages.php' page_id=`$pageInfo.page_id` ibiticon='liberty/export'}</li>
 			{/if}
 
@@ -22,7 +22,7 @@
 				<li>{smartlink ititle='undo' ifile='index.php' page_id=`$pageInfo.page_id` undo=1 ibiticon='liberty/undo'}</li>
 			{/if}
 
-			{if $gBitUser->hasPermission( 'bit_p_admin_wiki' ) or ($gBitUser->mUserId and ($gBitUser->mUserId eq $pageInfo.modifier_user_id) and ($gBitUser->hasPermission( 'bit_p_lock' )) and ($gBitSystem->isFeatureActive( 'wiki_usrlock' )))}
+			{if $gBitUser->hasPermission( 'p_wiki_admin' ) or ($gBitUser->mUserId and ($gBitUser->mUserId eq $pageInfo.modifier_user_id) and ($gBitUser->hasPermission( 'p_wiki_lock_page' )) and ($gBitSystem->isFeatureActive( 'wiki_usrlock' )))}
 				{if $lock}
 					<li>{smartlink ititle='unlock this page' ifile='index.php' page_id=`$pageInfo.page_id` action=unlock ibiticon='wiki/locked'}</li>
 				{else}
@@ -32,7 +32,7 @@
 				{biticon ipackage="wiki" iname="locked" iexplain="page is locked"}
 			{/if}
 
-			{if ($structureInfo.structure_id) && (($gStructure->mInfo.creator_user_id == $gBitUser->mUserId) || $gBitUser->hasPermission( 'bit_p_admin_books' )) }
+			{if ($structureInfo.structure_id) && (($gStructure->mInfo.creator_user_id == $gBitUser->mUserId) || $gBitUser->hasPermission( 'p_wiki_admin_book' )) }
 				<li>{smartlink ititle='edit book' ifile='edit_book.php' structure_id=`$structureInfo.structure_id` ibiticon='liberty/settings'}</li>
 			{/if}
 
@@ -45,11 +45,11 @@
 			{/if}
 
 			{* a user needs permission to print??? anyway, using css for this now - xing
-			{if $gBitUser->hasPermission( 'bit_p_print' )}
+			{if $gBitUser->hasPermission( 'p_liberty_print' )}
 				<li><a title="{tr}print{/tr}" href="{$smarty.const.WIKI_PKG_URL}print.php?{if $structureInfo.root_structure_id}structure_id={$structureInfo.root_structure_id}{else}page_id={$pageInfo.page_id}{/if}">{biticon ipackage=liberty iname="print" iexplain="print"}</a></li>
 			{/if*}
 
-			{if $gBitSystem->isPackageActive( 'pdf' ) && $gContent->hasUserPermission( 'bit_p_pdf_generation' )}
+			{if $gBitSystem->isPackageActive( 'pdf' ) && $gContent->hasUserPermission( 'p_pdf_generation' )}
 				{if $structureInfo.root_structure_id}
 					<li>{smartlink ititle='create PDF' ipackage='pdf' ifile='index.php' structure_id=`$structureInfo.structure_id` ibiticon='pdf/pdf'}</li>
 				{else}
@@ -57,7 +57,7 @@
 				{/if}
 			{/if}
 
-			{if $gBitSystem->isPackageActive( 'stickies' ) && $gBitUser->hasPermission('bit_p_stickies_edit') }
+			{if $gBitSystem->isPackageActive( 'stickies' ) && $gBitUser->hasPermission('p_stickies_edit') }
 				{if ($structureInfo.structure_id)}{assign var='stickyRequest' value="structure_id=`$structureInfo.structure_id`"}
 				{else}{assign var='stickyRequest' value="notated_content_id=`$pageInfo.content_id`"}{/if}
 				<li><a href="{$smarty.const.STICKIES_PKG_URL}edit.php?{$stickyRequest}">{biticon ipackage=stickies iname="sticky_note" iexplain="add sticky note"}</a></li>
@@ -76,7 +76,7 @@
 			{/if}
 			
 			{if $pageInfo.title ne 'SandBox'}
-				{if $gBitUser->hasPermission( 'bit_p_remove' )}
+				{if $gBitUser->hasPermission( 'p_wiki_remove_page' )}
 					<li>{smartlink ititle='remove this page' ifile='remove_page.php' page_id=`$pageInfo.page_id` ibiticon='liberty/delete'}</li>
 				{/if}
 			{/if}

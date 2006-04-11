@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.11 2006/03/23 16:40:40 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.12 2006/04/11 13:09:53 squareing Exp $ *}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
 
 <div class="floaticon">{bithelp}</div>
@@ -50,7 +50,7 @@
 							{formfeedback warning=`$errors.title`}
 							{formlabel label="$conDescr Title" for="title"}
 							{forminput}
-								{if $gBitUser->hasPermission( 'bit_p_rename' ) || !$pageInfo.page_id}
+								{if $gBitUser->hasPermission( 'p_wiki_rename_page' ) || !$pageInfo.page_id}
 									<input type="text" size="50" maxlength="200" name="title" id="title" value="{$pageInfo.title}" />
 								{else}
 									{$page} {$pageInfo.title}
@@ -106,7 +106,7 @@
 
 						{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_edit_mini_tpl}
 
-						{if $gBitUser->hasPermission( 'bit_p_minor' )}
+						{if $gBitUser->hasPermission( 'p_wiki_save_minor' )}
 							<div class="row">
 								{formlabel label="Minor save" for="isminor"}
 								{forminput}
@@ -131,7 +131,7 @@
 
 				{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_edit_tab_tpl}
 
-				{if $gBitSystem->isFeatureActive( 'wiki_attachments' ) && $show_attachments eq 'y' && $gBitUser->hasPermission('bit_p_content_attachments')}
+				{if $gBitSystem->isFeatureActive( 'wiki_attachments' ) && $show_attachments eq 'y' && $gBitUser->hasPermission('p_liberty_attach_attachments')}
 					{jstab title="Attachments"}
 						{legend legend="Attachments"}
 							{include file="bitpackage:liberty/edit_storage.tpl"}
@@ -241,7 +241,7 @@
 							</div>
 
 						{* SPIDERKILL - disable wiki Import
-							{if $gBitUser->hasPermission( 'bit_p_admin_wiki' )}
+							{if $gBitUser->hasPermission( 'p_wiki_admin' )}
 								<tr><td>
 									{tr}Import file{/tr}:</td><td>
 									<input name="userfile1" type="file" />

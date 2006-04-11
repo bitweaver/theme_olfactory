@@ -1,11 +1,11 @@
 {strip}
-{if $gBitUser->hasPermission( 'bit_p_view_tabs_and_tools' )}
+{if $gBitUser->hasPermission( 'p_users_view_icons_and_tools' )}
 	<div class="pageactions tabs">
 		<ul>
 			<li{if $pagetab eq 'view'} class="current"{/if}>{smartlink ititle='view' ifile='index.php' page_id=`$pageInfo.page_id`}</li>
 			
 			{if !$lock}
-				{if $gBitUser->hasPermission( 'bit_p_edit' ) or $page eq 'SandBox'}
+				{if $gBitUser->hasPermission( 'p_wiki_edit_page' ) or $page eq 'SandBox'}
 					{if $beingEdited eq 'y'}
 						<li{if $pagetab eq 'edit'} class="current"{/if}>{smartlink ititle="being edited by $semUser" ifile='edit.php' page_id=`$pageInfo.page_id`}</li>
 					{else}
@@ -25,7 +25,7 @@
 			{/if}
 
 			{if $page ne 'SandBox'}
-				{if $gBitUser->hasPermission( 'bit_p_admin_wiki' )}
+				{if $gBitUser->hasPermission( 'p_wiki_admin' )}
 					<li{if $pagetab eq 'permissions'} class="current"{/if}>{smartlink ititle='permissions' ifile='page_permissions.php' page_id=`$pageInfo.page_id`}</li>
 				{/if}
 			{/if}
