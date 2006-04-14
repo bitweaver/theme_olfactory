@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/list_pages.tpl,v 1.7 2006/04/11 13:09:53 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/list_pages.tpl,v 1.8 2006/04/14 19:36:19 squareing Exp $ *}
 <div class="floaticon">{bithelp}</div>
 
 <div class="admin wiki">
@@ -139,7 +139,7 @@
 							<td style="text-align:center;">{$listpages[changes].links|default:"0"}</td>
 						{/if}
 						{if $gBitSystem->isFeatureActive( 'wiki_list_backlinks' )}
-							{if $gBitSystem->isFeatureActive( 'backlinks' ) && $listpages[changes].backlinks > 0}
+							{if $gBitSystem->isFeatureActive( 'wiki_backlinks' ) && $listpages[changes].backlinks > 0}
 								<td style="text-align:center;"><a href="{$smarty.const.WIKI_PKG_URL}backlinks.php?page={$listpages[changes].title|escape:"url"}">{$listpages[changes].backlinks|default:"0"}</a></td>
 							{else}
 								<td style="text-align:center;">{$listpages[changes].backlinks|default:"0"}</td>

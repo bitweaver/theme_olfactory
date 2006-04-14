@@ -81,7 +81,7 @@
 				{/if}
 			{/if}
 			
-			{if $gBitSystem->isFeatureActive( 'backlinks' ) and $backlinks}
+			{if $gBitSystem->isFeatureActive( 'wiki_backlinks' ) and $backlinks}
 				<select name="page" onchange="go(this)">
 					<option value="{$smarty.const.WIKI_PKG_URL}index.php?page_id={$pageInfo.page_id}">{tr}backlinks{/tr}...</option>
 					{foreach key=contentId item=backPage from=$backlinks}
