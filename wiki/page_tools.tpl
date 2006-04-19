@@ -67,7 +67,7 @@
 				<li><a title="{tr}Save{/tr}" href="{$smarty.const.WIKI_PKG_URL}index.php?page_id={$pageInfo.page_id}&amp;savenotepad=1">{biticon ipackage="wiki" iname="save" iexplain="save"}</a></li>
 			{/if}
 
-			{if $gBitUser->mUserId && $gBitSystem->isFeatureActive( 'user_watches' )}
+			{if $gBitUser->mUserId && $gBitSystem->isFeatureActive( 'users_watches' )}
 				{if $user_watching_page eq 'y'}
 					<li>{smartlink ititle='stop monitoring this page' ifile='index.php' watch_event=wiki_page_changed watch_action=remove page_id=`$pageInfo.page_id` watch_object=`$pageInfo.page_id` ibiticon='users/unwatch'}</li>
 				{else}
