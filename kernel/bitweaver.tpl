@@ -8,6 +8,7 @@
 	<div id="wrap1" class="pkg-{$smarty.const.ACTIVE_PACKAGE|lower}">
 		<div id="bittop">
 			<div id="toplogin">
+			<!-- nohighlight -->
 				{if $gBitUser->isRegistered()}
 					{displayname} <a href="{$smarty.const.USERS_PKG_URL}logout.php">{tr}logout{/tr}</a>
 				{else}
@@ -16,6 +17,7 @@
 						&nbsp;<a href="{$smarty.const.USERS_PKG_URL}register.php">{tr}register{/tr}</a>
 					{/if}
 				{/if}
+			<!-- nohighlight -->
 			</div>
 
 			{if $gBitSystem->isFeatureActive( 'site_top_bar' )}
