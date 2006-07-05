@@ -1,9 +1,9 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/kernel/Attic/module.tpl,v 1.6 2006/07/04 20:44:57 windblown Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/kernel/Attic/module.tpl,v 1.7 2006/07/05 15:18:20 windblown Exp $ *}
 {strip}
 <div class="module box {$module_name|replace:"_":"-"}">
 	{if $module_title}
 		<h3>
-		<!-- nohighlight -->
+		
 			{if $gBitSystem->isFeatureActive( 'themes_module_controls' )}
 				<div class="control">
 					<a title="{tr}Move module up{/tr}" href="{$current_location|escape}{$mpchar}mc_up={$module_name|escape}">
@@ -19,13 +19,13 @@
 			{if $gBitSystem->isFeatureActive( 'themes_collapsible_modules' )}<a href="javascript:toggle('{$module_name}');">{/if}
 				{tr}{$module_title}{/tr}
 			{if $gBitSystem->isFeatureActive( 'themes_collapsible_modules' )}</a>{/if}
-		<!-- /nohighlight -->	
+			
 		</h3>
 	{/if}
 	<div class="boxcontent" id="{$module_name}"{if $gBitSystem->isFeatureActive( 'themes_collapsible_modules' )} style="display:{$toggle_state};"{/if}>
-		<!-- nohighlight -->
+		
 	    {$module_content}
-		<!-- /nohighlight -->
+		
 	</div>
 </div>
 {/strip}
