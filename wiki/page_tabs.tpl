@@ -3,7 +3,7 @@
 	<div class="pageactions tabs">
 		<ul>
 			<li{if $pagetab eq 'view'} class="current"{/if}>{smartlink ititle='view' ifile='index.php' page_id=`$pageInfo.page_id`}</li>
-			
+
 			{if !$lock}
 				{if $gBitUser->hasPermission( 'p_wiki_edit_page' ) or $page eq 'SandBox'}
 					{if $beingEdited eq 'y'}
@@ -13,7 +13,7 @@
 					{/if}
 				{/if}
 			{/if}
-			
+
 			{if $page ne 'SandBox'}
 				{if $gBitSystem->isFeatureActive( 'wiki_history' )}
 					<li{if $pagetab eq 'history'} class="current"{/if}>{smartlink ititle='history' ifile='page_history.php' page_id=`$pageInfo.page_id`}</li>

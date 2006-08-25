@@ -5,7 +5,7 @@
 <div class="listing fisheye">
 	<div class="header">
 		<div class="floaticon">
-			{include file="bitpackage:liberty/services_inc.tpl" serviceLocation='icon'}
+			{include file="bitpackage:liberty/services_inc.tpl" serviceLocation='icon' serviceHash=$gContent->mInfo}
 			{if $gContent->hasUserPermission( 'p_fisheye_edit' )}
 				<a title="{tr}Edit{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit.php?gallery_id={$gContent->mGalleryId}">{biticon ipackage=liberty iname="config" iexplain="Edit"}</a>
 				<a title="{tr}Image Order{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}image_order.php?gallery_id={$gContent->mGalleryId}">{biticon ipackage=fisheye iname="order" iexplain="Image Order"}</a>
@@ -19,7 +19,7 @@
 			{/if}
 		</div>
 
-		<h1>{$gContent->mInfo.title}</h1>
+		<h1>{$gContent->mInfo.title|escape}</h1>
 
 		{if $gContent->mInfo.data}
 			<p>{$gContent->mInfo.data}</p>
@@ -28,46 +28,19 @@
 
 	<div class="body">
 		{formfeedback success=$fisheyeSuccess error=$fisheyeErrors warning=$fisheyeWarnings}
-		<table class="thumbnailblock">
-			{counter assign="imageCount" start="0" print=false}
-			{assign var="max" value=100}
-			{assign var="tdWidth" value="`$max/$cols_per_page`"}
-			{section name=ix loop=$gContent->mItems}
-				{assign var=item value=$gContent->mItems[ix]}
-				{if $imageCount % $cols_per_page == 0}
-					<tr > <!-- Begin Image Row -->
-				{/if}
 
-				<td style="width:{$tdWidth}%; vertical-align:top;"> <!-- Begin Image Cell -->
-					{box class="box `$gContent->mItems[ix]->mInfo.content_type_guid`"}
-						<a href="{$gContent->mItems[ix]->getDisplayUrl()|escape}">
-							<img class="thumb" src="{$gContent->mItems[ix]->getThumbnailUrl()}" alt="{$gContent->mItems[ix]->mInfo.title|default:'image'}" />
-						</a>
-						{if $gBitSystem->isFeatureActive( 'fisheye_gallery_list_image_titles' )}
-							<h2>{$gContent->mItems[ix]->mInfo.title}</h2>
-						{/if}
-						{if $gBitSystem->isFeatureActive( 'fisheye_gallery_list_image_descriptions' )}
-							<p>{$gContent->mImages[ix]->mInfo.data}</p>
-						{/if}
-					{/box}
-				</td> <!-- End Image Cell -->
-				{counter}
-
-				{if $imageCount % $cols_per_page == 0}
-					</tr> <!-- End Image Row -->
-				{/if}
-
-			{sectionelse}
-				<tr><td class="norecords">{tr}This gallery is empty{/tr}. <a href="{$smarty.const.FISHEYE_PKG_URL}upload.php?gallery_id={$gContent->mGalleryId}">Upload pictures!</a></td></tr>
-			{/section}
-
-			{if $imageCount % $cols_per_page != 0}</tr>{/if}
-		</table>
+		{include file="bitpackage:liberty/services_inc.tpl" serviceLocation='body' serviceHash=$gContent->mInfo}
+		{include file="bitpackage:fisheye/view_gallery_images_inc.tpl"}
+		{*include file="bitpackage:fisheye/view_gallery_files_inc.tpl"*}
 	</div>	<!-- end .body -->
 
 	{libertypagination numPages=$gContent->mInfo.num_pages gallery_id=$gContent->mGalleryId gallery_path=$gContent->mGalleryPath page=$pageCount}
 
-	{include file="bitpackage:liberty/services_inc.tpl" serviceLocation='view'}
+	{include file="bitpackage:liberty/services_inc.tpl" serviceLocation='view' serviceHash=$gContent->mInfo}
+
+	{if $gContent->getPreference('allow_comments') eq 'y'}
+		{include file="bitpackage:liberty/comments.tpl"}
+	{/if}
 
 </div>	<!-- end .fisheye -->
 

@@ -5,7 +5,7 @@
 	<div class="header">
 		<h1>
 			{if $gContent->mInfo.title}
-				{tr}Edit Gallery {$gContent->mInfo.title}{/tr}
+				{tr}Edit Gallery{/tr}: {$gContent->mInfo.title|escape}
 			{else}
 				{tr}Create Image Gallery{/tr}
 			{/if}
@@ -24,14 +24,14 @@
 						<div class="row">
 							{formlabel label="Title" for="gallery-title"}
 							{forminput}
-								<input type="text" name="title" id="gallery-title" value="{$gContent->mInfo.title}" maxlength="160" size="50"/>
+								<input type="text" name="title" id="gallery-title" value="{$gContent->mInfo.title|escape}" maxlength="160" size="50"/>
 							{/forminput}
 						</div>
 
 						<div class="row">
 							{formlabel label="Description" for="gallery-desc"}
 							{forminput}
-								<textarea name="edit" id="gallery-desc" rows="4" cols="40">{$gContent->mInfo.data}</textarea>
+								<textarea name="edit" id="gallery-desc" rows="4" cols="50">{$gContent->mInfo.data}</textarea>
 							{/forminput}
 						</div>
 
@@ -39,7 +39,9 @@
 							{formlabel label="Rows per page" for="gallery-rows-per-page"}
 							{forminput}
 								<input type="text" id="gallery-rows-per-page" name="rows_per_page" size="2" maxlength="2" value="{$gContent->mInfo.rows_per_page|default:$gBitSystem->getConfig('fisheye_gallery_default_rows_per_page')}"/>
-								{formhelp note="Number of rows of images per gallery page"}
+								{if !$gBitSystem->isFeatureActive( 'fisheye_gallery_div_layout' )}
+									{formhelp note="Number of rows of images per gallery page"}
+								{/if}
 							{/forminput}
 						</div>
 
@@ -47,7 +49,11 @@
 							{formlabel label="Columns per page" for="gallery-cols-per-page"}
 							{forminput}
 								<input type="text" id="gallery-cols-per-page" name="cols_per_page" size="2" maxlength="2" value="{$gContent->mInfo.cols_per_page|default:$gBitSystem->getConfig('fisheye_gallery_default_cols_per_page')}"/>
-								{formhelp note="Number of columns of images per gallery page"}
+								{if !$gBitSystem->isFeatureActive( 'fisheye_gallery_div_layout' )}
+									{formhelp note="Number of columns of images per gallery page"}
+								{else}
+									{formhelp note="The gallery pages will be displayed using divs. This means that the rows and columns will adjust to the browsers width. You can specify what number of thumbnails to display per page.<br /><strong>[rows] * [columns] = [number of images]</strong>."}
+								{/if}
 							{/forminput}
 						</div>
 
@@ -65,15 +71,24 @@
 							</div>
 						{/if}
 
-						{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_edit_mini_tpl}
+						<div class="row">
+							{formlabel label="Image Comments" for=allow_comments}
+							{forminput}
+								<input type="checkbox" name="allow_comments" id="allow_comments" value="y" {if $gContent->getPreference('allow_comments') eq 'y'}checked="checked"{/if} />
+								{formhelp note="Allow posting comments for an image."}
+							{/forminput}
+						</div>
+
+						{include file="bitpackage:liberty/edit_services_inc.tpl" serviceFile=content_edit_mini_tpl}
 					{/legend}
 				{/jstab}
 
 				{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_edit_tab_tpl}
 
-				{jstab title="Advanced Options"}
-					{if $galleryList}
-						{legend legend="Advanced Options"}
+				{if $galleryList}
+					{jstab title="Gallery Memberships"}
+						{legend legend="Gallery Memberships"}
+							{tr}If you would like this gallery to be a sub-gallery, check the parent gallery below. It is possible to belong to multiple galleries. If no parent is checked, this gallery will appear as a top-level gallery.{/tr}
 							<div class="row">
 								{formlabel label="`$gContent->mInfo.content_description` Belongs to These Galleries"}
 								{forminput}
@@ -84,7 +99,7 @@
 												checked="checked"
 											{/if}
 										/>
-										<a href="{$smarty.const.FISHEYE_PKG_URL}view.php?gallery_id={$gal.gallery_id}">{$gal.title}</a>
+										<a href="{$smarty.const.FISHEYE_PKG_URL}view.php?gallery_id={$gal.gallery_id}">{$gal.title|escape}</a>
 										<br />
 										{/if}
 									{foreachelse}
@@ -93,8 +108,8 @@
 								{/forminput}
 							</div>
 						{/legend}
-					{/if}
-				{/jstab}
+					{/jstab}
+				{/if}
 			{/jstabs}
 
 			<div class="row submit">

@@ -1,6 +1,6 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.13 2006/04/13 10:34:33 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.14 2006/08/25 18:28:04 squareing Exp $ *}
+{strip}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
-
 <div class="floaticon">{bithelp}</div>
 
 <div class="edit wiki">
@@ -20,16 +20,26 @@
 
 	{* Check to see if there is an editing conflict *}
 	{if $errors.edit_conflict}
-		<script type="text/javascript">//<![CDATA[
+		<script type="text/javascript">/* <![CDATA[ */
 			alert( "{$errors.edit_conflict|strip_tags}" );
-		//]]></script>
+		/* ]]> */</script>
 		{formfeedback warning=`$errors.edit_conflict`}
 	{/if}
 
-{strip}
 	<div class="body">
+		{if $translateFrom}
+			<div class="translate">
+				{include file="bitpackage:wiki/page_header.tpl" pageInfo=$translateFrom->mInfo}
+				{include file="bitpackage:wiki/page_display.tpl" pageInfo=$translateFrom->mInfo}
+			</div>
+		{/if}
+
 		{if $preview}
-			<h2>{tr}Preview {$title}{/tr}</h2>
+			{if $pageInfo.edit_section == 1 }
+					<h2>{tr}Preview Section {$pageInfo.section} of: {$title}{/tr}</h2>
+			{else}
+					<h2>{tr}Preview {$title}{/tr}</h2>
+			{/if}
 			<div class="preview">
 				{include file="bitpackage:wiki/page_header.tpl"}
 				{include file="bitpackage:wiki/page_display.tpl"}
@@ -51,9 +61,9 @@
 							{formlabel label="$conDescr Title" for="title"}
 							{forminput}
 								{if $gBitUser->hasPermission( 'p_wiki_rename_page' ) || !$pageInfo.page_id}
-									<input type="text" size="50" maxlength="200" name="title" id="title" value="{$pageInfo.title}" />
+									<input type="text" size="50" maxlength="200" name="title" id="title" value="{$pageInfo.title|escape}" />
 								{else}
-									{$page} {$pageInfo.title}
+									{$page} {$pageInfo.title|escape}
 								{/if}
 							{/forminput}
 						</div>
@@ -62,7 +72,7 @@
 							<div class="row">
 								{formlabel label="Description" for="description"}
 								{forminput}
-									<input size="50" type="text" name="description" id="description" value="{$pageInfo.description}" />
+									<input size="50" type="text" maxlength="200" name="description" id="description" value="{$pageInfo.description|escape:html}" />
 									{formhelp note="Brief description of the page. This is visible when you hover over a link to this page and just below the title of the wiki page."}
 								{/forminput}
 							</div>
@@ -78,9 +88,14 @@
 							{include file="bitpackage:quicktags/quicktags_full.tpl"}
 						{/if}
 
+						{if $pageInfo.edit_section == 1}
+							<input type="hidden" name="section" value="{$pageInfo.section}" />
+						{/if}
+
 						<div class="row">
+							{formlabel label="" for=$textarea_id}
 							{forminput}
-								<textarea id="{$textarea_id}" name="edit" rows="{$rows|default:20}" cols="{$cols|default:80}">{$pageInfo.data|escape:html}</textarea>
+								<textarea {spellchecker} id="{$textarea_id}" name="edit" rows="{$smarty.cookies.rows|default:20}" cols="50">{$pageInfo.data|escape:html}</textarea>
 							{/forminput}
 						</div>
 
@@ -96,15 +111,13 @@
 
 						{if $page ne 'SandBox'}
 							<div class="row">
-								{formlabel label="Comment" for="comment"}
+								{formlabel label="Comment" for="edit_comment"}
 								{forminput}
-									<input size="50" type="text" name="comment" id="comment" value="{$pageInfo.comment}" />
+									<input size="50" type="text" name="edit_comment" id="edit_comment" value="{$pageInfo.edit_comment}" />
 									{formhelp note="Add a comment to illustrate your most recent changes."}
 								{/forminput}
 							</div>
 						{/if}
-
-						{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_edit_mini_tpl}
 
 						{if $gBitUser->hasPermission( 'p_wiki_save_minor' )}
 							<div class="row">
@@ -116,24 +129,26 @@
 							</div>
 						{/if}
 
-						{if $gBitSystem->isFeatureActive( 'wiki_cache' )}
+						{if $gBitSystem->isFeatureActive( 'wiki_icache' )}
 							<div class="row">
 								{formlabel label="Cache" for="wiki_cache"}
 								{forminput}
 									<select name="wiki_cache" id="wiki_cache">
-										<option value="0" {if $wiki_cache eq 0}selected="selected"{/if}>{tr}0 (no cache){/tr}</option>
-										<option value="60" {if $wiki_cache eq 60}selected="selected"{/if}>{tr}1 minute{/tr}</option>
-										<option value="300" {if $wiki_cache eq 300}selected="selected"{/if}>{tr}5 minutes{/tr}</option>
-										<option value="600" {if $wiki_cache eq 600}selected="selected"{/if}>{tr}10 minutes{/tr}</option>
-										<option value="900" {if $wiki_cache eq 900}selected="selected"{/if}>{tr}15 minutes{/tr}</option>
-										<option value="1800" {if $wiki_cache eq 1800}selected="selected"{/if}>{tr}30 minutes{/tr}</option>
-										<option value="3600" {if $wiki_cache eq 3600}selected="selected"{/if}>{tr}1 hour{/tr}</option>
-										<option value="7200" {if $wiki_cache eq 7200}selected="selected"{/if}>{tr}2 hours{/tr}</option>
+										<option value="0"    {if $gBitSystem->getConfig('wiki_cache') eq 0}selected="selected"{/if}>{tr}0 (no cache){/tr}</option>
+										<option value="60"   {if $gBitSystem->getConfig('wiki_cache') eq 60}selected="selected"{/if}>{tr}1 minute{/tr}</option>
+										<option value="300"  {if $gBitSystem->getConfig('wiki_cache') eq 300}selected="selected"{/if}>{tr}5 minutes{/tr}</option>
+										<option value="600"  {if $gBitSystem->getConfig('wiki_cache') eq 600}selected="selected"{/if}>{tr}10 minutes{/tr}</option>
+										<option value="900"  {if $gBitSystem->getConfig('wiki_cache') eq 900}selected="selected"{/if}>{tr}15 minutes{/tr}</option>
+										<option value="1800" {if $gBitSystem->getConfig('wiki_cache') eq 1800}selected="selected"{/if}>{tr}30 minutes{/tr}</option>
+										<option value="3600" {if $gBitSystem->getConfig('wiki_cache') eq 3600}selected="selected"{/if}>{tr}1 hour{/tr}</option>
+										<option value="7200" {if $gBitSystem->getConfig('wiki_cache') eq 7200}selected="selected"{/if}>{tr}2 hours{/tr}</option>
 									</select>
 									{formhelp note=""}
 								{/forminput}
 							</div>
 						{/if}
+
+						{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_edit_mini_tpl}
 
 						<div class="row submit">
 							<input type="submit" name="fCancel" value="{tr}Cancel{/tr}" />&nbsp;
@@ -247,5 +262,4 @@
 
 	</div><!-- end .body -->
 </div><!-- end .admin -->
-
 {/strip}

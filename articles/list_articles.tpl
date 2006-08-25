@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/articles/list_articles.tpl,v 1.3 2006/04/11 13:09:52 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/articles/list_articles.tpl,v 1.4 2006/08/25 18:28:03 squareing Exp $ *}
 <div class="floaticon">{bithelp}</div>
 
 {strip}
@@ -8,101 +8,132 @@
 	</div>
 
 	<div class="body">
+
+		{formfeedback hash=$feedback}
+
 		<div class="pageactions sort">
 			<ul>
 				<li>{biticon ipackage=liberty iname=sort iexplain="sort by"}</li>
-				{if $art_list_title eq 'y'}
+				{if $gBitSystem->isFeatureActive( 'articles_list_title' )}
 					<li>{smartlink ititle='Title' isort='title' offset=$offset type=$find_type topic=$find_topic}</li>
 				{/if}
-				{if $art_list_author eq 'y'}
+				{if $gBitSystem->isFeatureActive( 'articles_list_author' )}
 					<li>{smartlink ititle='Author' isort='author_name' offset=$offset type=$find_type topic=$find_topic}</li>
 				{/if}
-				{if $art_list_date eq 'y'}
+				{if $gBitSystem->isFeatureActive( 'articles_list_date' )}
 					<li>{smartlink ititle='Publish Date' isort='publish_date' offset=$offset type=$find_type topic=$find_topic}</li>
 				{/if}
-				{if $art_list_expire eq 'y'}
+				{if $gBitSystem->isFeatureActive( 'articles_list_expire' )}
 					<li>{smartlink ititle='Expire Date' isort='expire_date' offset=$offset type=$find_type topic=$find_topic}</li>
 				{/if}
 			</ul>
 		</div>
 
 		<div class="clear"></div>
-		<table class="data">
-			<caption>{tr}Articles Listing{/tr}</caption>
-			<tr>
-				{if $art_list_img eq 'y'}
-					<th>{tr}Image{/tr}</th>
-				{/if}
-				{if $art_list_type eq 'y'}
-					<th>{smartlink ititle='Type' isort='type_name' offset=$offset type=$find_type topic=$find_topic}</th>
-				{/if}
-				{if $art_list_topic eq 'y'}
-					<th>{smartlink ititle='Topic' isort='topic_name' offset=$offset type=$find_type topic=$find_topic}</th>
-				{/if}
-				{if $art_list_reads eq 'y'}
-					<th>{smartlink ititle='Reads' isort='hits' offset=$offset type=$find_type topic=$find_topic}</th>
-				{/if}
-				<th>{tr}Action{/tr}</th>
-			</tr>
-			{cycle values="even,odd" print=false}
-			{section name=changes loop=$listpages}
-				<tr class="{cycle advance=false}">
-					{if $art_list_img eq 'y'}
-						<td rowspan="2">
-							<img src="{$listpages[changes].img_url}"/>
+
+		{include file="bitpackage:articles/article_filter_inc.tpl"}
+
+		{form}
+			<table class="data">
+				<caption>{tr}Articles Listing{/tr}</caption>
+				<tr>
+					{if $gBitSystem->isFeatureActive( 'articles_list_img' )}
+						<th style="width:10px;">{tr}Image{/tr}</th>
+					{/if}
+					{if $gBitSystem->isFeatureActive( 'articles_list_type' )}
+						<th>{smartlink ititle='Type' isort='type_name' offset=$offset type=$find_type topic=$find_topic}</th>
+					{/if}
+					{if $gBitSystem->isFeatureActive( 'articles_list_topic' )}
+						<th>{smartlink ititle='Topic' isort='topic_name' offset=$offset type=$find_type topic=$find_topic}</th>
+					{/if}
+					{if $gBitSystem->isFeatureActive( 'articles_list_status' )}
+						<th>{smartlink ititle='Status' isort='status_id' offset=$offset type=$find_type topic=$find_topic}</th>
+					{/if}
+					{if $gBitSystem->isFeatureActive( 'articles_list_reads' )}
+						<th>{smartlink ititle='Reads' isort='hits' offset=$offset type=$find_type topic=$find_topic}</th>
+					{/if}
+					<th>{tr}Action{/tr}</th>
+				</tr>
+				{cycle values="even,odd" print=false}
+				{foreach item=article from=$listpages}
+					<tr class="{cycle advance=false}">
+						{if $gBitSystem->isFeatureActive( 'articles_list_img' )}
+							<td rowspan="2">
+								{if $article.image_url}
+									{if $gBitUser->hasPermission( 'p_articles_read' )}
+										<a href="{$article.display_url}">
+									{/if}
+									<img src="{$article.image_url}" title="{$article.title|escape}" alt="{tr}Article Image{/tr}" />
+									{if $gBitUser->hasPermission( 'p_articles_read' )}
+										</a>
+									{/if}
+								{/if}
+							</td>
+						{/if}
+
+						<td colspan="5">
+							{if $gBitSystem->isFeatureActive( 'articles_list_title' )}
+								<h2>
+									{if $gBitUser->hasPermission( 'p_articles_read' )}
+										<a href="{$article.display_url}">{$article.title|escape}</a>
+									{else}
+										{$article.title|escape}
+									{/if}
+								</h2>
+							{/if}
+
+							{if $gBitSystem->isFeatureActive( 'articles_list_author' )}
+								{tr}Created by{/tr}: {displayname user=$article.author_name}
+							{/if}
+
+							{if $gBitSystem->isFeatureActive( 'articles_list_date' ) or $gBitSystem->isFeatureActive( 'articles_list_expire' )}<br />{/if}
+
+							{if $gBitSystem->isFeatureActive( 'articles_list_date' ) and $gBitSystem->isFeatureActive( 'articles_list_expire' )}
+								{tr}Displayed from <strong>{$article.publish_date|bit_short_datetime}</strong> until <strong>{$article.expire_date|bit_short_datetime}</strong>{/tr}
+							{elseif $gBitSystem->isFeatureActive( 'articles_list_date' )}
+								{tr}Displayed from <strong>{$article.publish_date|bit_short_datetime}</strong>{/tr}
+							{elseif $gBitSystem->isFeatureActive( 'articles_list_expire' )}
+								{tr}Displayed until <strong>{$article.expire_date|bit_short_datetime}</strong>{/tr}
+							{/if}
 						</td>
-					{/if}
+					</tr>
 
-					<td colspan="10">
-						{if $art_list_title eq 'y'}
-							{if $gBitUser->hasPermission( 'p_articles_read' )}
-								<a href="{$smarty.const.ARTICLES_PKG_URL}read.php?article_id={$listpages[changes].article_id}">
+					<tr class="{cycle}">
+						{if $gBitSystem->isFeatureActive( 'articles_list_type' )}
+							<td>{tr}{$article.type_name}{/tr}</td>
+						{/if}
+						{if $gBitSystem->isFeatureActive( 'articles_list_topic' )}
+							<td>{$article.topic_name}</td>
+						{/if}
+						{if $gBitSystem->isFeatureActive( 'articles_list_status' )}
+							<td>{$article.status_name}</td>
+						{/if}
+						{if $gBitSystem->isFeatureActive( 'articles_list_reads' )}
+							<td style="text-align:right;">{$article.hits}</td>
+						{/if}
+						<td style="text-align:right;">
+							{if $article.status_id eq $smarty.const.ARTICLE_STATUS_PENDING and $gBitUser->hasPermission( 'p_articles_approve_submission' )}
+								{smartlink ititle="Approve Article" ibiticon="liberty/success" sort_mode=$sort_mode status_id=$smarty.request.status_id article_id=$article.article_id content_id=$article.content_id set_status_id=$smarty.const.ARTICLE_STATUS_APPROVED action=approve}
 							{/if}
-							{$listpages[changes].title}
-							{if $gBitUser->hasPermission( 'p_articles_read' )}
-								</a>
-							{/if}
-						{/if}
-						{if $art_list_author eq 'y'}
-							&nbsp;&nbsp;&nbsp;
-							{tr}created by{/tr} {displayname user=$listpages[changes].author_name}
-						{/if}
-						{if $art_list_date eq 'y' or $art_list_expire eq 'y'}<br />{/if}
-						{if $art_list_date eq 'y'}
-							{$listpages[changes].publish_date|bit_short_datetime}
-						{/if}
-						{if $art_list_expire eq 'y'}
-							&nbsp;&nbsp;&nbsp;--&gt;&nbsp;&nbsp;&nbsp;
-							{$listpages[changes].expire_date|bit_short_datetime}
-						{/if}
-					</td>
-				</tr>
 
-				<tr class="{cycle}">
-					{if $art_list_type eq 'y'}
-						<td>{tr}{$listpages[changes].type_name}{/tr}</td>
-					{/if}
-					{if $art_list_topic eq 'y'}
-						<td>{$listpages[changes].topic_name}</td>
-					{/if}
-					{if $art_list_reads eq 'y'}
-						<td style="text-align:right;">{$listpages[changes].hits}</td>
-					{/if}
-					{if $p_articles_edit eq 'y' or ($listpages[changes].author eq $user and $listpages[changes].creator_edit eq 'y')}
-						<a title="{tr}Edit{/tr}" href="{$smarty.const.ARTICLES_PKG_URL}edit.php?article_id={$listpages[changes].article_id}"><img class="icon" src="{$smarty.const.KERNEL_PKG_URL}icons/edit.gif" alt="{tr}Edit{/tr}" /></a>
-					{/if}
-					{if $p_articles_remove eq 'y'}
-						<a title="{tr}Remove{/tr}" href="{$smarty.const.ARTICLES_PKG_URL}list.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$listpages[changes].article_id}"><img class="icon" src="{$smarty.const.KERNEL_PKG_URL}icons/delete.gif" alt="{tr}Remove{/tr}" /></a>
-					{/if}
-				</tr>
-			{sectionelse}
-				<tr class="norecords">
-					<td colspan="9">
-						{tr}No records found{/tr}
-					</td>
-				</tr>
-			{/section}
-		</table>
+							{if $gBitUser->hasPermission( 'p_articles_edit' ) or ( $article.author eq $user and $article.creator_edit eq 'y' )}
+								{smartlink ititle="Edit" ifile="edit.php" ibiticon="liberty/edit" article_id=$article.article_id}
+							{/if}
+
+							{if $gBitUser->hasPermission( 'p_articles_remove' )}
+								{smartlink ititle="Remove" ibiticon="liberty/delete" action=remove remove_article_id=$article.article_id status_id=$smarty.request.status_id}
+							{/if}
+						</td>
+					</tr>
+				{foreachelse}
+					<tr class="norecords">
+						<td colspan="5">
+							{tr}No records found{/tr}
+						</td>
+					</tr>
+				{/foreach}
+			</table>
+		{/form}
 
 		{include file="bitpackage:kernel/pagination.tpl"}
 	</div><!-- end .body -->

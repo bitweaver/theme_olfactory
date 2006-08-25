@@ -1,11 +1,10 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/page_history.tpl,v 1.4 2006/04/11 13:09:53 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/page_history.tpl,v 1.5 2006/08/25 18:28:05 squareing Exp $ *}
 {strip}
-
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=history}
 
 <div class="admin wiki">
 	<div class="header">
-		<h1>{tr}History{/tr} {tr}of{/tr} <a href="{$pageInfo.display_url}">{$pageInfo.title}</a></h1>
+		<h1>{tr}History{/tr} {tr}of{/tr} <a href="{$gContent->mInfo.display_url}">{$gContent->mInfo.title|escape}</a></h1>
 	</div>
 
 	<div class="body">
@@ -36,13 +35,14 @@
 				</tr>
 			</table>
 		{/if}
+
 		{if $diff2 eq 'y'}
 			<h2>{tr}Differences from version{/tr} {$version_from} to {$version_to}</h2>
 			{$diffdata}
 		{/if}
 
 		{form}
-			<input type="hidden" name="page_id" value="{$pageInfo.page_id}" />
+			<input type="hidden" name="page_id" value="{$gContent->mInfo.page_id}" />
 			<input type="hidden" name="page" value="{$page}" />
 
 			<table class="data">
@@ -55,23 +55,23 @@
 				</tr>
 
 				<tr class="odd">
-					<td>{$pageInfo.last_modified|bit_short_datetime}<br />{$pageInfo.comment}</td>
+					<td>{$gContent->mInfo.last_modified|bit_short_datetime}<br />{$gContent->mInfo.edit_comment}</td>
 
-					<td>{displayname user=$pageInfo.modifier_user user_id=$pageInfo.modifier_user_id real_name=$pageInfo.modifier_real_name} </td>
-					<td style="text-align:right;">{$pageInfo.ip}</td>
-					<td style="text-align:right;">{$pageInfo.version}</td>
+					<td>{displayname user=$gContent->mInfo.modifier_user user_id=$gContent->mInfo.modifier_user_id real_name=$gContent->mInfo.modifier_real_name} </td>
+					<td style="text-align:right;">{$gContent->mInfo.ip}</td>
+					<td style="text-align:right;">{$gContent->mInfo.version}</td>
 				</tr>
 
 				<tr class="odd">
 					<td colspan="4">
-						<a href="{$pageInfo.display_url}">{tr}Current{/tr}</a>
+						<a href="{$gContent->mInfo.display_url}">{tr}Current{/tr}</a>
 						&nbsp;&bull;&nbsp;{smartlink ititle="Source" page_id=`$gContent->mPageId` source="current"}
 					</td>
 				</tr>
 
 				{foreach from=$history item=item}
 					<tr class="{cycle values='even,odd' advance=false}">
-						<td><label for="hist_{$item.version}">{$item.last_modified|bit_short_datetime}<br />{$item.comment}</label></td>
+						<td><label for="hist_{$item.version}">{$item.last_modified|bit_short_datetime}<br />{$item.history_comment}</label></td>
 						<td>{displayname hash=$item}</td>
 						<td style="text-align:right;">{$item.ip}</td>
 						<td style="text-align:right;">{$item.version}</td>
@@ -100,13 +100,15 @@
 					</tr>
 				{/foreach}
 			</table>
+
 			{if $gBitUser->hasPermission( 'p_wiki_remove_page' )}
 				<div style="text-align:right;">
 					<input type="submit" name="delete" value="{tr}Delete selected versions{/tr}" />
 				</div>
 			{/if}
 		{/form}
-		{libertypagination numPages=$numPages page=$page page_id=$pageInfo.page_id}
-	</div>
+
+		{libertypagination numPages=$numPages page=$page page_id=$gContent->mInfo.page_id}
+	</div><!-- end .body -->
 </div> <!-- end .wiki -->
 {/strip}

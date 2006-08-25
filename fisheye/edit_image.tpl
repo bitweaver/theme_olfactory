@@ -1,9 +1,4 @@
 {strip}
-{if $imageId}
-	{assign var=pagetab value=edit}
-{else}
-	{assign var=pagetab value=upload}
-{/if}
 {include file="bitpackage:fisheye/image_tabs.tpl" pagetab=$pagetab}
 
 <div class="floaticon">
@@ -12,7 +7,7 @@
 
 <div class="admin fisheye">
 	<div class="header">
-		<h1>{if $gContent->mInfo.image_id}{tr}Edit Image{/tr}: {$gContent->mInfo.title} {else}{tr}Add New Image{/tr} {/if}</h1>
+		<h1>{if $gContent->mInfo.image_id}{tr}Edit Image{/tr}: {$gContent->mInfo.title|escape} {else}{tr}Add New Image{/tr} {/if}</h1>
 	</div>
 
 	<div class="body">
@@ -37,7 +32,7 @@
 						<div class="row">
 							{formlabel label="Description" for="image-desc"}
 							{forminput}
-								<textarea name="edit" id="image-desc" rows="4" cols="40">{$gContent->mInfo.data}</textarea>
+								<textarea name="edit" id="image-desc" rows="4" cols="50">{$gContent->mInfo.data}</textarea>
 							{/forminput}
 						</div>
 
@@ -56,7 +51,7 @@
 							{formlabel label="Current Image"}
 							{forminput}
 								{if $gContent->mInfo.image_file.storage_path}
-									<a href="{$smarty.const.FISHEYE_PKG_URL}view_image.php?image_id={$gContent->mImageId}"><img src="{$gContent->mInfo.image_file.thumbnail_url.medium}" alt="{$gContent->mInfo.title|escape}" /></a>
+									<img src="{$gContent->mInfo.image_file.thumbnail_url.medium}" alt="{$gContent->mInfo.title|escape}" />
 									<br />
 									<small>
 										{if $gContent->mInfo.width && $gContent->mInfo.height}
@@ -104,7 +99,7 @@
 													checked="checked"
 												{/if}
 											{/if}
-										/> <a href="{$smarty.const.FISHEYE_PKG_URL}view.php?gallery_id={$galleryId}">{$gal.title}</a>
+										/> <a href="{$smarty.const.FISHEYE_PKG_URL}view.php?gallery_id={$galleryId}">{$gal.title|escape}</a>
 										<br />
 								{foreachelse}
 									<div>{tr}No Galleries Found{/tr}</div>
@@ -123,7 +118,7 @@
 				<input type="submit" name="saveImage" value="Save Image"/>
 			</div>
 		{/form}
-	</div> <!-- class="body" -->
-</div> <!-- class="admin fisheye" -->
+	</div> <!-- end .body -->
+</div> <!-- end .fisheye -->
 
 {/strip}
