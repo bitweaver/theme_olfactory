@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/page_permissions.tpl,v 1.3 2006/08/25 18:28:05 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/page_permissions.tpl,v 1.4 2006/09/03 20:14:20 squareing Exp $ *}
 {strip}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=permissions}
 
@@ -31,7 +31,7 @@
 			<h2>{tr}Existing requests for email notification{/tr}</h2>
 			<ul>
 				{section name=ix loop=$emails}
-					<li>{$emails[ix]} <a href="{$smarty.const.WIKI_PKG_URL}page_permissions.php?page_id={$gContent->mInfo.page_id}&amp;removeemail={$emails[ix]}&amp;tab=email">{biticon ipackage=liberty iname="delete_small" iexplain="delete"}</a></li>
+					<li>{$emails[ix]} <a href="{$smarty.const.WIKI_PKG_URL}page_permissions.php?page_id={$gContent->mInfo.page_id}&amp;removeemail={$emails[ix]}&amp;tab=email">{biticon ipackage="icons" iname="edit-delete" iexplain="delete"}</a></li>
 				{/section}
 			</ul>
 		{/if}

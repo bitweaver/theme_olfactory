@@ -15,7 +15,7 @@
 			{/if}
 
 			{if $gBitUser->hasPermission( 'p_wiki_admin' )}
-				<li>{smartlink ititle='refresh' ifile='export_wiki_pages.php' page_id=`$pageInfo.page_id` ibiticon="liberty/export"}</li>
+				<li>{smartlink ititle='refresh' ifile='export_wiki_pages.php' page_id=`$pageInfo.page_id` ibiticon="icons/document-save-as"}</li>
 			{/if}
 
 			{if $gBitSystem->isFeatureActive( 'wiki_undo' ) and $canundo eq 'y'}
@@ -24,29 +24,29 @@
 
 			{if $gBitUser->hasPermission( 'p_wiki_admin' ) or ($gBitUser->mUserId and ($gBitUser->mUserId eq $pageInfo.modifier_user_id) and ($gBitUser->hasPermission( 'p_wiki_lock_page' )) and ($gBitSystem->isFeatureActive( 'wiki_usrlock' )))}
 				{if $lock}
-					<li>{smartlink ititle='unlock this page' ifile='index.php' page_id=`$pageInfo.page_id` action=unlock ibiticon="wiki/locked"}</li>
+					<li>{smartlink ititle='unlock this page' ifile='index.php' page_id=`$pageInfo.page_id` action=unlock ibiticon="icons/emblem-readonly"}</li>
 				{else}
-					<li>{smartlink ititle='lock this page' ifile='index.php' page_id=`$pageInfo.page_id` action=lock ibiticon="wiki/unlocked"}</li>
+					<li>{smartlink ititle='lock this page' ifile='index.php' page_id=`$pageInfo.page_id` action=lock ibiticon="icons/emblem-default"}</li>
 				{/if}
 			{elseif $lock}
-				{biticon ipackage="wiki" iname="locked" iexplain="page is locked"}
+				{biticon ipackage="icons" iname="emblem-readonly" iexplain="page is locked"}
 			{/if}
 
 			{if ($structureInfo.structure_id) && (($gStructure->mInfo.creator_user_id == $gBitUser->mUserId) || $gBitUser->hasPermission( 'p_wiki_admin_book' )) }
-				<li>{smartlink ititle='edit book' ifile='edit_book.php' structure_id=`$structureInfo.structure_id` ibiticon="liberty/settings"}</li>
+				<li>{smartlink ititle='edit book' ifile='edit_book.php' structure_id=`$structureInfo.structure_id` ibiticon="icons/emblem-system"}</li>
 			{/if}
 
 			{if $cached_page eq 'y'}
-				<li>{smartlink ititle='refresh' ifile='index.php' ibiticon="liberty/refresh" page_id=`$pageInfo.page_id` refresh=1}</li>
+				<li>{smartlink ititle='refresh' ifile='index.php' ibiticon="icons/view-refresh" page_id=`$pageInfo.page_id` refresh=1}</li>
 			{/if}
 
 			{if $gBitSystem->isFeatureActive( 'wiki_uses_s5' )}
-				<li>{smartlink ititle="s5 slideshow" ifile="index.php" ibiticon="wiki/s5" page_id=`$pageInfo.page_id` s5=1 ionclick="return confirm('this works best in gecko based browsers (mozilla, firefox) or opera (press F11)')"}</li>
+				<li>{smartlink ititle="s5 slideshow" ifile="index.php" ibiticon="icons/x-office-presentation" page_id=`$pageInfo.page_id` s5=1 ionclick="return confirm('this works best in gecko based browsers (mozilla, firefox) or opera (press F11)')"}</li>
 			{/if}
 
 			{* a user needs permission to print??? anyway, using css for this now - xing
 			{if $gBitUser->hasPermission( 'p_liberty_print' )}
-				<li><a title="{tr}print{/tr}" href="{$smarty.const.WIKI_PKG_URL}print.php?{if $structureInfo.root_structure_id}structure_id={$structureInfo.root_structure_id}{else}page_id={$pageInfo.page_id}{/if}">{biticon ipackage=liberty iname="print" iexplain="print"}</a></li>
+				<li><a title="{tr}print{/tr}" href="{$smarty.const.WIKI_PKG_URL}print.php?{if $structureInfo.root_structure_id}structure_id={$structureInfo.root_structure_id}{else}page_id={$pageInfo.page_id}{/if}">{biticon ipackage="icons" iname="document-print" iexplain="print"}</a></li>
 			{/if*}
 
 			{if $gBitSystem->isPackageActive( 'pdf' ) && $gContent->hasUserPermission( 'p_pdf_generation' )}
@@ -69,15 +69,15 @@
 
 			{if $gBitUser->mUserId && $gBitSystem->isFeatureActive( 'users_watches' )}
 				{if $user_watching_page eq 'y'}
-					<li>{smartlink ititle='stop monitoring this page' ifile='index.php' watch_event=wiki_page_changed watch_action=remove page_id=`$pageInfo.page_id` watch_object=`$pageInfo.page_id` ibiticon="users/unwatch"}</li>
+					<li>{smartlink ititle='stop monitoring this page' ifile='index.php' watch_event=wiki_page_changed watch_action=remove page_id=`$pageInfo.page_id` watch_object=`$pageInfo.page_id` ibiticon="icons/weather-clear-night"}</li>
 				{else}
-					<li>{smartlink ititle='monitor this page' ifile='index.php' watch_event=wiki_page_changed watch_action=add page_id=`$pageInfo.page_id` watch_object=`$pageInfo.page_id` ibiticon="users/watch"}</li>
+					<li>{smartlink ititle='monitor this page' ifile='index.php' watch_event=wiki_page_changed watch_action=add page_id=`$pageInfo.page_id` watch_object=`$pageInfo.page_id` ibiticon="icons/weather-clear"}</li>
 				{/if}
 			{/if}
 			
 			{if $pageInfo.title ne 'SandBox'}
 				{if $gBitUser->hasPermission( 'p_wiki_remove_page' )}
-					<li>{smartlink ititle='remove this page' ifile='remove_page.php' page_id=`$pageInfo.page_id` ibiticon="liberty/delete"}</li>
+					<li>{smartlink ititle='remove this page' ifile='remove_page.php' page_id=`$pageInfo.page_id` ibiticon="icons/edit-delete"}</li>
 				{/if}
 			{/if}
 			
@@ -92,9 +92,9 @@
 
 			{if $gBitSystem->isFeatureActive( 'wiki_uses_slides' )}
 				{if $show_slideshow eq 'y'}
-					<li>{smartlink ititle='slideshow' ifile='slideshow.php' page_id=`$pageInfo.page_id` ibiticon="wiki/slides"}</li>
+					<li>{smartlink ititle='slideshow' ifile='slideshow.php' page_id=`$pageInfo.page_id` ibiticon="icons/x-office-presentation"}</li>
 				{elseif $structureInfo.structure_id}
-					<li>{smartlink ititle='slideshow' ifile='slideshow2.php' structure_id=`$structureInfo.structure_id` ibiticon="wiki/slides"}</li>
+					<li>{smartlink ititle='slideshow' ifile='slideshow2.php' structure_id=`$structureInfo.structure_id` ibiticon="icons/x-office-presentation"}</li>
 				{/if}
 			{/if}
 		</ul><!-- end .tools -->

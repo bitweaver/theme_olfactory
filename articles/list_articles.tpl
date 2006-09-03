@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/articles/list_articles.tpl,v 1.4 2006/08/25 18:28:03 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/articles/list_articles.tpl,v 1.5 2006/09/03 20:14:19 squareing Exp $ *}
 <div class="floaticon">{bithelp}</div>
 
 {strip}
@@ -13,7 +13,7 @@
 
 		<div class="pageactions sort">
 			<ul>
-				<li>{biticon ipackage=liberty iname=sort iexplain="sort by"}</li>
+				<li>{biticon ipackage="icons" iname="emblem-symbolic-link" iexplain="sort by"}</li>
 				{if $gBitSystem->isFeatureActive( 'articles_list_title' )}
 					<li>{smartlink ititle='Title' isort='title' offset=$offset type=$find_type topic=$find_topic}</li>
 				{/if}
@@ -113,15 +113,15 @@
 						{/if}
 						<td style="text-align:right;">
 							{if $article.status_id eq $smarty.const.ARTICLE_STATUS_PENDING and $gBitUser->hasPermission( 'p_articles_approve_submission' )}
-								{smartlink ititle="Approve Article" ibiticon="liberty/success" sort_mode=$sort_mode status_id=$smarty.request.status_id article_id=$article.article_id content_id=$article.content_id set_status_id=$smarty.const.ARTICLE_STATUS_APPROVED action=approve}
+								{smartlink ititle="Approve Article" ibiticon="icons/dialog-ok" sort_mode=$sort_mode status_id=$smarty.request.status_id article_id=$article.article_id content_id=$article.content_id set_status_id=$smarty.const.ARTICLE_STATUS_APPROVED action=approve}
 							{/if}
 
 							{if $gBitUser->hasPermission( 'p_articles_edit' ) or ( $article.author eq $user and $article.creator_edit eq 'y' )}
-								{smartlink ititle="Edit" ifile="edit.php" ibiticon="liberty/edit" article_id=$article.article_id}
+								{smartlink ititle="Edit" ifile="edit.php" ibiticon="icons/accessories-text-editor" article_id=$article.article_id}
 							{/if}
 
 							{if $gBitUser->hasPermission( 'p_articles_remove' )}
-								{smartlink ititle="Remove" ibiticon="liberty/delete" action=remove remove_article_id=$article.article_id status_id=$smarty.request.status_id}
+								{smartlink ititle="Remove" ibiticon="icons/edit-delete" action=remove remove_article_id=$article.article_id status_id=$smarty.request.status_id}
 							{/if}
 						</td>
 					</tr>

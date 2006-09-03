@@ -2,7 +2,7 @@
 {include file="bitpackage:fisheye/image_tabs.tpl" pagetab=$pagetab}
 
 <div class="floaticon">
-	<a href="{$smarty.const.FISHEYE_PKG_URL}edit_image.php">{biticon ipackage="liberty" iname="upload" iexplain="upload new image"}</a>
+	<a href="{$smarty.const.FISHEYE_PKG_URL}edit_image.php">{biticon ipackage="icons" iname="applications-internet" iexplain="upload new image"}</a>
 </div>
 
 <div class="admin fisheye">
