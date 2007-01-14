@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/list_pages.tpl,v 1.10 2006/09/03 20:14:20 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/list_pages.tpl,v 1.11 2007/01/14 15:29:25 squareing Exp $ *}
 {strip}
 <div class="floaticon">{bithelp}</div>
 
@@ -154,7 +154,7 @@
 							<td>{$listpages[changes].format_guid}</td>
 						{/if}
 						{if $gBitSystem->isFeatureActive( 'wiki_list_size' )}
-							<td style="text-align:right;">{$listpages[changes].len|kbsize}</td>
+							<td style="text-align:right;">{$listpages[changes].len|display_bytes}</td>
 						{/if}
 						{if $gBitUser->hasPermission( 'p_wiki_edit_page' )}
 							<td class="actionicon">
