@@ -34,7 +34,7 @@
 						{smartlink ititle="Edit" ipackage="users" ifile="admin/edit_group.php" ibiticon="icons/accessories-text-editor" group_id=$groupId}
 						{smartlink ititle="Group Members" ipackage="users" ifile="admin/edit_group.php" ibiticon="icons/system-users" members=$groupId}
 						{if $groupId ne $smarty.const.ANONYMOUS_GROUP_ID}
-							{smartlink ititle="Batch assign" ipackage="users" ifile="admin/edit_group.php" ibiticon="users/batch_assign" batch_assign=$groupId}
+							{smartlink ititle="Batch assign" ipackage="users" ifile="admin/edit_group.php" ibiticon="icons/application-x-executable" batch_assign=$groupId}
 							{smartlink ititle="Remove" ipackage="users" ifile="admin/edit_group.php" ibiticon="icons/edit-delete" action=delete group_id=$groupId}
 						{/if}
 					</div>
@@ -46,7 +46,7 @@
 						{if $grp.group_home}{tr}Home Page{/tr}:<strong> {$grp.group_home}</strong><br />{/if}
 						{if $grp.included}
 							<br />{tr}Included Groups{/tr}
-							<ul class="data small">
+							<ul class="small">
 								{foreach from=$grp.included key=incGroupId item=incGroupName}
 									<li class="{cycle values="odd,even"} item">{$incGroupName}</li>
 								{/foreach}

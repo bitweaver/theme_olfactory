@@ -10,19 +10,19 @@
 				<a title="{tr}Edit{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit.php?gallery_id={$gContent->mGalleryId}">{biticon ipackage="icons" iname="document-properties" iexplain="Edit"}</a>
 				<a title="{tr}Image Order{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}image_order.php?gallery_id={$gContent->mGalleryId}">{biticon ipackage=fisheye iname="order" iexplain="Image Order"}</a>
 			{/if}
-			{if $gContent->hasUserPermission( 'p_fisheye_upload' )}
-				<a title="{tr}Add Image{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}upload.php?gallery_id={$gContent->mGalleryId}">{biticon ipackage="icons" iname="applications-internet" iexplain="Add Image"}</a>
+			{if ( $gBitSystem->isFeatureActive( 'fisheye_show_all_to_admins' ) && $gBitUser->hasPermission( 'p_fisheye_admin' )) || ( $gContent->hasUserPermission('p_fisheye_upload') || $gContent->getPreference('is_public'))}
+				<a title="{tr}Add Image{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}upload.php?gallery_id={$gContent->mGalleryId}">{biticon ipackage="icons" iname="go-up" iexplain="Add Image"}</a>{if $gContent->getPreference('is_public')}<span class="small">({tr}Public{/tr})</span>{/if}
 			{/if}
-			{if $gContent->hasUserPermission( 'p_fisheye_admin' )}
+			{if $gContent->hasUserPermission('p_fisheye_admin')}
 				<a title="{tr}User Permissions{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit.php?gallery_id={$gContent->mGalleryId}&amp;delete=1">{biticon ipackage="icons" iname="edit-delete" iexplain="Delete Gallery"}</a>
 			{* appears broken at the moment	<a title="{tr}User Permissions{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit_gallery_perms.php?gallery_id={$gContent->mGalleryId}">{biticon ipackage="icons" iname="emblem-shared" iexplain="User Permissions"}</a> *}
 			{/if}
 		</div>
 
-		<h1>{$gContent->mInfo.title|escape}</h1>
+		<h1>{$gContent->getTitle()|escape}</h1>
 
 		{if $gContent->mInfo.data}
-			<p>{$gContent->mInfo.data}</p>
+			<p>{$gContent->mInfo.data|escape}</p>
 		{/if}
 	</div>
 

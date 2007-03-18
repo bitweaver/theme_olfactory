@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/page_history.tpl,v 1.5 2006/08/25 18:28:05 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/page_history.tpl,v 1.6 2007/03/18 15:37:49 squareing Exp $ *}
 {strip}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=history}
 
@@ -12,7 +12,7 @@
 			<h2>{tr}Version{/tr} {$version}</h2>
 		{/if}
 
-		{if $parsed}
+		{if $smarty.request.preview}
 			{include file="bitpackage:wiki/show_page.tpl"}
 		{/if}
 
@@ -108,7 +108,7 @@
 			{/if}
 		{/form}
 
-		{libertypagination numPages=$numPages page=$page page_id=$gContent->mInfo.page_id}
+		{pagination page_id=$gContent->mInfo.page_id}
 	</div><!-- end .body -->
 </div> <!-- end .wiki -->
 {/strip}

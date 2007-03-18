@@ -5,7 +5,7 @@
 	<a href="{$smarty.const.FISHEYE_PKG_URL}edit_image.php">{biticon ipackage="icons" iname="applications-internet" iexplain="upload new image"}</a>
 </div>
 
-<div class="admin fisheye">
+<div class="edit fisheye">
 	<div class="header">
 		<h1>{if $gContent->mInfo.image_id}{tr}Edit Image{/tr}: {$gContent->mInfo.title|escape} {else}{tr}Add New Image{/tr} {/if}</h1>
 	</div>
@@ -32,13 +32,13 @@
 						<div class="row">
 							{formlabel label="Description" for="image-desc"}
 							{forminput}
-								<textarea name="edit" id="image-desc" rows="4" cols="50">{$gContent->mInfo.data}</textarea>
+								<textarea name="edit" id="image-desc" rows="4" cols="50">{$gContent->mInfo.data|escape}</textarea>
 							{/forminput}
 						</div>
 
 						<div class="row">
 							{if $gContent->mInfo.image_file.source_url}
-								{formfeedback warning="Uploading a new image will replace the currently existing one."}
+								{formfeedback warning="{tr}Uploading a new image will replace the currently existing one.{/tr}"}
 								{assign var=repl value=Replacement}
 							{/if}
 							{formlabel label="Upload $repl Image" for="image-upload"}
@@ -51,7 +51,7 @@
 							{formlabel label="Current Image"}
 							{forminput}
 								{if $gContent->mInfo.image_file.storage_path}
-									<img src="{$gContent->mInfo.image_file.thumbnail_url.medium}" alt="{$gContent->mInfo.title|escape}" />
+									<img src="{$gContent->mInfo.image_file.thumbnail_url.medium}?{math equation="1 + rand(1,9999)"}" alt="{$gContent->mInfo.title|escape}" />
 									<br />
 									<small>
 										{if $gContent->mInfo.width && $gContent->mInfo.height}
@@ -76,10 +76,13 @@
 						<div class="row">
 							{formlabel label="Rotate Image"}
 							{forminput}
+{if function_exists('exif_read_data')}
+								<label><input type="radio" name="rotate_image" value="auto"/> {biticon ipackage="fisheye" iname="rotate_auto" iexplain="Auto Rotate"}</label> &nbsp;&nbsp;&nbsp;&nbsp;
+{/if}
 								<label><input type="radio" name="rotate_image" value="-90"/> {biticon ipackage="fisheye" iname="rotate_ccw" iexplain="Rotate Counter Clockwise"}</label> &nbsp;&nbsp;&nbsp;&nbsp;
 								<label>{biticon ipackage="fisheye" iname="rotate_cw" iexplain="Rotate Clockwise"} <input type="radio" name="rotate_image" value="90"/></label>
 								<br />
-								<label><input type="radio" name="rotate_image" value="" checked="checked"/> {tr}don't rotate{/tr}</label>
+								<label> <input type="radio" name="rotate_image" value="" checked="checked"/> {tr}don't rotate{/tr}</label>
 							{/forminput}
 						</div>
 

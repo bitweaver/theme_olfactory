@@ -1,6 +1,8 @@
 {strip}
 {include file="bitpackage:fisheye/gallery_tabs.tpl" pagetab=order}
-
+{if $loadAjax}
+	<script type="text/javascript">/*<![CDATA[*/ show_spinner('spinner'); /*]]>*/</script>
+{/if}
 <div class="admin fisheye">
 	<div class="header">
 		<h1>{tr}Gallery Images{/tr}: <a href="{$smarty.const.FISHEYE_PKG_URL}view.php?gallery_id={$gContent->mGalleryId}">{$gContent->mInfo.title|escape}</a></h1>
@@ -23,21 +25,22 @@
 					<th scope="col">{tr}Miscellaneous{/tr}</th>
 				</tr>
 
-				{counter start=0 print=false assign=imageCount}
+				{counter name=imageCount start=0 assign=imageCount}
+				{counter name=pageCount start=1 assign=pageCount}
 				{foreach from=$gContent->mItems item=galItem key=itemContentId}
-					{if $imageCount % $gContent->mInfo.images_per_page == 0}
+					{assign var=thisMantissa value=$galItem->getField('item_position')|floor}
+					{if ($gContent->getPreference('gallery_pagination')==$smarty.const.FISHEYE_PAGINATION_POSITION_NUMBER && $lastMantissa != $thisMantissa) || ($gContent->mInfo.images_per_page && $imageCount % $gContent->mInfo.images_per_page == 0)}
 					<tr class="{cycle values='even,odd' assign='pageClass'}">
 						<th colspan="3" class="pagebreak">
-							{tr}Gallery Page{/tr} {math equation="imgCount / imagesPerPage + 1"
-								imgCount=$imageCount
-								imagesPerPage=$gContent->mInfo.images_per_page}
+							{tr}Gallery Page{/tr} {$pageCount} 
 						</th>
 					</tr>
+						{counter name=pageCount print=false}
 					{/if}
 					<tr class="{$pageClass}">
-						{counter print=false}
+						{counter name=imageCount print=false}
 						<td class="{$galItem->mType.content_type_guid}">
-							<a href="{$galItem->getDisplayUrl()|escape}"><img class="thumb" src="{$gContent->mItems.$itemContentId->getThumbnailUrl()|replace:"&":"&amp;"}{if $batchEdit.$contentId ne ''}?{math equation="1 + rand(1,9999)"}{/if}" alt="{$galItem->mInfo.title|escape}" /></a>
+							<a href="{$galItem->getDisplayUrl()|escape}"><img class="thumb" src="{$gContent->mItems.$itemContentId->getThumbnailUrl()|replace:"&":"&amp;"}{if $batchEdit.$itemContentId ne ''}?{math equation="1 + rand(1,9999)"}{/if}" alt="{$galItem->mInfo.title|escape}" /></a>
 						</td>
 
 						<td>
@@ -63,10 +66,11 @@
 							<label>{tr}Position{/tr}</label>: <input type="text" size="5" style="text-align:right;" maxlength="15" name="imagePosition[{$galItem->mContentId}]" id="imagePosition-{$galItem->mContentId}" value="{$galItem->mInfo.item_position}"/>
 						</td>
 					</tr>
+					{assign var=lastMantissa value=$galItem->getField('item_position')|floor}
 				{/foreach}
 				<tr>
 					<td colspan="4" align="right">
-						{tr}Use Random Gallery Image{/tr} <input type="radio" name="gallery_preview_content_id" id="gallery_preview_content_id" value="" {if $gContent->mInfo.preview_content_id == ""}checked="checked"{/if} /><br/>
+						<label>{tr}Use Random Gallery Image{/tr} <input type="radio" name="gallery_preview_content_id" id="gallery_preview_content_id" value="" {if $gContent->mInfo.preview_content_id == ""}checked="checked"{/if} /></label><br/>
 						<script type="text/javascript">/* <![CDATA[ */
 							document.write("<label>{tr}Batch select all images{/tr} <input name=\"switcher\" id=\"switcher\" type=\"checkbox\" onclick=\"switchCheckboxes(this.form.id,'batch[]','switcher')\" /></label>");
 						/* ]]> */</script>
@@ -86,6 +90,7 @@
 							<option value="remove">{tr}Remove{/tr} ({tr}Don't delete if in other galleries{/tr})</option>
 							<option value="thumbnail">{tr}Regenerate Thumbnails{/tr}</option>
 							<optgroup label="{tr}Rotate{/tr}">
+								<option value="rotate:auto">^^ {tr}Auto Rotate{/tr}</option>
 								<option value="rotate:90">&gt;&gt; {tr}Rotate Clockwise{/tr}</option>
 								<option value="rotate:-90">&lt;&lt; {tr}Rotate Counter Clockwise{/tr}</option>
 							</optgroup>
@@ -101,14 +106,14 @@
 								<optgroup label="{tr}Copy to Gallery{/tr}">
 									{foreach from=$galleryList item=gal key=galleryId}
 										{if $gContent->mInfo.content_id ne $gal.content_id}
-											<option value="gallerycopy:{$gal.content_id}">{$gal.title|escape|truncate:50}</option>
+											<option value="gallerycopy:{$gal.content_id}">&raquo; {$gal.title|escape|truncate:50}</option>
 										{/if}
 									{/foreach}
 								</optgroup>
 								<optgroup label="{tr}Move to Gallery{/tr}">
 									{foreach from=$galleryList item=gal key=galleryId}
 										{if $gContent->mInfo.content_id ne $gal.content_id}
-											<option value="gallerymove:{$gal.content_id}">{$gal.title|escape|truncate:50}</option>
+											<option value="gallerymove:{$gal.content_id}">-&gt; {$gal.title|escape|truncate:50}</option>
 										{/if}
 									{/foreach}
 								</optgroup>

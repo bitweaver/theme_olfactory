@@ -22,7 +22,7 @@
 						<input type="hidden" name="gallery_id" value="{$galleryId|escape}"/>
 
 						<div class="row">
-							{formlabel label="Title" for="gallery-title"}
+							{formlabel label="Title" for="gallery-title" mandatory="y"}
 							{forminput}
 								<input type="text" name="title" id="gallery-title" value="{$gContent->mInfo.title|escape}" maxlength="160" size="50"/>
 							{/forminput}
@@ -31,31 +31,52 @@
 						<div class="row">
 							{formlabel label="Description" for="gallery-desc"}
 							{forminput}
-								<textarea name="edit" id="gallery-desc" rows="4" cols="50">{$gContent->mInfo.data}</textarea>
+								<textarea name="edit" id="gallery-desc" rows="4" cols="50">{$gContent->mInfo.data|escape}</textarea>
+							{/forminput}
+						</div>
+
+						{if $gBitUser->hasPermission('p_fisheye_create_public_gal')}
+							<div class="row">
+								{formlabel label="Public Gallery" for="is_public"}
+								{forminput}
+									<input type="checkbox" name="is_public" id="is_public" value="y" {if $gContent->getPreference('is_public') eq 'y'}checked="checked"{/if} />
+									{formhelp note="Allow other users to upload to this gallery."}
+								{/forminput}
+							</div>
+						{/if}
+
+						<div class="row">
+							{formlabel label="Show Original Images" for="link_original_images"}
+							{forminput}
+								<input type="checkbox" name="link_original_images" id="link_original_images" value="y" {if $gContent->getPreference('link_original_images') eq 'y'}checked="checked"{/if} />
+								{formhelp note="Display a link to the original image for anyone viewing the images in the gallery."}
 							{/forminput}
 						</div>
 
 						<div class="row">
-							{formlabel label="Rows per page" for="gallery-rows-per-page"}
+							{formlabel label="Gallery Pagination" for="gallery-pagination"}
 							{forminput}
-								<input type="text" id="gallery-rows-per-page" name="rows_per_page" size="2" maxlength="2" value="{$gContent->mInfo.rows_per_page|default:$gBitSystem->getConfig('fisheye_gallery_default_rows_per_page')}"/>
-								{if !$gBitSystem->isFeatureActive( 'fisheye_gallery_div_layout' )}
-									{formhelp note="Number of rows of images per gallery page"}
-								{/if}
+								{html_options name="gallery_pagination" id="gallery-pagination" options=$galleryPaginationTypes selected=$gContent->getPreference('gallery_pagination',$gBitSystem->getConfig('default_gallery_pagination',$smarty.const.FISHEYE_PAGINATION_FIXED_GRID)) onchange="updateGalleryPagination();"}
+								<div id="fixed_grid-pagination">
+									<input type="text" id="gallery-rows-per-page" name="rows_per_page" size="2" maxlength="2" value="{$gContent->mInfo.rows_per_page|default:$gBitSystem->getConfig('fisheye_gallery_default_rows_per_page')}"/> {tr}Rows per page{/tr}<br/>
+									<input type="text" id="gallery-cols-per-page" name="cols_per_page" size="2" maxlength="2" value="{$gContent->mInfo.cols_per_page|default:$gBitSystem->getConfig('fisheye_gallery_default_cols_per_page')}"/> {tr}Columns per page{/tr}
+									{formhelp note="The images will be displayed in a fixed grid. You can specify the number of thumbnails to display per page.<br /><strong>[rows] * [columns] = [number of images]</strong>."}
+								</div>
+		
+								<div id="auto_flow-pagination">
+									<input type="text" id="gallery-cols-per-page" name="total_per_page" size="2" maxlength="2" value="{$gContent->getField('rows_per_page',$gBitSystem->getConfig('fisheye_gallery_default_rows_per_page'))}"/> {tr}Total images per page{/tr}
+									{formhelp note="The layout of the images on each gallery page will automatically adjust to the browsers width. You can specify the total number of thumbnails to display per page."}
+								</div>
+		
+								<div id="position_number-pagination">
+									{formhelp note="This option allows you to designate each specific image on each page. The image order number entered on the Image Order page will determine the exact location of each image. Fractional numbers indicate PAGE.POSITION and will specifiy variable images per page, such as: 1.1, 1.2, 2.1, 3.1, 3.2, 3.3"}
+								</div>
+								
 							{/forminput}
 						</div>
 
-						<div class="row">
-							{formlabel label="Columns per page" for="gallery-cols-per-page"}
-							{forminput}
-								<input type="text" id="gallery-cols-per-page" name="cols_per_page" size="2" maxlength="2" value="{$gContent->mInfo.cols_per_page|default:$gBitSystem->getConfig('fisheye_gallery_default_cols_per_page')}"/>
-								{if !$gBitSystem->isFeatureActive( 'fisheye_gallery_div_layout' )}
-									{formhelp note="Number of columns of images per gallery page"}
-								{else}
-									{formhelp note="The gallery pages will be displayed using divs. This means that the rows and columns will adjust to the browsers width. You can specify what number of thumbnails to display per page.<br /><strong>[rows] * [columns] = [number of images]</strong>."}
-								{/if}
-							{/forminput}
-						</div>
+
+
 
 						{if $thumbnailSizes}
 							<div class="row">

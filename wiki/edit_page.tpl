@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.14 2006/08/25 18:28:04 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.15 2007/03/18 15:37:49 squareing Exp $ *}
 {strip}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
 <div class="floaticon">{bithelp}</div>
@@ -31,6 +31,12 @@
 			<div class="translate">
 				{include file="bitpackage:wiki/page_header.tpl" pageInfo=$translateFrom->mInfo}
 				{include file="bitpackage:wiki/page_display.tpl" pageInfo=$translateFrom->mInfo}
+
+				{if $translateFrom->mInfo.google_guess}
+					<hr />
+					<h1>{tr}Google's translation attempt{/tr}</h1>
+					<code>{$translateFrom->mInfo.google_guess|nl2br}</code>
+				{/if}
 			</div>
 		{/if}
 
@@ -77,6 +83,8 @@
 								{/forminput}
 							</div>
 						{/if}
+
+						{include file="bitpackage:liberty/edit_content_status_inc.tpl"}
 
 						{include file="bitpackage:liberty/edit_format.tpl"}
 
