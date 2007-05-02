@@ -41,11 +41,7 @@
 			{/if}
 		</div>
 
-		{if $gBitUser->hasPermission( 'p_liberty_attach_attachments' )}
-			<p class="formhelp">
-				{tr}To include this file in a wiki page, blog post, article &hellip;, use the following string{/tr}: <strong>{ldelim}attachment&nbsp;id={$gContent->mInfo.image_file.attachment_id}{rdelim}</strong>
-			</p>
-		{/if}
+		{attachhelp hash=$gContent->mInfo.image_file}
 	</div>	<!-- end .body -->
 
 	{include file="bitpackage:liberty/services_inc.tpl" serviceLocation='view' serviceHash=$gContent->mInfo}
