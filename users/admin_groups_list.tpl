@@ -13,8 +13,6 @@
 
 	<div class="body">
 		{smartlink ititle="Add a new group" ipackage=users ifile="admin/edit_group.php" action=create}
-		<br />
-		{smartlink ititle="Check for Unassigned Permissions" ipackage=users ifile="admin/unassigned_perms.php"}
 
 		<div class="pageactions sort">
 			<ul>
