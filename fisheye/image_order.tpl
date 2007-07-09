@@ -1,6 +1,6 @@
 {strip}
 {include file="bitpackage:fisheye/gallery_tabs.tpl" pagetab=order}
-{if $loadAjax}
+{if $gBitSystem->mAjax == 'prototype'}
 	<script type="text/javascript">/*<![CDATA[*/ show_spinner('spinner'); /*]]>*/</script>
 {/if}
 <div class="admin fisheye">
