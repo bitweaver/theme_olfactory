@@ -1,8 +1,5 @@
 {strip}
 {include file="bitpackage:fisheye/gallery_tabs.tpl" pagetab=order}
-{if $gBitThemes->mAjax == 'prototype'}
-	<script type="text/javascript">/*<![CDATA[*/ show_spinner('spinner'); /*]]>*/</script>
-{/if}
 <div class="admin fisheye">
 	<div class="header">
 		<h1>{tr}Gallery Images{/tr}: <a href="{$smarty.const.FISHEYE_PKG_URL}view.php?gallery_id={$gContent->mGalleryId}">{$gContent->mInfo.title|escape}</a></h1>
