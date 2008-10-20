@@ -5,7 +5,7 @@
 <div class="display fisheye">
 	<div class="floaticon">
 		{include file="bitpackage:liberty/services_inc.tpl" serviceLocation='icon' serviceHash=$gContent->mInfo}
-		{if $gContent->hasUserPermission('p_fisheye_edit')}
+		{if $gContent->hasUserPermission('p_fisheye_update')}
 			<a title="{tr}Edit{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit_image.php?image_id={$gContent->mImageId}">{biticon ipackage="icons" iname="accessories-text-editor" iexplain="Edit Image"}</a>
 			<a title="{tr}Delete{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit_image.php?image_id={$gContent->mImageId}&amp;delete=1">{biticon ipackage="icons" iname="edit-delete" iexplain="Delete Image"}</a>
 		{/if}
@@ -33,7 +33,7 @@
 			{foreach key=size from=$gContent->mInfo.image_file.thumbnail_url item=url}
 				{if $url != $gContent->mInfo.display_url}<a href="{$gContent->getDisplayUrl(0,$size)|escape}">{/if}{tr}{$size}{/tr}{if $url != $gContent->mInfo.display_url}</a>{/if}&nbsp;&bull;&nbsp;
 			{/foreach}
-			{if $gContent->hasEditPermission() || $gGallery && $gGallery->getPreference('link_original_images')}
+			{if $gContent->hasUpdatePermission() || $gGallery && $gGallery->getPreference('link_original_images')}
 				<a href="{$gContent->mInfo.image_file.source_url|escape}">{tr}Original{/tr}</a>
 				{if $gContent->mInfo.width && $gContent->mInfo.height}
 					&nbsp;{$gContent->mInfo.width}x{$gContent->mInfo.height}

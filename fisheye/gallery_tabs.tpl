@@ -4,7 +4,7 @@
 		<ul>
 			<li{if $pagetab eq 'view'} class="current"{/if}>{smartlink ititle='view gallery' ifile='view.php' gallery_id=`$gContent->mGalleryId`}</li>
 
-			{if $gContent->hasUserPermission( 'p_fisheye_edit' )}
+			{if $gContent->hasUserPermission( 'p_fisheye_update' )}
 				<li{if $pagetab eq 'edit'} class="current"{/if}>{smartlink ititle='edit gallery' ifile='edit.php' gallery_id=`$gContent->mGalleryId`}</li>
 				<li{if $pagetab eq 'order'} class="current"{/if}>{smartlink ititle='image order' ifile='image_order.php' gallery_id=`$gContent->mGalleryId`}</li>
 			{/if}
