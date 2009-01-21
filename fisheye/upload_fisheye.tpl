@@ -120,9 +120,9 @@
 						{/legend}
 					{/jstab}
 
-					{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_edit_tab_tpl}
+					{include file="bitpackage:liberty/edit_services_inc.tpl" serviceFile="content_edit_tab_tpl"}
 
-					{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_upload_tab_tpl}
+					{include file="bitpackage:liberty/edit_services_inc.tpl" serviceFile="content_upload_tab_tpl"}
 				{/jstabs}
 
 					{if $gBitUser->hasPermission( 'p_fisheye_upload_nonimages' )}
@@ -180,7 +180,7 @@
 					</div>
 				</div>
 
-				{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_edit_mini_tpl}
+				{include file="bitpackage:liberty/edit_services_inc.tpl" serviceFile="content_edit_mini_tpl"}
 			</div>
 
 			{if $gBitSystem->isPackageActive( 'gigaupload' )}

@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.17 2007/07/14 14:51:52 squareing Exp $ *}
+{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.18 2009/01/21 05:34:16 lsces Exp $ *}
 {strip}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
 <div class="floaticon">{bithelp}</div>
@@ -137,7 +137,7 @@
 							</div>
 						{/if}
 
-						{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_edit_mini_tpl}
+						{include file="bitpackage:liberty/edit_services_inc.tpl" serviceFile="content_edit_mini_tpl"}
 
 						<div class="row submit">
 							<input type="submit" name="fCancel" value="{tr}Cancel{/tr}" />&nbsp;
@@ -151,7 +151,7 @@
 					{/legend}
 				{/jstab}
 
-				{include file="bitpackage:liberty/edit_services_inc.tpl serviceFile=content_edit_tab_tpl}
+				{include file="bitpackage:liberty/edit_services_inc.tpl" serviceFile="content_edit_tab_tpl"}
 
 				{if $gBitSystem->isFeatureActive( 'wiki_attachments' ) && $show_attachments eq 'y' && $gBitUser->hasPermission('p_liberty_attach_attachments')}
 					{jstab title="Attachments"}
