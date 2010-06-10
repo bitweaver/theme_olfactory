@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/edit_page.tpl,v 1.19 2010/04/17 04:28:31 wjames5 Exp $ *}
+{* $Header$ *}
 {strip}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=edit}
 <div class="floaticon">{bithelp}</div>

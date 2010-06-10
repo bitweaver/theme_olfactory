@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/page_permissions.tpl,v 1.4 2006/09/03 20:14:20 squareing Exp $ *}
+{* $Header$ *}
 {strip}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=permissions}
 

@@ -1,4 +1,4 @@
-{* $Header: /cvsroot/bitweaver/_bit_styles/olfactory/wiki/page_history.tpl,v 1.6 2007/03/18 15:37:49 squareing Exp $ *}
+{* $Header$ *}
 {strip}
 {include file="bitpackage:wiki/page_tabs.tpl" pagetab=history}
 
