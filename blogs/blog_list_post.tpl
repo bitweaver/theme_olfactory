@@ -12,12 +12,12 @@
 				<a href="{$smarty.const.BLOGS_PKG_URL}blogs_rss.php?blog_id={$aPost.blog_id}">{biticon ipackage="icons" iname="network-wireless" iexplain="rss feed"}</a>
 			{/if}
 			{if ($aPost.ownsblog eq 'y') or ($gBitUser->mUserId and $aPost.user_id eq $gBitUser->mUserId) or $gBitUser->hasPermission( 'p_blogs_admin' )}
-				<a title="{tr}Edit{/tr}" href="{$smarty.const.BLOGS_PKG_URL}post.php?blog_id={$aPost.blog_id}&amp;post_id={$aPost.post_id}">{biticon ipackage="icons" iname="accessories-text-editor" iexplain="edit"}</a>
-				<a title="{tr}Remove{/tr}" href="{$smarty.const.BLOGS_PKG_URL}view.php?blog_id={$aPost.blog_id}&amp;remove={$aPost.post_id}">{biticon ipackage="icons" iname="edit-delete" iexplain="delete"}</a>
+				<a title="{tr}Edit{/tr}" href="{$smarty.const.BLOGS_PKG_URL}post.php?blog_id={$aPost.blog_id}&amp;post_id={$aPost.post_id}">{booticon iname="icon-edit" ipackage="icons" iexplain="edit"}</a>
+				<a title="{tr}Remove{/tr}" href="{$smarty.const.BLOGS_PKG_URL}view.php?blog_id={$aPost.blog_id}&amp;remove={$aPost.post_id}">{booticon iname="icon-trash" ipackage="icons" iexplain="delete"}</a>
 			{/if}
 
-			<a title="{tr}print{/tr}" href="{$smarty.const.BLOGS_PKG_URL}print_blog_post.php?post_id={$aPost.post_id}">{biticon ipackage="icons" iname="document-print" iexplain="print"}</a>
-			<a title="{tr}email this post{/tr}" href="{$smarty.const.BLOGS_PKG_URL}send_post.php?post_id={$aPost.post_id}">{biticon ipackage="icons" iname="mail-forward" iexplain="email this post"}</a>
+			<a title="{tr}print{/tr}" href="{$smarty.const.BLOGS_PKG_URL}print_blog_post.php?post_id={$aPost.post_id}">{booticon iname="icon-print"  ipackage="icons"  iexplain="print"}</a>
+			<a title="{tr}email this post{/tr}" href="{$smarty.const.BLOGS_PKG_URL}send_post.php?post_id={$aPost.post_id}">{booticon iname="icon-envelope"  ipackage="icons"  iexplain="email this post"}</a>
 		</div>
 	{/if}
 

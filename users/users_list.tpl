@@ -4,7 +4,7 @@
 
 <div class="pageactions sort">
 	<ul>
-		<li>{biticon ipackage="icons" iname="emblem-symbolic-link" iexplain="sort by"}</li>
+		<li>{booticon iname="icon-circle-arrow-right"  ipackage="icons"  iexplain="sort by"}</li>
 		<li>{smartlink iurl=$control.URL offset=$control.offset numrows=$control.numrows ititle="Username" isort="login"}</li>
 		<li>{smartlink iurl=$control.URL offset=$control.offset numrows=$control.numrows ititle="Real name" isort="real_name"}</li>
 		<li>{smartlink iurl=$control.URL offset=$control.offset numrows=$control.numrows ititle="Registration Date" isort="registration_date"}</li>
@@ -21,11 +21,11 @@
 				{if $gBitUser->hasPermission( 'p_users_admin' )}
 					<div class="floaticon">
 						{smartlink ipackage=users ifile="admin/index.php" assume_user=$users[user].user_id ititle="Assume User Identity" ibiticon="users/assume_user" iforce=icon}
-						{smartlink ipackage=users ifile="preferences.php" view_user=$users[user].user_id ititle="Edit User Information" ibiticon="icons/accessories-text-editor" iforce=icon}
-						{smartlink ipackage=users ifile="admin/assign_user.php" assign_user=$users[user].user_id ititle="Assign Group" ibiticon="icons/emblem-shared" iforce=icon}
-						{smartlink ipackage=liberty ifile="list_content.php" user_id=$users[user].user_id ititle="User Content" ibiticon="icons/format-justify-fill" iforce="icon"}
+						{smartlink ipackage=users ifile="preferences.php" view_user=$users[user].user_id ititle="Edit User Information" booticon="icon-edit" iforce=icon}
+						{smartlink ipackage=users ifile="admin/assign_user.php" assign_user=$users[user].user_id ititle="Assign Group" booticon="icon-key" iforce=icon}
+						{smartlink ipackage=liberty ifile="list_content.php" user_id=$users[user].user_id ititle="User Content" booticon="icon-list" iforce="icon"}
 						{if $users[user].user_id != $smarty.const.ANONYMOUS_USER_ID && $users[user].user_id != $smarty.const.ROOT_USER_ID && $users[user].user_id != $gBitUser->mUserId}
-							{smartlink ipackage=users ifile="admin/index.php" user_id=$users[user].user_id action=delete ititle="Remove" ibiticon="icons/edit-delete" iforce=icon}
+							{smartlink ipackage=users ifile="admin/index.php" user_id=$users[user].user_id action=delete ititle="Remove" booticon="icon-trash" iforce=icon}
 							<input type="checkbox" name="batch_user_ids[]" value="{$users[user].user_id}" />
 						{/if}
 					</div>

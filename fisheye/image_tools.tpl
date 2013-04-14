@@ -9,7 +9,7 @@
 			{/if}
 		{/if}
 		{if $gContent->hasUserPermission('p_admin')}
-			<li><a title="{tr}Delete{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit_image.php?image_id={$gContent->mImageId}&amp;delete=1">{biticon ipackage="icons" iname="edit-delete" iexplain="Delete Image"}</a></li>
+			<li><a title="{tr}Delete{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit_image.php?image_id={$gContent->mImageId}&amp;delete=1">{booticon iname="icon-trash" ipackage="icons" iexplain="Delete Image"}</a></li>
 		{/if}
 	</div>
 	<div class="clear"></div>

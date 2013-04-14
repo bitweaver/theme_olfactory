@@ -10,8 +10,8 @@
 				{/if}
 			{/if}
 			{if $gContent->hasUserPermission( 'p_fisheye_admin' )}
-				<li><a title="{tr}User Permissions{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit.php?gallery_id={$gContent->mGalleryId}&amp;delete=1">{biticon ipackage="icons" iname="edit-delete" iexplain="Delete Gallery"}</a></li>
-				<li><a title="{tr}User Permissions{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit_gallery_perms.php?gallery_id={$gContent->mGalleryId}">{biticon ipackage="icons" iname="emblem-shared" iexplain="User Permissions"}</a></li>
+				<li><a title="{tr}User Permissions{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit.php?gallery_id={$gContent->mGalleryId}&amp;delete=1">{booticon iname="icon-trash" ipackage="icons" iexplain="Delete Gallery"}</a></li>
+				<li><a title="{tr}User Permissions{/tr}" href="{$smarty.const.FISHEYE_PKG_URL}edit_gallery_perms.php?gallery_id={$gContent->mGalleryId}">{booticon iname="icon-key" ipackage="icons" iexplain="User Permissions"}</a></li>
 			{/if}
 		</ul>
 	</div>

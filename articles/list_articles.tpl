@@ -13,7 +13,7 @@
 
 		<div class="pageactions sort">
 			<ul>
-				<li>{biticon ipackage="icons" iname="emblem-symbolic-link" iexplain="sort by"}</li>
+				<li>{booticon iname="icon-circle-arrow-right"  ipackage="icons"  iexplain="sort by"}</li>
 				{if $gBitSystem->isFeatureActive( 'articles_list_title' )}
 					<li>{smartlink ititle='Title' isort='title' offset=$offset type=$find_type topic=$find_topic}</li>
 				{/if}
@@ -113,15 +113,15 @@
 						{/if}
 						<td style="text-align:right;">
 							{if $article.status_id eq $smarty.const.ARTICLE_STATUS_PENDING and $gBitUser->hasPermission( 'p_articles_approve_submission' )}
-								{smartlink ititle="Approve Article" ibiticon="icons/dialog-ok" sort_mode=$sort_mode status_id=$smarty.request.status_id article_id=$article.article_id content_id=$article.content_id set_status_id=$smarty.const.ARTICLE_STATUS_APPROVED action=approve}
+								{smartlink ititle="Approve Article" booticon="icon-ok" sort_mode=$sort_mode status_id=$smarty.request.status_id article_id=$article.article_id content_id=$article.content_id set_status_id=$smarty.const.ARTICLE_STATUS_APPROVED action=approve}
 							{/if}
 
 							{if $gBitUser->hasPermission( 'p_articles_edit' ) or ( $article.author eq $user and $article.creator_edit eq 'y' )}
-								{smartlink ititle="Edit" ifile="edit.php" ibiticon="icons/accessories-text-editor" article_id=$article.article_id}
+								{smartlink ititle="Edit" ifile="edit.php" booticon="icon-edit" article_id=$article.article_id}
 							{/if}
 
 							{if $gBitUser->hasPermission( 'p_articles_remove' )}
-								{smartlink ititle="Remove" ibiticon="icons/edit-delete" action=remove remove_article_id=$article.article_id status_id=$smarty.request.status_id}
+								{smartlink ititle="Remove" booticon="icon-trash" action=remove remove_article_id=$article.article_id status_id=$smarty.request.status_id}
 							{/if}
 						</td>
 					</tr>

@@ -12,7 +12,7 @@
 	<div class="body">
 		{form class="minifind" legend="find in entries"}
 			<input type="hidden" name="sort_mode" value="{$sort_mode}" />
-			{biticon ipackage="icons" iname="edit-find" iexplain="Search"} &nbsp;
+			{booticon iname="icon-search"  ipackage="icons"  iexplain="Search"} &nbsp;
 			<label>{tr}Title{/tr}:&nbsp;<input size="16" type="text" name="find_title" value="{$find_title|default:$smarty.request.find_title|escape}" /></label> &nbsp;
 			<label>{tr}Author{/tr}:&nbsp;<input size="10" type="text" name="find_author" value="{$find_author|default:$smarty.request.find_author|escape}" /></label> &nbsp;
 			<label>{tr}Last Editor{/tr}:&nbsp;<input size="10" type="text" name="find_last_editor" value="{$find_last_editor|default:$smarty.request.find_last_editor|escape}" /></label> &nbsp;
@@ -23,7 +23,7 @@
 		{form id="checkform"}
 			<div class="pageactions sort">
 				<ul>
-					<li>{biticon ipackage="icons" iname="emblem-symbolic-link" iexplain="sort by"}</li>
+					<li>{booticon iname="icon-circle-arrow-right"  ipackage="icons"  iexplain="sort by"}</li>
 					{if $gBitSystem->isFeatureActive( 'wiki_list_name' )}
 						<li>{smartlink ititle="Page Name" isort="title" icontrol=$listInfo}</li>
 					{/if}
@@ -151,7 +151,7 @@
 						{if $gBitSystem->isFeatureActive( 'wiki_list_status' )}
 							<td style="text-align:center;">
 								{if $listpages[changes].flag eq 'locked'}
-									{biticon ipackage="icons" iname="emblem-readonly" iexplain="locked"}
+									{booticon iname="icon-lock" ipackage="icons" iexplain="locked"}
 								{else}
 									{biticon ipackage="icons" iname="emblem-default" iexplain="unlocked"}
 								{/if}
@@ -182,7 +182,7 @@
 						{/if}
 						{if $gBitUser->hasPermission( 'p_wiki_edit_page' )}
 							<td class="actionicon">
-								<a href="{$smarty.const.WIKI_PKG_URL}edit.php?page_id={$listpages[changes].page_id}">{biticon ipackage="icons" iname="accessories-text-editor" iexplain="edit"}</a>
+								<a href="{$smarty.const.WIKI_PKG_URL}edit.php?page_id={$listpages[changes].page_id}">{booticon iname="icon-edit" ipackage="icons" iexplain="edit"}</a>
 								{if $checkboxes_on eq 'y'}
 									<input type="checkbox" name="checked[]" value="{$listpages[changes].page_id}" />
 								{/if}
