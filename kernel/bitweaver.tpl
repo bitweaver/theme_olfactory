@@ -31,9 +31,6 @@
 			<div id="bitmain">
 				{include file="bitpackage:liberty/display_structure.tpl"}
 				<a style="padding:0;margin:0;border:0;" name="content"></a>
-				{if $pageError}
-					<div class="error">{$pageError}</div>
-				{/if}
 				{include file=$mid}
 			</div><!-- end #bitmain -->
 
